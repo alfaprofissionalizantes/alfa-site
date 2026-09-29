@@ -25,13 +25,11 @@ def create_app():
         return response
 
     # Blueprints
-    from app.routes.home      import home_bp
-    from app.routes.cursos    import cursos_bp
-    from app.routes.matricula import matricula_bp
+    from app.routes.home   import home_bp
+    from app.routes.cursos import cursos_bp
 
     app.register_blueprint(home_bp)
     app.register_blueprint(cursos_bp)
-    app.register_blueprint(matricula_bp)
 
     @app.errorhandler(404)
     def pagina_nao_encontrada(e):
