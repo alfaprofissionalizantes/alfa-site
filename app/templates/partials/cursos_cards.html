@@ -1,0 +1,46 @@
+{#- CARDS DE CURSOS — usados na home e em /cursos.
+    Recebe opcionalmente "titulo_nivel" (h2/h3) para manter a hierarquia correta. -#}
+{%- set nivel = titulo_nivel | default('h3') -%}
+{%- set cursos_lista = [
+    ('ingles', 'cursos.ingles', 'Inglês', 'fa-language', 'fa-regular fa-comments',
+     'Aprenda conversação, escrita e fluência completa com metodologia moderna e prática.'),
+    ('info', 'cursos.informatica', 'Informática', 'fa-laptop-code', 'fa-solid fa-laptop',
+     'Domine Windows, Office, internet, Excel e ferramentas profissionais essenciais.'),
+    ('enem', 'cursos.enem', 'Preparatório ENEM', 'fa-clipboard-check', 'fa-solid fa-graduation-cap',
+     'Aulas completas, simulados e reforço intensivo para vestibulares e concursos.'),
+    ('reforco', 'cursos.reforco', 'Reforço e Alfabetização', 'fa-book', 'fa-solid fa-pencil',
+     'Acompanhamento personalizado para fortalecer a aprendizagem, leitura, escrita e desempenho escolar.'),
+    ('embraer', 'cursos.embraer', 'Preparatório Embraer', 'fa-book-open', 'fa-solid fa-book-open',
+     'Curso focado no processo seletivo da Embraer, com aulas, simulados e acompanhamento completo.'),
+] -%}
+
+<div class="cursos-grid" id="cursos-grid">
+    {% for slug, ep, nome, icone, decoracao, descricao in cursos_lista %}
+    <article class="curso-card {{ slug }}">
+        <div class="curso-icon">
+            <i class="fa-solid {{ icone }}" aria-hidden="true"></i>
+        </div>
+
+        <{{ nivel }} class="curso-titulo">{{ nome }}</{{ nivel }}>
+
+        <span class="curso-linha" aria-hidden="true"></span>
+
+        <p>{{ descricao }}</p>
+
+        <a href="{{ url_for(ep) }}" class="curso-link">
+            Saiba mais<span class="sr-only"> sobre {{ nome }}</span>
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+
+        <div class="card-decoration" aria-hidden="true">
+            <i class="{{ decoracao }}"></i>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+
+<div class="scroll-indicador" role="group" aria-label="Navegar entre os cursos">
+    {% for slug, ep, nome, icone, decoracao, descricao in cursos_lista %}
+    <button type="button" class="dot{% if loop.first %} active{% endif %}" aria-label="Ir para {{ nome }}"{% if loop.first %} aria-current="true"{% endif %}></button>
+    {% endfor %}
+</div>

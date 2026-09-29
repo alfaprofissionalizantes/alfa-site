@@ -1,68 +1,61 @@
-const cursosGrid =
-    document.querySelector('.cursos-grid');
+/* =========================================================
+   CARROSSEL DE CURSOS (mobile)
+   Atualiza os indicadores (.scroll-indicador .dot) conforme
+   o card visível e permite tocar no indicador para navegar.
+========================================================= */
 
-const dots =
-    document.querySelectorAll('.scroll-indicador .dot');
+(function () {
+    "use strict";
 
-if (cursosGrid && dots.length) {
+    const grid = document.querySelector(".cursos-grid");
+    const dots = Array.from(document.querySelectorAll(".scroll-indicador .dot"));
+    if (!grid || !dots.length) return;
 
-    function atualizarIndicador() {
+    const cards = Array.from(grid.querySelectorAll(".curso-card"));
+    if (!cards.length) return;
 
-        const cards =
-            document.querySelectorAll('.curso-card');
+    const reduzMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        let cardAtivo = 0;
-
-        cards.forEach((card, index) => {
-
-            const rect =
-                card.getBoundingClientRect();
-
-            const centroTela =
-                window.innerWidth / 2;
-
-            const centroCard =
-                rect.left + rect.width / 2;
-
-            const distancia =
-                Math.abs(
-                    centroTela - centroCard
-                );
-
-            if (
-                distancia <
-                Math.abs(
-                    cards[cardAtivo]
-                    .getBoundingClientRect()
-                    .left +
-                    cards[cardAtivo]
-                    .getBoundingClientRect()
-                    .width / 2 -
-                    centroTela
-                )
-            ) {
-
-                cardAtivo = index;
-            }
-
+    function ativar(indice) {
+        dots.forEach((dot, i) => {
+            const ativo = i === indice;
+            dot.classList.toggle("active", ativo);
+            if (ativo) dot.setAttribute("aria-current", "true");
+            else dot.removeAttribute("aria-current");
         });
-
-        dots.forEach(dot =>
-            dot.classList.remove('active')
-        );
-
-        if (dots[cardAtivo]) {
-
-            dots[cardAtivo]
-                .classList.add('active');
-        }
-
     }
 
-    cursosGrid.addEventListener(
-        'scroll',
-        atualizarIndicador
-    );
+    // Card mais visível dentro do carrossel
+    if ("IntersectionObserver" in window) {
+        const visibilidade = new Map();
 
-    atualizarIndicador();
-}
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                visibilidade.set(entry.target, entry.intersectionRatio);
+            });
+
+            let melhor = 0;
+            let maior = -1;
+            cards.forEach((card, i) => {
+                const r = visibilidade.get(card) || 0;
+                if (r > maior) { maior = r; melhor = i; }
+            });
+            ativar(melhor);
+        }, { root: grid, threshold: [0.25, 0.5, 0.75, 1] });
+
+        cards.forEach((card) => observer.observe(card));
+    }
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener("click", () => {
+            const card = cards[i];
+            if (!card) return;
+            const padding = parseFloat(getComputedStyle(grid).paddingLeft) || 0;
+            const deslocamento = card.getBoundingClientRect().left - grid.getBoundingClientRect().left;
+            grid.scrollTo({
+                left: grid.scrollLeft + deslocamento - padding,
+                behavior: reduzMovimento ? "auto" : "smooth"
+            });
+        });
+    });
+})();

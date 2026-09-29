@@ -1,0 +1,82 @@
+{#- =========================================================
+    BASE — estrutura comum a todas as páginas
+    Blocos: title, description, og_image, analytics, page_css,
+            body_class, content, whatsapp_href, whatsapp_label,
+            show_navbar, page_js
+========================================================= -#}
+{%- set wa = "https://wa.me/5512997781432" -%}
+{%- set wa_matricula = wa ~ "?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." -%}
+{%- set wa_info = wa ~ "?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cursos%20da%20Alfa." -%}
+{%- set endpoint = request.endpoint or '' -%}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>{% block title %}Alfa | Cursos Profissionalizantes em São José dos Campos{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="theme-color" content="#0f1f5c">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo/logo.png') }}">
+
+    <!-- Open Graph (compartilhamento no WhatsApp/Instagram) -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Alfa Profissionalizantes">
+    <meta property="og:title" content="{{ self.title() }}">
+    <meta property="og:description" content="{{ self.description() }}">
+    <meta property="og:image" content="{% block og_image %}{{ url_for('static', filename='img/logo/logo.png', _external=True) }}{% endblock %}">
+
+    {% block analytics %}
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L63EYYEEB2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L63EYYEEB2');
+    </script>
+    {% endblock %}
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    {% block page_css %}{% endblock %}
+    {% block head_extra %}{% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    {% block show_navbar %}{% include "partials/navbar.html" %}{% endblock %}
+
+    <main id="conteudo">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include "partials/footer.html" %}
+
+    <!-- WHATSAPP FLUTUANTE -->
+    <a
+        href="{% block whatsapp_href %}{{ wa }}?text=Olá!%20Tenho%20algumas%20dúvidas%20sobre%20os%20cursos%20da%20Alfa.{% endblock %}"
+        class="whatsapp-float"
+        target="_blank"
+        rel="noopener"
+        aria-label="{% block whatsapp_label %}Tire suas dúvidas pelo WhatsApp{% endblock %}"
+    >
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        <span>Tire suas dúvidas</span>
+    </a>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    {% block page_js %}{% endblock %}
+</body>
+</html>

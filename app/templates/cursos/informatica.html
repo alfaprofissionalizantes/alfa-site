@@ -1,371 +1,122 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
 
-    <meta charset="UTF-8">
+{% block title %}Curso de Informática em São José dos Campos | Alfa{% endblock %}
+{% block description %}Curso de informática em São José dos Campos: Windows, Word, Excel, PowerPoint, Canva, Power BI, CorelDRAW e Photoshop. Turmas manhã, tarde e noite.{% endblock %}
+{% block page_css %}
+    <link rel="preload" as="image" type="image/webp" href="{{ url_for('static', filename='img/86F99804-A649-459B-9334-4038097E963F.webp') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cursos.css') }}">
+{% endblock %}
+{% block body_class %}page-curso curso--info{% endblock %}
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+{% block content %}
+    {%- set softwares = [
+        ('https://img.icons8.com/color/96/windows-10.png', 'Windows', 'Windows', 'Sistema operacional do computador.'),
+        ('https://img.icons8.com/color/96/microsoft-powerpoint-2019.png', 'PowerPoint', 'Power Point', 'Apresentações em slide e gráficos.'),
+        ('https://img.icons8.com/color/96/microsoft-word-2019.png', 'Word', 'Word', 'Elaboração: documentos, panfletos, folder, declarações, recibos, modelos de cartas etc.'),
+        ('https://img.icons8.com/color/96/coreldraw.png', 'CorelDRAW', 'Corel Draw', 'Desenvolvimento de logotipos, panfletos, cartões de visita, folder, flayer e banner.'),
+        ('https://img.icons8.com/color/96/microsoft-excel-2019.png', 'Excel', 'Excel', 'Planilhas de cálculos, gráficos e funções.'),
+        ('https://img.icons8.com/color/96/adobe-photoshop--v1.png', 'Photoshop', 'Photoshop', 'Tratamento de imagens.'),
+        (url_for('static', filename='img/promob.png'), 'Promob', 'Designer de Interiores', 'Desenvolver projetos de ambientes e móveis planejados.'),
+        ('https://img.icons8.com/color/96/canva.png', 'Canva', 'Canva', 'Criação de designs, apresentações, posts e materiais visuais de forma simples e profissional.'),
+        ('https://img.icons8.com/color/96/power-bi.png', 'Power BI', 'Power BI', 'Análise e visualização de dados com dashboards e relatórios interativos.'),
+    ] -%}
 
-    <title>Curso de Informática em São José dos Campos | Alfa</title>
-
-    <meta name="description" content="Curso de informática em São José dos Campos: Windows, Word, Excel, PowerPoint, Canva, Power BI, CorelDRAW e Photoshop. Turmas manhã, tarde e noite.">
-
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo/logo.png') }}">
-
-    <!-- CSS -->
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}"
-    >
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L63EYYEEB2"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-L63EYYEEB2');
-    </script>
-
-</head>
-<body>
-
-<div class="logo-canto">
-
-    <a href="/" class="logo-home">
-
-        <img
-            src="{{ url_for('static', filename='img/logo/logo.png') }}"
-            alt="Alfa Cursos"
-        >
-
-    </a>
-
-    <a href="javascript:history.back()" class="back-button">
-        <img
-            src="{{ url_for('static', filename='img/XQMVKTRPLDJSNBYFWAZ18472-GHTXQWPLMN7204.png') }}"
-            alt="Voltar"
-        >
-    </a>
-
-</div>
-
-    <!-- ========================= -->
     <!-- HERO -->
-    <!-- ========================= -->
-
     <section class="curso-hero informatica-hero">
-
-        <div class="curso-hero-overlay"></div>
-
-        <div class="curso-hero-content">
-
-            <span class="curso-tag">
-                TECNOLOGIA E MERCADO
-            </span>
-
-            <h1>
-                Aprenda Informática do básico ao profissional
-            </h1>
-
-            <p>
-                Desenvolva habilidades essenciais para o mercado
-                de trabalho e domine as principais ferramentas digitais.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a
-                    href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank"
-                    class="btn-curso"
-                >
-                    Fazer Matrícula
-                </a>
-
-                <a
-                    href="#beneficios"
-                    class="btn-secondary"
-                >
-                    Ver Conteúdo
-                </a>
-
+        <div class="container">
+            <div class="curso-hero-content">
+                <span class="curso-tag">Tecnologia e mercado</span>
+                <h1>Aprenda Informática do básico ao profissional</h1>
+                <p>
+                    Desenvolva habilidades essenciais para o mercado
+                    de trabalho e domine as principais ferramentas digitais.
+                </p>
+                <div class="hero-buttons">
+                    <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn btn--accent btn--lg btn-curso">Fazer Matrícula</a>
+                    <a href="#beneficios" class="btn btn--ghost btn--lg btn-secondary">Ver Conteúdo</a>
+                </div>
             </div>
-
         </div>
-
+        {% with curva_classe = 'hero-curva hero-curva--branca' %}{% include "partials/curva.html" %}{% endwith %}
     </section>
 
-    <!-- ========================= -->
     <!-- SOBRE -->
-    <!-- ========================= -->
-
-    <section class="curso-info">
-        <div style="max-width:900px; margin:0 auto; text-align:center; padding: 120px 48px;">
-
-            <span class="section-tag">SOBRE O CURSO</span>
-
-            <h2 style="margin: 32px 0 24px; font-size: 2.8rem;">
-                Conhecimento digital para sua carreira
-            </h2>
-
-            <div style="width:60px; height:4px; background:#2563eb; border-radius:4px; margin:0 auto 24px;"></div>
-
-            <p style="color:#475569; font-size:1.15rem; line-height:1.8; margin-bottom:12px;">
-                O curso de Informática Essencial da Alfa Cursos foi desenvolvido 
-                para preparar alunos para o mercado moderno e tecnológico.
-            </p>
-
-            <p style="color:#475569; font-size:1.15rem; line-height:1.8;">
-                Você aprenderá desde o básico do computador até ferramentas 
-                utilizadas diariamente em empresas, escritórios e ambientes profissionais.
-            </p>
-
+    <section class="curso-info section section--white">
+        <div class="container">
+            <div class="section-head section-head--center curso-info-texto">
+                <span class="section-tag">Sobre o curso</span>
+                <h2>Conhecimento digital para sua carreira</h2>
+                <div class="linha-destaque" aria-hidden="true"></div>
+                <p>
+                    O curso de Informática Essencial da Alfa Cursos foi desenvolvido
+                    para preparar alunos para o mercado moderno e tecnológico.
+                </p>
+                <p>
+                    Você aprenderá desde o básico do computador até ferramentas
+                    utilizadas diariamente em empresas, escritórios e ambientes profissionais.
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- ========================= -->
     <!-- BENEFÍCIOS -->
-    <!-- ========================= -->
-
-    <section
-        class="curso-beneficios"
-        id="beneficios"
-    >
-
-        <div class="section-header">
-
-            <span class="section-tag">
-                O QUE VOCÊ VAI APRENDER
-            </span>
-
-            <h2>
-                Conteúdo completo e atualizado
-            </h2>
-
+    <section class="curso-beneficios section" id="beneficios" aria-labelledby="beneficios-titulo">
+        <div class="container">
+            <div class="section-head section-head--center">
+                <span class="section-tag">O que você vai aprender</span>
+                <h2 id="beneficios-titulo">Conteúdo completo e atualizado</h2>
+            </div>
+            <div class="beneficios-grid reveal-stagger">
+                {{ m.beneficio('fa-laptop', 'Pacote Office', 'Aprenda Word, Excel e PowerPoint utilizados no ambiente profissional.') }}
+                {{ m.beneficio('fa-globe', 'Internet e Tecnologia', 'Navegação segura, produtividade e ferramentas modernas digitais.') }}
+                {{ m.beneficio('fa-rocket', 'Mercado de Trabalho', 'Desenvolva habilidades essenciais valorizadas pelas empresas.') }}
+            </div>
         </div>
-
-        <div class="beneficios-grid">
-
-            <div class="beneficio-card">
-
-                <div class="beneficio-icon">
-                    💻
-                </div>
-
-                <h3>
-                    Pacote Office
-                </h3>
-
-                <p>
-                    Aprenda Word, Excel e PowerPoint
-                    utilizados no ambiente profissional.
-                </p>
-
-            </div>
-
-            <div class="beneficio-card">
-
-                <div class="beneficio-icon">
-                    🌐
-                </div>
-
-                <h3>
-                    Internet e Tecnologia
-                </h3>
-
-                <p>
-                    Navegação segura, produtividade
-                    e ferramentas modernas digitais.
-                </p>
-
-            </div>
-
-            <div class="beneficio-card">
-
-                <div class="beneficio-icon">
-                    🚀
-                </div>
-
-                <h3>
-                    Mercado de Trabalho
-                </h3>
-
-                <p>
-                    Desenvolva habilidades essenciais
-                    valorizadas pelas empresas.
-                </p>
-
-            </div>
-
-        </div>
-
     </section>
 
-
-    <!-- ========================= -->
     <!-- SOFTWARES -->
-    <!-- ========================= -->
-
-    <section class="curso-softwares">
-
-        <div class="section-header">
-
-            <span class="section-tag">
-                FERRAMENTAS E PROGRAMAS
-            </span>
-
-            <h2>
-                Softwares que você vai dominar
-            </h2>
-
+    <section class="curso-softwares section section--white" aria-labelledby="softwares-titulo">
+        <div class="container">
+            <div class="section-head section-head--center">
+                <span class="section-tag">Ferramentas e programas</span>
+                <h2 id="softwares-titulo">Softwares que você vai dominar</h2>
+            </div>
+            <ul class="softwares-grid">
+                {% for src, alt, nome, texto in softwares %}
+                <li class="software-item">
+                    <img src="{{ src }}" class="software-icone" alt="{{ alt }}" width="48" height="48" loading="lazy">
+                    <div class="software-texto">
+                        <h3>{{ nome }}</h3>
+                        <p>{{ texto }}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
-
-        <div class="softwares-grid">
-
-            <div class="software-item">
-                <img src="https://img.icons8.com/color/96/windows-10.png" class="software-icone" alt="Windows"/>
-                <div class="software-texto">
-                    <h3 style="color:#00ADEF">Windows</h3>
-                    <p>Sistema operacional do computador.</p>
-                </div>
-            </div>
-
-            <div class="software-item">
-                <img src="https://img.icons8.com/color/96/microsoft-powerpoint-2019.png" class="software-icone" alt="PowerPoint"/>
-                <div class="software-texto">
-                    <h3 style="color:#D24726">Power Point</h3>
-                    <p>Apresentações em slide e gráficos.</p>
-                </div>
-            </div>
-
-            <div class="software-item">
-                <img src="https://img.icons8.com/color/96/microsoft-word-2019.png" class="software-icone" alt="Word"/>
-                <div class="software-texto">
-                    <h3 style="color:#2B579A">Word</h3>
-                    <p>Elaboração: documentos, panfletos, folder, declarações, recibos, modelos de cartas etc.</p>
-                </div>
-            </div>
-
-            <div class="software-item">
-                <img src="https://img.icons8.com/color/96/coreldraw.png" class="software-icone" alt="CorelDRAW"/>
-                <div class="software-texto">
-                    <h3 style="color:#f59e0b">Corel Draw</h3>
-                    <p>Desenvolvimento de logotipos, panfletos, cartões de visita, folder, flayer e banner.</p>
-                </div>
-            </div>
-
-            <div class="software-item">
-                <img src="https://img.icons8.com/color/96/microsoft-excel-2019.png" class="software-icone" alt="Excel"/>
-                <div class="software-texto">
-                    <h3 style="color:#207245">Excel</h3>
-                    <p>Planilhas de cálculos, gráficos e funções.</p>
-                </div>
-            </div>
-
-            <div class="software-item">
-                <img src="https://img.icons8.com/color/96/adobe-photoshop--v1.png" class="software-icone" alt="Photoshop"/>
-                <div class="software-texto">
-                    <h3 style="color:#31A8FF">Photoshop</h3>
-                    <p>Tratamento de imagens.</p>
-                </div>
-            </div>
-
-            <div class="software-item">
-                <img src="{{ url_for('static', filename='img/promob.png') }}" class="software-icone" alt="Promob"/>
-                <div class="software-texto">
-                    <h3 style="color:#475569">Designer de Interiores</h3>
-                    <p>Desenvolver projetos de ambientes e móveis planejados.</p>
-                </div>
-            </div>
-            <div class="software-item">
-                <img src="https://img.icons8.com/color/96/canva.png" class="software-icone" alt="Canva"/>
-                <div class="software-texto">
-                    <h3 style="color:#00C4CC">Canva</h3>
-                    <p>Criação de designs, apresentações, posts e materiais visuais de forma simples e profissional.</p>
-                </div>
-            </div>
-
-            <div class="software-item">
-                <img src="https://img.icons8.com/color/96/power-bi.png" class="software-icone" alt="Power BI"/>
-                <div class="software-texto">
-                    <h3 style="color:#F2C811">Power BI</h3>
-                    <p>Análise e visualização de dados com dashboards e relatórios interativos.</p>
-                </div>
-            </div>
-
-        </div>
-
     </section>
 
-    <!-- ========================= -->
     <!-- VÍDEO -->
-    <!-- ========================= -->
-
-    <section style="padding: 60px 24px; background: #f8faff; text-align: center;">
-
-        <div class="section-header">
-            <span class="section-tag">CONHEÇA NOSSA ESTRUTURA</span>
-            <h2>Veja como é estudar na Alfa</h2>
+    <section class="video-section section" aria-labelledby="video-titulo">
+        <div class="container">
+            <div class="section-head section-head--center">
+                <span class="section-tag">Conheça nossa estrutura</span>
+                <h2 id="video-titulo">Veja como é estudar na Alfa</h2>
+            </div>
+            {{ m.video('VIDEO-2026-06-30-16-14-28.mp4', classe='video-wrapper--vertical', autoplay=true) }}
         </div>
-
-        <div style="max-width: 300px; margin: 40px auto 0; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.15);">
-            <video
-                controls
-                autoplay
-                muted
-                loop
-                style="width: 100%; display: block;"
-            >
-                <source src="{{ url_for('static', filename='img/VIDEO-2026-06-30-16-14-28.mp4') }}" type="video/mp4"/>
-            </video>
-        </div>
-
     </section>
 
-    <!-- ========================= -->
     <!-- CTA -->
-    <!-- ========================= -->
-
     <section class="curso-cta">
-
-        <div class="cta-content">
-
-            <h2>
-                Prepare-se para o futuro digital
-            </h2>
-
+        <div class="cta-content reveal">
+            <h2>Prepare-se para o futuro digital</h2>
             <p>
                 Invista em conhecimento e aumente suas
                 oportunidades profissionais com a Alfa Cursos.
             </p>
-
-            <a
-                href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank"
-                class="btn-curso"
-            >
-                Garantir Minha Vaga
-            </a>
-
+            <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn btn--accent btn--lg btn-curso">Garantir Minha Vaga</a>
         </div>
-
     </section>
 
-    <!-- ========================= -->
-    <!-- RODAPÉ -->
-    <!-- ========================= -->
-
-    <footer class="footer">
-
-        <p>
-            © 2026 Alfa Cursos - Todos os direitos reservados
-        </p>
-
-    </footer>
-
-</body>
-
-</html>
+{% endblock %}

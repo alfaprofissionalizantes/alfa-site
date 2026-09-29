@@ -1,221 +1,92 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-<title>Reforço Escolar e Alfabetização em São José dos Campos | Alfa</title>
-<meta name="description" content="Reforço escolar e alfabetização em São José dos Campos. Acompanhamento individualizado para crianças e adolescentes de todas as séries.">
-<link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo/logo.png') }}">
-<!-- CSS -->
-<link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/style.css') }}"
->
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
 
+{% block title %}Reforço Escolar e Alfabetização em São José dos Campos | Alfa{% endblock %}
+{% block description %}Reforço escolar e alfabetização em São José dos Campos. Acompanhamento individualizado para crianças e adolescentes de todas as séries.{% endblock %}
+{% block page_css %}
+    <link rel="preload" as="image" type="image/webp" href="{{ url_for('static', filename='img/reforco.webp') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cursos.css') }}">
+{% endblock %}
+{% block body_class %}page-curso curso--reforco{% endblock %}
 
-<!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L63EYYEEB2"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+{% block content %}
 
-    gtag('config', 'G-L63EYYEEB2');
-    </script>
-
-</head>
-<body>
-
-<div class="logo-canto">
-
-    <a href="/" class="logo-home">
-
-        <img
-            src="{{ url_for('static', filename='img/logo/logo.png') }}"
-            alt="Alfa Cursos"
-        >
-
-    </a>
-
-    <a href="javascript:history.back()" class="back-button">
-        <img
-            src="{{ url_for('static', filename='img/XQMVKTRPLDJSNBYFWAZ18472-GHTXQWPLMN7204.png') }}"
-            alt="Voltar"
-        >
-    </a>
-
-</div>
-<!-- ========================= -->
-<!-- HERO -->
-<!-- ========================= -->
-<section class="curso-hero reforco-hero">
-    <div class="curso-hero-overlay"></div>
-    <div class="curso-hero-content">
-        <span class="curso-tag">
-            DESENVOLVIMENTO EDUCACIONAL
-        </span>
-        <h1>
-            Reforço Escolar e Alfabetização
-        </h1>
-        <p>
-            Acompanhamento personalizado para fortalecer a aprendizagem,
-            desenvolver a leitura, escrita e aumentar a confiança dos alunos.
-        </p>
-        <div class="hero-buttons">
-            <a
-                href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank"
-                class="btn-curso"
-            >
-                Fazer Matrícula
-            </a>
-            <a
-                href="#beneficios"
-                class="btn-secondary"
-            >
-                Saiba Mais
-            </a>
-        </div>
-    </div>
-</section>
-
-
-<!-- ========================= -->
-<!-- SOBRE -->
-<!-- ========================= -->
-
-<section class="curso-info">
-    <div style="max-width:900px; margin:0 auto; text-align:center; padding: 60px 24px;">
-
-        <span class="section-tag">SOBRE O CURSO</span>
-
-        <h2 style="margin: 16px 0 12px; font-size: 2.8rem;">
-            Aprender com segurança faz toda diferença
-        </h2>
-
-        <div style="width:60px; height:4px; background:#2563eb; border-radius:4px; margin:0 auto 24px;"></div>
-
-        <p style="color:#475569; font-size:1.15rem; line-height:1.8; margin-bottom:12px;">
-            O curso de Reforço Escolar e Alfabetização da Alfa Cursos auxilia 
-            crianças e jovens a desenvolverem habilidades fundamentais para o 
-            sucesso acadêmico.
-        </p>
-
-        <p style="color:#475569; font-size:1.15rem; line-height:1.8;">
-            Com acompanhamento individualizado, o aluno fortalece seus conhecimentos, 
-            melhora o desempenho escolar e ganha mais confiança para aprender e 
-            evoluir em cada etapa dos estudos.
-        </p>
-
-    </div>
-</section>
-
-
-<!-- ========================= -->
-<!-- BENEFÍCIOS -->
-<!-- ========================= -->
-<section
-    class="curso-beneficios"
-    id="beneficios"
->
-    <div class="section-header">
-        <span class="section-tag">
-            BENEFÍCIOS
-        </span>
-        <h2>
-            O que oferecemos
-        </h2>
-    </div>
-    <div class="beneficios-grid">
-        <div class="beneficio-card">
-            <div class="beneficio-icon">
-                📚
+    <!-- HERO -->
+    <section class="curso-hero reforco-hero">
+        <div class="container">
+            <div class="curso-hero-content">
+                <span class="curso-tag">Desenvolvimento educacional</span>
+                <h1>Reforço Escolar e Alfabetização</h1>
+                <p>
+                    Acompanhamento personalizado para fortalecer a aprendizagem,
+                    desenvolver a leitura, escrita e aumentar a confiança dos alunos.
+                </p>
+                <div class="hero-buttons">
+                    <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn btn--accent btn--lg btn-curso">Fazer Matrícula</a>
+                    <a href="#beneficios" class="btn btn--ghost btn--lg btn-secondary">Saiba Mais</a>
+                </div>
             </div>
-            <h3>
-                Apoio Escolar
-            </h3>
-            <p>
-                Reforço das disciplinas com maior dificuldade,
-                melhorando o desempenho e a compreensão dos conteúdos.
-            </p>
         </div>
-        <div class="beneficio-card">
-            <div class="beneficio-icon">
-                ✏️
-            </div>
-            <h3>
-                Alfabetização
-            </h3>
-            <p>
-                Desenvolvimento da leitura, escrita e interpretação
-                de forma didática e personalizada.
-            </p>
-        </div>
-        <div class="beneficio-card">
-            <div class="beneficio-icon">
-                ⭐
-            </div>
-            <h3>
-                Mais Confiança
-            </h3>
-            <p>
-                Incentivo contínuo para que o aluno desenvolva
-                autonomia e segurança nos estudos.
-            </p>
-        </div>
-    </div>
-</section>
-
-
-    <!-- ========================= -->
-    <!-- VÍDEO -->
-    <!-- ========================= -->
-
-    <section class="video-section">
-
-        <div class="section-header">
-            <span class="section-tag">CONHEÇA NOSSA ESTRUTURA</span>
-            <h2>Veja como é estudar na Alfa</h2>
-        </div>
-
-        <div class="video-wrapper">
-            <video controls muted loop>
-                <source src="{{ url_for('static', filename='img/VIDEO-2026-06-30-16-13-04.mp4') }}" type="video/mp4"/>
-            </video>
-        </div>
-
+        {% with curva_classe = 'hero-curva hero-curva--branca' %}{% include "partials/curva.html" %}{% endwith %}
     </section>
 
+    <!-- SOBRE -->
+    <section class="curso-info section section--white">
+        <div class="container">
+            <div class="section-head section-head--center curso-info-texto">
+                <span class="section-tag">Sobre o curso</span>
+                <h2>Aprender com segurança faz toda diferença</h2>
+                <div class="linha-destaque" aria-hidden="true"></div>
+                <p>
+                    O curso de Reforço Escolar e Alfabetização da Alfa Cursos auxilia
+                    crianças e jovens a desenvolverem habilidades fundamentais para o
+                    sucesso acadêmico.
+                </p>
+                <p>
+                    Com acompanhamento individualizado, o aluno fortalece seus conhecimentos,
+                    melhora o desempenho escolar e ganha mais confiança para aprender e
+                    evoluir em cada etapa dos estudos.
+                </p>
+            </div>
+        </div>
+    </section>
 
-<!-- ========================= -->
-<!-- CTA -->
-<!-- ========================= -->
-<section class="curso-cta">
-    <div class="cta-content">
-        <h2>
-            Incentive o desenvolvimento de quem você ama
-        </h2>
-        <p>
-            A Alfa Cursos oferece apoio educacional para transformar
-            aprendizado em resultados e construir um futuro de sucesso.
-        </p>
-        <a
-            href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank"
-            class="btn-curso"
-        >
-            Garantir Minha Vaga
-        </a>
-    </div>
-</section>
-<!-- ========================= -->
-<!-- RODAPÉ -->
-<!-- ========================= -->
-<footer class="footer">
-    <p>
-        © 2026 Alfa Cursos - Todos os direitos reservados
-    </p>
-</footer>
-</body>
-</html>
+    <!-- BENEFÍCIOS -->
+    <section class="curso-beneficios section" id="beneficios" aria-labelledby="beneficios-titulo">
+        <div class="container">
+            <div class="section-head section-head--center">
+                <span class="section-tag">Benefícios</span>
+                <h2 id="beneficios-titulo">O que oferecemos</h2>
+            </div>
+            <div class="beneficios-grid reveal-stagger">
+                {{ m.beneficio('fa-book', 'Apoio Escolar', 'Reforço das disciplinas com maior dificuldade, melhorando o desempenho e a compreensão dos conteúdos.') }}
+                {{ m.beneficio('fa-pencil', 'Alfabetização', 'Desenvolvimento da leitura, escrita e interpretação de forma didática e personalizada.') }}
+                {{ m.beneficio('fa-star', 'Mais Confiança', 'Incentivo contínuo para que o aluno desenvolva autonomia e segurança nos estudos.') }}
+            </div>
+        </div>
+    </section>
+
+    <!-- VÍDEO -->
+    <section class="video-section section section--white" aria-labelledby="video-titulo">
+        <div class="container">
+            <div class="section-head section-head--center">
+                <span class="section-tag">Conheça nossa estrutura</span>
+                <h2 id="video-titulo">Veja como é estudar na Alfa</h2>
+            </div>
+            {{ m.video('VIDEO-2026-06-30-16-13-04.mp4') }}
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="curso-cta">
+        <div class="cta-content reveal">
+            <h2>Incentive o desenvolvimento de quem você ama</h2>
+            <p>
+                A Alfa Cursos oferece apoio educacional para transformar
+                aprendizado em resultados e construir um futuro de sucesso.
+            </p>
+            <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn btn--accent btn--lg btn-curso">Garantir Minha Vaga</a>
+        </div>
+    </section>
+
+{% endblock %}

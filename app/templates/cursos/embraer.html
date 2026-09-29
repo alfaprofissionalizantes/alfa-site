@@ -1,232 +1,84 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo/logo.png') }}">
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
 
-<head>
-<meta charset="UTF-8">
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-<title>Preparatório para Instituto Federal e ETEC em São José dos Campos | Alfa</title>
-<meta name="description" content="Preparatório para Instituto Federal, ETEC e Embraer em São José dos Campos. Aulas específicas, simulados e acompanhamento pedagógico. Veja nossos aprovados.">
-<link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/style.css') }}"
->
+{% block title %}Preparatório para Instituto Federal e ETEC em São José dos Campos | Alfa{% endblock %}
+{% block description %}Preparatório para Instituto Federal, ETEC e Embraer em São José dos Campos. Aulas específicas, simulados e acompanhamento pedagógico. Veja nossos aprovados.{% endblock %}
+{% block page_css %}
+    <link rel="preload" as="image" type="image/webp" href="{{ url_for('static', filename='img/IMG_5657.webp') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cursos.css') }}">
+{% endblock %}
+{% block body_class %}page-curso curso--embraer{% endblock %}
 
-<!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L63EYYEEB2"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+{% block content %}
 
-    gtag('config', 'G-L63EYYEEB2');
-    </script>
-</head>
-<body>
-
-
-
-    
-<div class="logo-canto">
-
-    <a href="/" class="logo-home">
-
-        <img
-            src="{{ url_for('static', filename='img/logo/logo.png') }}"
-            alt="Alfa Cursos"
-        >
-
-    </a>
-
-    <a href="javascript:history.back()" class="back-button">
-        <img
-            src="{{ url_for('static', filename='img/XQMVKTRPLDJSNBYFWAZ18472-GHTXQWPLMN7204.png') }}"
-            alt="Voltar"
-        >
-    </a>
-
-</div>
-
-<!-- HERO -->
-<section class="curso-hero embraer-hero">
-    <div class="curso-hero-overlay"></div>
-    <div class="curso-hero-content">
-        <span class="curso-tag">
-            PREPARATÓRIOS
-        </span>
-        <h1>
-            Prepare-se para o processo seletivo da Embraer, Instituto Federal, ETEC, COC, Univap Centro e outras escolas.
-        </h1>
-        <p>
-            Aulas focadas nas disciplinas exigidas,
-            simulados e preparação completa para aumentar
-            suas chances de aprovação.
-        </p>
-        <div class="hero-buttons">
-            <a
-                href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank"
-                class="btn-curso"
-            >
-                Fazer Matrícula
-            </a>
-            <a
-                href="#beneficios"
-                class="btn-secondary"
-            >
-                Saiba Mais
-            </a>
-        </div>
-    </div>
-</section>
-
-
-
-<!-- SOBRE -->
-<section class="curso-info">
-    <div style="max-width:900px; margin:0 auto; text-align:center; padding: 60px 24px;">
-
-        <span class="section-tag">SOBRE O CURSO</span>
-
-        <h2 style="margin: 16px 0 12px; font-size: 2.8rem;">
-            Preparação direcionada para as provas de bolsas de diversas escolas.
-        </h2>
-
-        <div style="width:60px; height:4px; background:#2563eb; border-radius:4px; margin:0 auto 24px;"></div>
-
-        <p style="color:#475569; font-size:1.15rem; line-height:1.8; margin-bottom:12px;">
-            Nosso preparatório foi desenvolvido para alunos que desejam ingressar 
-            em varias instituições mais respeitadas da região.
-        </p>
-
-        <p style="color:#475569; font-size:1.15rem; line-height:1.8;">
-            Com aulas específicas, resolução de exercícios, simulados e 
-            acompanhamento pedagógico, você estuda exatamente o que precisa 
-            para a prova.
-        </p>
-
-    </div>
-</section>
-
-
-
-<!-- BENEFÍCIOS -->
-<section
-    class="curso-beneficios"
-    id="beneficios"
->
-    <div class="section-header">
-        <span class="section-tag">
-            BENEFÍCIOS
-        </span>
-        <h2>
-            O que você vai desenvolver
-        </h2>
-    </div>
-    <div class="beneficios-grid">
-        <div class="beneficio-card">
-            <div class="beneficio-icon">
-                📖
+    <!-- HERO -->
+    <section class="curso-hero embraer-hero">
+        <div class="container">
+            <div class="curso-hero-content">
+                <span class="curso-tag">Preparatórios</span>
+                <h1>Prepare-se para o processo seletivo da Embraer, Instituto Federal, ETEC, COC, Univap Centro e outras escolas.</h1>
+                <p>
+                    Aulas focadas nas disciplinas exigidas,
+                    simulados e preparação completa para aumentar
+                    suas chances de aprovação.
+                </p>
+                <div class="hero-buttons">
+                    <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn btn--accent btn--lg btn-curso">Fazer Matrícula</a>
+                    <a href="#beneficios" class="btn btn--ghost btn--lg btn-secondary">Saiba Mais</a>
+                </div>
             </div>
-            <h3>
-                Conteúdo Direcionado
-            </h3>
-            <p>
-                Estude exatamente os temas cobrados
-                nos processos seletivos.
-            </p>
         </div>
-        <div class="beneficio-card">
-            <div class="beneficio-icon">
-                📝
-            </div>
-            <h3>
-                Simulados
-            </h3>
-            <p>
-                Treine em condições semelhantes às
-                da prova oficial.
-            </p>
-        </div>
-        <div class="beneficio-card">
-            <div class="beneficio-icon">
-                🎯
-            </div>
-            <h3>
-                Estratégia de Aprovação
-            </h3>
-            <p>
-                Aprenda técnicas para melhorar seu
-                desempenho e gestão do tempo.
-            </p>
-        </div>
-    </div>
-</section>
-<!-- CTA -->
-<section class="curso-cta">
-    <div class="cta-content">
-        <h2>
-            Dê o próximo passo rumo ao ensino médio.
-        </h2>
-        <p>
-            Comece sua preparação agora mesmo e
-            aumente suas chances de aprovação.
-        </p>
-        <a
-            href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank"
-            class="btn-curso"
-        >
-            Garantir Minha Vaga
-        </a>
-    </div>
-</section>
-
-    <!-- ========================= -->
-    <!-- APROVADOS -->
-    <!-- ========================= -->
-
-    <section class="aprovados-section">
-
-        <div class="section-header">
-            <span class="section-tag">NOSSOS ALUNOS</span>
-            <h2>Alunos Aprovados</h2>
-            <p class="aprovados-subtitulo">Histórias reais de quem transformou o futuro com a Alfa.</p>
-        </div>
-
-        <div class="aprovados-grid">
-            <img src="{{ url_for('static', filename='img/48FEC203-B6F1-4192-9681-757F7339FA74.png') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_1.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_3.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_4.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_5.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_6.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_7.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_1.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_3.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_4.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_5.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_6.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_7.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_2.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_8.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_9.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_10.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_11.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_12.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/IMG_5942.jpeg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/IMG_5943.jpeg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/IMG_5944.jpeg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-        </div>
-
+        {% with curva_classe = 'hero-curva hero-curva--branca' %}{% include "partials/curva.html" %}{% endwith %}
     </section>
 
+    <!-- SOBRE -->
+    <section class="curso-info section section--white">
+        <div class="container">
+            <div class="section-head section-head--center curso-info-texto">
+                <span class="section-tag">Sobre o curso</span>
+                <h2>Preparação direcionada para as provas de bolsas de diversas escolas.</h2>
+                <div class="linha-destaque" aria-hidden="true"></div>
+                <p>
+                    Nosso preparatório foi desenvolvido para alunos que desejam ingressar
+                    em varias instituições mais respeitadas da região.
+                </p>
+                <p>
+                    Com aulas específicas, resolução de exercícios, simulados e
+                    acompanhamento pedagógico, você estuda exatamente o que precisa
+                    para a prova.
+                </p>
+            </div>
+        </div>
+    </section>
 
-<footer class="footer">
-    <p>
-        © 2026 Alfa Cursos - Todos os direitos reservados
-    </p>
-</footer>
-</body>
-</html>
+    <!-- BENEFÍCIOS -->
+    <section class="curso-beneficios section" id="beneficios" aria-labelledby="beneficios-titulo">
+        <div class="container">
+            <div class="section-head section-head--center">
+                <span class="section-tag">Benefícios</span>
+                <h2 id="beneficios-titulo">O que você vai desenvolver</h2>
+            </div>
+            <div class="beneficios-grid reveal-stagger">
+                {{ m.beneficio('fa-book-open', 'Conteúdo Direcionado', 'Estude exatamente os temas cobrados nos processos seletivos.') }}
+                {{ m.beneficio('fa-file-pen', 'Simulados', 'Treine em condições semelhantes às da prova oficial.') }}
+                {{ m.beneficio('fa-bullseye', 'Estratégia de Aprovação', 'Aprenda técnicas para melhorar seu desempenho e gestão do tempo.') }}
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="curso-cta">
+        <div class="cta-content reveal">
+            <h2>Dê o próximo passo rumo ao ensino médio.</h2>
+            <p>
+                Comece sua preparação agora mesmo e
+                aumente suas chances de aprovação.
+            </p>
+            <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn btn--accent btn--lg btn-curso">Garantir Minha Vaga</a>
+        </div>
+    </section>
+
+    <!-- APROVADOS -->
+    {% include "partials/aprovados.html" %}
+
+{% endblock %}

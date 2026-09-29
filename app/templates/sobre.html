@@ -1,367 +1,265 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo/logo.png') }}">
+{% extends "base.html" %}
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quem Somos | Alfa Profissionalizantes | Nossa História e Missão</title>
-  <meta name="description" content="Há mais de 15 anos transformando vidas através da educação. Conheça a história, a estrutura e os diferenciais da Alfa Profissionalizantes em São José dos Campos." />
+{% block title %}Quem Somos | Alfa Profissionalizantes | Nossa História e Missão{% endblock %}
+{% block description %}Há mais de 15 anos transformando vidas através da educação. Conheça a história, a estrutura e os diferenciais da Alfa Profissionalizantes em São José dos Campos.{% endblock %}
+{% block page_css %}
+    <link rel="preload" as="image" type="image/webp" href="{{ url_for('static', filename='img/faixa.webp') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sobre.css') }}">
+{% endblock %}
+{% block body_class %}page-sobre{% endblock %}
 
-  <!-- Fontes -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+{% block content %}
+    {%- set wa_visita = wa ~ "?text=Olá!%20Gostaria%20de%20agendar%20uma%20visita%20na%20Alfa%20Profissionalizantes." -%}
 
-  <!-- Ícones -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <link rel="stylesheet" 
-        href="{{ url_for('static', filename='css/sobre.css') }}" />
-
-
-
-      <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L63EYYEEB2"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-L63EYYEEB2');
-    </script>
-
-
-</head>
-<body>
-
-  
-  <!-- ===================== LOGO + VOLTAR ===================== -->
-  <div class="top-bar">
-    <a href="/" class="logo-home" aria-label="Alfa Profissionalizantes">
-    <img
-        src="{{ url_for('static', filename='img/logo/logo.png') }}"
-        alt="Alfa Profissionalizantes"
-        class="logo-img"
-    >
-    </a>
-    <a href="javascript:history.back()" class="back-button" aria-label="Voltar">
-        <img src="{{ url_for('static', filename='img/XQMVKTRPLDJSNBYFWAZ18472-GHTXQWPLMN7204.png') }}"
-            alt="Voltar">
-    </a>
-  </div>
-
-  <!-- ===================== HERO ===================== -->
-  <header class="hero" id="topo">
-    <div class="hero__overlay"></div>
-    <div class="hero__content">
-      <span class="hero__badge"><i class="fa-solid fa-graduation-cap"></i> Quem Somos</span>
-      <h1>Há mais de 15 anos transformando vidas através da educação</h1>
-      <p>Qualificação profissional, preparação acadêmica e oportunidades para construir um futuro melhor em São José dos Campos.</p>
-      <div class="hero__actions">
-        <a href="#estrutura" class="btn btn--blue"> Conheça Nossa Estrutura </a>
-        <a href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20agendar%20uma%20visita%20na%20Alfa%20Profissionalizantes." target="_blank" rel="noopener" class="btn btn--ghost"><i class="fa-brands fa-whatsapp"></i> Agendar Visita</a>
-      </div>
-    </div>    
-  </header>
-
-  <!-- ===================== HISTÓRIA / SOBRE ===================== -->
-  <section class="sobre reveal" id="historia">
-    <div class="container sobre__grid">
-      <div class="sobre__media">
-        <img src="images/alfa-study.jpg" alt="Alunos estudando na Alfa Profissionalizantes" loading="lazy" />
-        <div class="sobre__badge">
-          <strong>+15</strong>
-          <span>anos de tradição</span>
-        </div>
-      </div>
-      <div class="sobre__text">
-        <span class="tag">Nossa História</span>
-        <h2>Educação que gera oportunidades</h2>
-        <p>A <strong>Alfa Profissionalizantes</strong> nasceu com a missão de preparar alunos para os desafios do mercado de trabalho e da vida acadêmica, unindo ensino de qualidade a um acompanhamento próximo e humanizado.</p>
-        <p>Ao longo de mais de 15 anos, ajudamos centenas de estudantes a desenvolver habilidades, conquistar empregos e alcançar seus objetivos pessoais e profissionais — sempre com material atualizado e professores experientes.</p>
-        <ul class="sobre__list">
-          <li><i class="fa-solid fa-check"></i> Compromisso real com a educação</li>
-          <li><i class="fa-solid fa-check"></i> Formação voltada ao mercado de trabalho</li>
-          <li><i class="fa-solid fa-check"></i> Desenvolvimento acadêmico contínuo</li>
-          <li><i class="fa-solid fa-check"></i> Atendimento próximo e humanizado</li>
-        </ul>
-        <a href="https://wa.me/5512997781432" target="_blank" rel="noopener" class="btn btn--blue">Fale Conosco</a>
-      </div>
-    </div>
-  </section>
-
-
-  </section>
-
-  <!-- ===================== VÍDEO INSTITUCIONAL ===================== -->
-
-  <section class="video-institucional reveal">
-
-      <div class="container">
-
-          <div class="section-header">
-              <span class="tag tag--center">Conheça a Alfa</span>
-              <h2>Veja Nossa Escola em Ação</h2>
-              <p>
-                  Conheça nossos ambientes, alunos e a estrutura que há mais de 15 anos transforma vidas através da educação.
-              </p>
-          </div>
-
-          <div class="video-wrapper">
-
-              <video controls preload="metadata">
-                  <source src="{{ url_for('static', filename='img/VIDEO-2026-06-17-11-50-48.mp4') }}" type="video/mp4">
-                  Seu navegador não suporta vídeo.
-              </video>
-
-          </div>
-
-      </div>
-
-  </section>
-
-
-  <!-- ===================== CONTADORES ===================== -->
-  <section class="contadores reveal">
-    <div class="container contadores__grid">
-      <div class="contador">
-        <i class="fa-solid fa-calendar-check"></i>
-        <h3 class="contador__num" data-target="15" data-prefix="+">
-</h3>
-        <p>Anos de Tradição</p>
-      </div>
-      <div class="contador">
-        <i class="fa-solid fa-user-graduate"></i>
-        <h3 class="contador__num" data-target="3000" data-prefix="+">0</h3>
-        <p>Alunos Formados</p>
-      </div>
-      <div class="contador">
-        <i class="fa-solid fa-book-open"></i>
-        <h3 class="contador__num" data-target="6" data-prefix="+">0</h3>
-        <p>Cursos Disponíveis</p>
-      </div>      
-    </div>
-  </section>
-
-  <!-- ===================== ESTRUTURA / SLIDER ===================== -->
-  <section class="estrutura reveal" id="estrutura">
-    <div class="container section-header">
-      <span class="tag tag--center">Nossa Estrutura</span>
-      <h2>Conheça nosso espaço</h2>
-      <p>Ambientes preparados para proporcionar conforto, tecnologia e aprendizado de qualidade.</p>
-    </div>
-
-    <div class="slider-container" id="slider">
-      <div class="slider">
-        <figure class="slide active"><img src="static/img/faixa.png" alt="Fachada"><figcaption>Fachada</figcaption></figure>
-        <figure class="slide"><img src="static/img/PHOTO-2026-06-17-15-16-28.png" alt="Laboratório de Informática"><figcaption>Laboratório de Informática</figcaption></figure>
-        <figure class="slide"><img src="images/alfa-classroom.jpg" alt="Salas de Aula"><figcaption>Salas de Aula</figcaption></figure>
-      </div>
-      <button class="slider-btn prev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
-      <button class="slider-btn next" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
-      <div class="slider-dots" id="dots"></div>
-    </div>
-  </section>
-
-  <!-- ===================== DIFERENCIAIS ===================== -->
-  <section class="diferenciais reveal">
-    <div class="container section-header">
-      <span class="tag tag--center">Diferenciais</span>
-      <h2>O que faz a Alfa diferente</h2>
-    </div>
-    <div class="container diferenciais-grid">
-      <article class="card">
-        <div class="card__icon"><i class="fa-solid fa-user-graduate"></i></div>
-        <h3>Professores Qualificados</h3>
-        <p>Equipe experiente e dedicada, comprometida com o aprendizado de cada aluno.</p>
-      </article>
-      <article class="card">
-        <div class="card__icon"><i class="fa-solid fa-book-open"></i></div>
-        <h3>Material Atualizado</h3>
-        <p>Conteúdos modernos e alinhados às tendências do mercado.</p>
-      </article>
-      <article class="card">
-        <div class="card__icon"><i class="fa-solid fa-briefcase"></i></div>
-        <h3>Foco no Mercado</h3>
-        <p>Formação prática que prepara você de verdade para as oportunidades.</p>
-      </article>
-      <article class="card">
-        <div class="card__icon"><i class="fa-solid fa-award"></i></div>
-        <h3>+15 Anos de Experiência</h3>
-        <p>Tradição, credibilidade e milhares de vidas transformadas.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- ===================== GALERIA ===================== -->
-  <section class="galeria reveal">
-    <div class="container section-header">
-      <span class="tag tag--center">Galeria</span>
-      <h2>Um pouco do nosso dia a dia</h2>
-    </div>
-    <div class="container galeria-grid">
-      <figure class="galeria-item galeria-item--tall"><img src="static/img/PHOTO-2026-06-17-11-50-49_2.png" alt="Aula em andamento"></figure>
-      <figure class="galeria-item"><img src="static/img/86F99804-A649-459B-9334-4038097E963F.png" alt="Laboratório de informática"></figure>
-      <figure class="galeria-item"><img src="static/img/PHOTO-2026-06-17-11-50-49_1.png" alt="Alunos estudando"></figure>
-      <figure class="galeria-item"><img src="static/img/PHOTO-2026-06-17-11-50-40.png" alt="Eventos"></figure>
-      <figure class="galeria-item galeria-item--wide"><img src="static/img/8D9F42CA-3EF2-48C3-875D-FF9E3689F5D1.png" alt="Recepção da escola"></figure>
-      <figure class="galeria-item"><img src="static/img/faixa.png" alt="Fachada da escola"></figure>
-    </div>
-  </section>
-
-  <!-- ===================== DEPOIMENTOS ===================== -->
-  <section class="depoimentos reveal">
-    <div class="container section-header">
-      <span class="tag tag--center">Depoimentos</span>
-      <h2>O que dizem sobre nós</h2>
-    </div>
-    <div class="depoimentos__viewport">
-      <div class="depoimentos__track" id="depoTrack">
-        <blockquote class="depoimento">
-          <div class="depoimento__stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p>"Meu filho evoluiu muito nos estudos e ganhou mais confiança após iniciar as aulas na Alfa. O atendimento é excelente."</p>
-          <cite>— Responsável</cite>
-        </blockquote>
-        <blockquote class="depoimento">
-          <div class="depoimento__stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p>"Fiz o curso de informática e consegui meu primeiro emprego na área. Professores atenciosos e estrutura ótima!"</p>
-          <cite>— Ex-aluno</cite>
-        </blockquote>
-        <blockquote class="depoimento">
-          <div class="depoimento__stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p>"A Alfa me deu a base que eu precisava para passar na faculdade. Recomendo de olhos fechados para todos."</p>
-          <cite>— Aluna</cite>
-        </blockquote>
-      </div>
-    </div>
-    <div class="depoimentos__dots" id="depoDots"></div>
-  </section>
-
-  <!-- ===================== CTA FINAL ===================== -->
-  <section class="sobre-cta reveal">
-    <div class="container cta-box">
-      <h2>Pronto para transformar seu futuro?</h2>
-      <p>Venha conhecer nossa escola e descubra como podemos ajudar você a alcançar seus objetivos acadêmicos e profissionais.</p>
-      <div class="cta-box__actions">
-        <a href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20agendar%20uma%20visita%20na%20Alfa%20Profissionalizantes."
-          target="_blank"
-          rel="noopener"
-          class="btn btn--white">
-          <i class="fa-brands fa-whatsapp"></i>
-          Agendar Visita
-        </a>
-        
-        <a href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank" target="_blank" rel="noopener" class="btn btn--outline">Fazer Pré-Matrícula</a>       
-
-
-      </div>
-    </div>
-  </section>
-    
-    <!-- ===================== FOOTER ===================== -->
-
-    <footer class="footer">
-
-        <div class="container footer__grid">
-
-            <!-- LOGO -->
-
-            <div class="footer__col">
-
-                <img
-                    src="{{ url_for('static', filename='img/logo/logo.png') }}"
-                    alt="Alfa Profissionalizantes"
-                    class="footer-logo-img"
-                >
-
-                <p class="footer__about">
-                    Formação profissional, reforço escolar e preparação para o futuro.
-                    Há mais de 15 anos ajudando alunos a desenvolver habilidades,
-                    conquistar oportunidades e alcançar seus objetivos.
-                </p>             
+    <!-- HERO -->
+    <section class="page-hero sobre-hero" id="topo">
+        <div class="container">
+            <div class="page-hero-content">
+                <span class="hero-badge">Quem Somos</span>
+                <h1>Há mais de 15 anos transformando vidas através da educação</h1>
+                <p>Qualificação profissional, preparação acadêmica e oportunidades para construir um futuro melhor em São José dos Campos.</p>
+                <div class="hero-buttons">
+                    <a href="#estrutura" class="btn btn--light btn--lg">Conheça Nossa Estrutura</a>
+                    <a href="{{ wa_visita }}" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                        Agendar Visita
+                    </a>
+                </div>
             </div>
+        </div>
+        {% with curva_classe = 'hero-curva sobre-curva' %}{% include "partials/curva.html" %}{% endwith %}
+    </section>
 
-            <!-- CONTATO -->
+    <!-- HISTÓRIA -->
+    <section class="sobre section section--white" id="historia" aria-labelledby="historia-titulo">
+        <div class="container sobre-grid">
+            <figure class="sobre-media reveal">
+                <picture>
+                    <source type="image/webp" srcset="{{ url_for('static', filename='img/PHOTO-2026-06-17-11-50-50.webp') }}">
+                    <img
+                        src="{{ url_for('static', filename='img/PHOTO-2026-06-17-11-50-50.png') }}"
+                        alt="Aluna estudando na Alfa Profissionalizantes"
+                        width="960" height="1280"
+                        loading="lazy" decoding="async"
+                    >
+                </picture>
+                <figcaption class="sobre-selo">
+                    <strong>+15</strong>
+                    <span>anos de tradição</span>
+                </figcaption>
+            </figure>
 
-            <div class="footer__col">
-
-                <h4>Contato</h4>
-
-                <ul class="footer__list">
-
-                    <li>
-                        <i class="fa-solid fa-phone"></i>
-                        (12) 99778-1432
-                    </li>
-
-                    <li>
-                        <i class="fa-solid fa-envelope"></i>
-                        alfaprofissionalizantes5@gmail.com
-                    </li>
-
-                    <li>
-                        <i class="fa-brands fa-instagram"></i>
-                        @alfaprofissionalizantes
-                    </li>
-
+            <div class="sobre-texto">
+                <span class="tag">Nossa História</span>
+                <h2 id="historia-titulo">Educação que gera oportunidades</h2>
+                <p>A <strong>Alfa Profissionalizantes</strong> nasceu com a missão de preparar alunos para os desafios do mercado de trabalho e da vida acadêmica, unindo ensino de qualidade a um acompanhamento próximo e humanizado.</p>
+                <p>Ao longo de mais de 15 anos, ajudamos centenas de estudantes a desenvolver habilidades, conquistar empregos e alcançar seus objetivos pessoais e profissionais — sempre com material atualizado e professores experientes.</p>
+                <ul class="sobre-lista">
+                    <li><i class="fa-solid fa-check" aria-hidden="true"></i> Compromisso real com a educação</li>
+                    <li><i class="fa-solid fa-check" aria-hidden="true"></i> Formação voltada ao mercado de trabalho</li>
+                    <li><i class="fa-solid fa-check" aria-hidden="true"></i> Desenvolvimento acadêmico contínuo</li>
+                    <li><i class="fa-solid fa-check" aria-hidden="true"></i> Atendimento próximo e humanizado</li>
                 </ul>
-
+                <a href="{{ wa }}" target="_blank" rel="noopener" class="btn btn--primary">Fale Conosco</a>
             </div>
-            <!-- ENDEREÇO -->
+        </div>
+    </section>
 
-            <div class="footer__col">
+    <!-- VÍDEO INSTITUCIONAL -->
+    <section class="video-institucional section" aria-labelledby="video-titulo">
+        <div class="container">
+            <div class="section-head section-head--center">
+                <span class="tag">Conheça a Alfa</span>
+                <h2 id="video-titulo">Veja Nossa Escola em Ação</h2>
+                <p>Conheça nossos ambientes, alunos e a estrutura que há mais de 15 anos transforma vidas através da educação.</p>
+            </div>
+            <div class="video-wrapper reveal">
+                <video controls preload="metadata" playsinline>
+                    <source src="{{ url_for('static', filename='img/VIDEO-2026-06-17-11-50-48.mp4') }}" type="video/mp4">
+                    Seu navegador não suporta vídeo.
+                </video>
+            </div>
+        </div>
+    </section>
 
-                <h4>Onde Estamos</h4>
+    <!-- CONTADORES -->
+    <section class="contadores" aria-label="A Alfa em números">
+        <div class="container contadores-grid">
+            <div class="contador-item">
+                <span class="contador-icon"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></span>
+                <p class="contador-numero"><span class="contador" data-target="15" data-prefix="+">+15</span></p>
+                <p>Anos de Tradição</p>
+            </div>
+            <div class="contador-item">
+                <span class="contador-icon"><i class="fa-solid fa-user-graduate" aria-hidden="true"></i></span>
+                <p class="contador-numero"><span class="contador" data-target="3000" data-prefix="+">+3.000</span></p>
+                <p>Alunos Formados</p>
+            </div>
+            <div class="contador-item">
+                <span class="contador-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                <p class="contador-numero"><span class="contador" data-target="6" data-prefix="+">+6</span></p>
+                <p>Cursos Disponíveis</p>
+            </div>
+        </div>
+    </section>
 
-                <ul class="footer__list">
-
-                    <li>
-                        <i class="fa-solid fa-location-dot"></i>
-                        R. Patativa, nº 81
-                    </li>
-
-                    <li>
-                        Vila Tatetuba
-                    </li>
-
-                    <li>
-                        São José dos Campos - SP
-                    </li>
-
-                    <li>
-                        CEP: 12220-140
-                    </li>
-
-                </ul>
-
+    <!-- ESTRUTURA / SLIDER -->
+    <section class="estrutura section" id="estrutura" aria-labelledby="estrutura-titulo">
+        <div class="container">
+            <div class="section-head section-head--center">
+                <span class="tag">Nossa Estrutura</span>
+                <h2 id="estrutura-titulo">Conheça nosso espaço</h2>
+                <p>Ambientes preparados para proporcionar conforto, tecnologia e aprendizado de qualidade.</p>
             </div>
 
-        </div>
-
-        <div class="footer__map">
-
-            <iframe
-                src="https://www.google.com/maps?q=Centro+de+Educa%C3%A7%C3%A3o+Profissional+Alfa&output=embed"
-                loading="lazy">
-            </iframe>
-
-        </div>
-
-        <div class="footer__bottom">
-
-            <div class="container">
-
-                <p>
-                    © 2026 Alfa Profissionalizantes — Todos os direitos reservados.
-                </p>
-
+            <div class="slider-container" id="slider" aria-roledescription="carrossel" aria-label="Fotos da estrutura">
+                <div class="slider">
+                    <figure class="slide active">
+                        <picture>
+                            <source type="image/webp" srcset="{{ url_for('static', filename='img/faixa.webp') }}">
+                            <img src="{{ url_for('static', filename='img/faixa.png') }}" alt="Fachada da Alfa Profissionalizantes" width="1675" height="939" loading="lazy" decoding="async">
+                        </picture>
+                        <figcaption>Fachada</figcaption>
+                    </figure>
+                    <figure class="slide" aria-hidden="true">
+                        <picture>
+                            <source type="image/webp" srcset="{{ url_for('static', filename='img/PHOTO-2026-06-17-15-16-28.webp') }}">
+                            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-17-15-16-28.png') }}" alt="Laboratório de Informática" width="1086" height="1448" loading="lazy" decoding="async">
+                        </picture>
+                        <figcaption>Laboratório de Informática</figcaption>
+                    </figure>
+                    <figure class="slide" aria-hidden="true">
+                        <picture>
+                            <source type="image/webp" srcset="{{ url_for('static', filename='img/PHOTO-2026-06-17-11-50-50_2.webp') }}">
+                            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-17-11-50-50_2.png') }}" alt="Salas de Aula" width="960" height="1280" loading="lazy" decoding="async">
+                        </picture>
+                        <figcaption>Salas de Aula</figcaption>
+                    </figure>
+                </div>
+                <button type="button" class="slider-btn prev" aria-label="Foto anterior"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+                <button type="button" class="slider-btn next" aria-label="Próxima foto"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                <div class="slider-dots" id="dots"></div>
             </div>
-
         </div>
+    </section>
 
-    </footer>
- 
-  <script src="{{ url_for('static', filename='js/sobre.js') }}"></script>
-</body>
-</html>
+    <!-- DIFERENCIAIS -->
+    <section class="diferenciais section section--white" aria-labelledby="dif-titulo">
+        <div class="container">
+            <div class="section-head section-head--center">
+                <span class="tag">Diferenciais</span>
+                <h2 id="dif-titulo">O que faz a Alfa diferente</h2>
+            </div>
+            <div class="diferenciais-grid reveal-stagger">
+                <article class="card">
+                    <div class="card__icon"><i class="fa-solid fa-user-graduate" aria-hidden="true"></i></div>
+                    <h3>Professores Qualificados</h3>
+                    <p>Equipe experiente e dedicada, comprometida com o aprendizado de cada aluno.</p>
+                </article>
+                <article class="card">
+                    <div class="card__icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></div>
+                    <h3>Material Atualizado</h3>
+                    <p>Conteúdos modernos e alinhados às tendências do mercado.</p>
+                </article>
+                <article class="card">
+                    <div class="card__icon"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></div>
+                    <h3>Foco no Mercado</h3>
+                    <p>Formação prática que prepara você de verdade para as oportunidades.</p>
+                </article>
+                <article class="card">
+                    <div class="card__icon"><i class="fa-solid fa-award" aria-hidden="true"></i></div>
+                    <h3>+15 Anos de Experiência</h3>
+                    <p>Tradição, credibilidade e milhares de vidas transformadas.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section class="galeria section" aria-labelledby="galeria-titulo">
+        <div class="container">
+            <div class="section-head section-head--center">
+                <span class="tag">Galeria</span>
+                <h2 id="galeria-titulo">Um pouco do nosso dia a dia</h2>
+            </div>
+            <div class="galeria-grid">
+                <figure class="galeria-item galeria-item--tall"><img src="{{ url_for('static', filename='img/PHOTO-2026-06-17-11-50-49_2.png') }}" alt="Aula em andamento" width="960" height="1280" loading="lazy" decoding="async"></figure>
+                <figure class="galeria-item">
+                    <picture>
+                        <source type="image/webp" srcset="{{ url_for('static', filename='img/86F99804-A649-459B-9334-4038097E963F.webp') }}">
+                        <img src="{{ url_for('static', filename='img/86F99804-A649-459B-9334-4038097E963F.png') }}" alt="Laboratório de informática" width="1086" height="1448" loading="lazy" decoding="async">
+                    </picture>
+                </figure>
+                <figure class="galeria-item"><img src="{{ url_for('static', filename='img/PHOTO-2026-06-17-11-50-49_1.png') }}" alt="Alunos estudando" width="960" height="1280" loading="lazy" decoding="async"></figure>
+                <figure class="galeria-item"><img src="{{ url_for('static', filename='img/PHOTO-2026-06-17-11-50-40.png') }}" alt="Aluna com apostila da Alfa" width="960" height="1280" loading="lazy" decoding="async"></figure>
+                <figure class="galeria-item galeria-item--wide">
+                    <picture>
+                        <source type="image/webp" srcset="{{ url_for('static', filename='img/8D9F42CA-3EF2-48C3-875D-FF9E3689F5D1.webp') }}">
+                        <img src="{{ url_for('static', filename='img/8D9F42CA-3EF2-48C3-875D-FF9E3689F5D1.png') }}" alt="Alunos da Alfa com cadernos e o logo da escola" width="1536" height="1024" loading="lazy" decoding="async">
+                    </picture>
+                </figure>
+                <figure class="galeria-item">
+                    <picture>
+                        <source type="image/webp" srcset="{{ url_for('static', filename='img/faixa.webp') }}">
+                        <img src="{{ url_for('static', filename='img/faixa.png') }}" alt="Fachada da escola" width="1675" height="939" loading="lazy" decoding="async">
+                    </picture>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section class="depoimentos section section--white" aria-labelledby="depo-titulo">
+        <div class="container">
+            <div class="section-head section-head--center">
+                <span class="tag">Depoimentos</span>
+                <h2 id="depo-titulo">O que dizem sobre nós</h2>
+            </div>
+        </div>
+        <div class="depoimentos__viewport">
+            <div class="depoimentos__track" id="depoTrack">
+                <blockquote class="depoimento">
+                    <div class="depoimento__stars" aria-label="5 de 5 estrelas"><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i></div>
+                    <p>"Meu filho evoluiu muito nos estudos e ganhou mais confiança após iniciar as aulas na Alfa. O atendimento é excelente."</p>
+                    <cite>— Responsável</cite>
+                </blockquote>
+                <blockquote class="depoimento">
+                    <div class="depoimento__stars" aria-label="5 de 5 estrelas"><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i></div>
+                    <p>"Fiz o curso de informática e consegui meu primeiro emprego na área. Professores atenciosos e estrutura ótima!"</p>
+                    <cite>— Ex-aluno</cite>
+                </blockquote>
+                <blockquote class="depoimento">
+                    <div class="depoimento__stars" aria-label="5 de 5 estrelas"><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i></div>
+                    <p>"A Alfa me deu a base que eu precisava para passar na faculdade. Recomendo de olhos fechados para todos."</p>
+                    <cite>— Aluna</cite>
+                </blockquote>
+            </div>
+        </div>
+        <div class="depoimentos__dots" id="depoDots"></div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta sobre-cta" aria-labelledby="cta-titulo">
+        <div class="container">
+            <div class="cta-box reveal">
+                <h2 id="cta-titulo">Pronto para transformar seu futuro?</h2>
+                <p>Venha conhecer nossa escola e descubra como podemos ajudar você a alcançar seus objetivos acadêmicos e profissionais.</p>
+                <div class="cta-actions">
+                    <a href="{{ wa_visita }}" target="_blank" rel="noopener" class="btn btn--accent btn--lg">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                        Agendar Visita
+                    </a>
+                    <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">Fazer Pré-Matrícula</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCALIZAÇÃO (o mapa que ficava no rodapé desta página) -->
+    {% include "partials/localizacao.html" %}
+
+{% endblock %}
+
+{% block page_js %}
+    <script src="{{ url_for('static', filename='js/sobre.js') }}" defer></script>
+{% endblock %}

@@ -1,0 +1,302 @@
+/* =========================================================
+   PÁGINAS DE CURSO (/cursos/*) e LISTA DE CURSOS (/cursos)
+========================================================= */
+
+/* Cor do curso aplicada à página inteira */
+.curso--ingles  { --course: var(--c-ingles); }
+.curso--info    { --course: var(--c-info); }
+.curso--enem    { --course: var(--c-enem); }
+.curso--reforco { --course: var(--c-reforco); }
+.curso--embraer { --course: var(--c-embraer); }
+
+/* =========================================
+   HERO — foto de cada curso
+   Usa WebP quando o navegador suporta e a imagem
+   original como alternativa.
+========================================= */
+
+.ingles-hero {
+    background-image: url("../img/F63C58E8-193E-4F84-9A68-738C4DED7D02.png");
+    background-image: image-set(url("../img/F63C58E8-193E-4F84-9A68-738C4DED7D02.webp") type("image/webp"), url("../img/F63C58E8-193E-4F84-9A68-738C4DED7D02.png") type("image/png"));
+    background-position: 75% 30%;
+}
+
+.informatica-hero {
+    background-image: url("../img/86F99804-A649-459B-9334-4038097E963F.png");
+    background-image: image-set(url("../img/86F99804-A649-459B-9334-4038097E963F.webp") type("image/webp"), url("../img/86F99804-A649-459B-9334-4038097E963F.png") type("image/png"));
+    background-position: 70% 40%;
+}
+
+.enem-hero {
+    background-image: url("../img/PHOTO-2026-06-17-11-50-50_3.png");
+    background-image: image-set(url("../img/PHOTO-2026-06-17-11-50-50_3.webp") type("image/webp"), url("../img/PHOTO-2026-06-17-11-50-50_3.png") type("image/png"));
+    background-position: 70% 40%;
+}
+
+.reforco-hero {
+    background-image: url("../img/reforco.png");
+    background-image: image-set(url("../img/reforco.webp") type("image/webp"), url("../img/reforco.png") type("image/png"));
+    background-position: 70% 35%;
+}
+
+.embraer-hero {
+    background-image: url("../img/IMG_5657.png");
+    background-image: image-set(url("../img/IMG_5657.webp") type("image/webp"), url("../img/IMG_5657.png") type("image/png"));
+    background-position: 75% 30%;
+}
+
+/* Título longo da página Embraer */
+.embraer-hero h1 {
+    font-size: clamp(1.75rem, 1.1rem + 2.4vw, 2.9rem);
+}
+
+.hero-curva--branca {
+    color: var(--surface);
+}
+
+/* Hero compacto (lista de cursos) */
+.page-hero--compacto {
+    min-height: 0;
+    padding-bottom: clamp(88px, 10vw, 128px);
+    background:
+        radial-gradient(60% 120% at 85% 0%, rgb(29 78 216 / .55), transparent 70%),
+        var(--navy);
+}
+
+.page-hero--compacto::before {
+    display: none;
+}
+
+
+/* =========================================
+   SOBRE O CURSO
+========================================= */
+
+.curso-info-texto {
+    max-width: 780px;
+    margin-bottom: 0;
+}
+
+.curso-info-texto p {
+    color: #45546b;
+}
+
+.curso-info-texto p + p {
+    margin-top: 14px;
+}
+
+
+/* =========================================
+   BENEFÍCIOS
+========================================= */
+
+.beneficios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.beneficio-card {
+    position: relative;
+    padding: 32px 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease), border-color var(--t) var(--ease);
+}
+
+.beneficio-icon {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 20px;
+    border-radius: var(--radius-md);
+    background: var(--primary-light);
+    background: color-mix(in srgb, var(--course, var(--primary)) 11%, white);
+    color: var(--course, var(--primary));
+    font-size: 22px;
+}
+
+.beneficio-card h3 {
+    margin-bottom: 8px;
+}
+
+.beneficio-card p {
+    font-size: .96rem;
+    line-height: 1.65;
+}
+
+@media (hover: hover) {
+    .beneficio-card:hover {
+        transform: translateY(-4px);
+        border-color: color-mix(in srgb, var(--course, var(--primary)) 30%, var(--border));
+        box-shadow: var(--shadow-md);
+    }
+}
+
+@media (max-width: 900px) {
+    .beneficios-grid {
+        grid-template-columns: 1fr;
+        max-width: 560px;
+        margin: 0 auto;
+    }
+
+    .beneficio-card {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        column-gap: 18px;
+        padding: 24px 22px;
+    }
+
+    .beneficio-icon {
+        grid-row: span 2;
+        margin-bottom: 0;
+    }
+}
+
+
+/* =========================================
+   SOFTWARES (Informática)
+========================================= */
+
+.softwares-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.software-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    transition: border-color var(--t-fast), box-shadow var(--t) var(--ease);
+}
+
+.software-item:hover {
+    border-color: #cbd6ea;
+    box-shadow: var(--shadow-sm);
+}
+
+.software-icone {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.software-texto h3 {
+    margin-bottom: 4px;
+    font-size: 1.05rem;
+}
+
+.software-texto p {
+    font-size: .9rem;
+    line-height: 1.55;
+}
+
+@media (max-width: 1024px) {
+    .softwares-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .softwares-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================
+   VÍDEOS
+========================================= */
+
+.video-wrapper--vertical {
+    max-width: 320px;
+}
+
+.video-duplo {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.video-duplo .video-wrapper {
+    max-width: 100%;
+    margin: 0;
+}
+
+@media (max-width: 700px) {
+    .video-duplo {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================
+   CTA DAS PÁGINAS DE CURSO
+========================================= */
+
+.page-curso .cta-content::after {
+    border-color: color-mix(in srgb, var(--course) 60%, transparent);
+}
+
+
+/* =========================================
+   APROVADOS
+========================================= */
+
+.aprovados-section {
+    background: var(--surface);
+}
+
+.aprovados-subtitulo {
+    margin-top: 8px;
+}
+
+.aprovados-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 14px;
+}
+
+.aprovado-foto {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    background: var(--background);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease);
+}
+
+.aprovado-foto:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 480px) {
+    .aprovados-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+}
+
+
+/* =========================================
+   LISTA DE CURSOS (/cursos)
+========================================= */
+
+.cursos-page {
+    padding-top: clamp(32px, 4vw, 56px);
+}

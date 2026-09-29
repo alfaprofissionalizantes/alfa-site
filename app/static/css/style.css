@@ -1,400 +1,1557 @@
-/* =========================================
-   IMPORTS
-========================================= */
+/* =========================================================
+   ALFA PROFISSIONALIZANTES — CSS GLOBAL
+   Carregado em todas as páginas pelo base.html.
 
-@import url("navbar.css");
-@import url("home.css");
-@import url("admin.css");
+   1. Tokens (design system)
+   2. Reset e base
+   3. Tipografia
+   4. Layout
+   5. Botões
+   6. Cabeçalho de seção
+   7. Page hero (Quem Somos, cursos, Alfa Tech)
+   8. Cards de cursos (home e /cursos)
+   9. Contadores (home e Quem Somos)
+   10. CTA
+   11. Localização (home e Quem Somos)
+   12. Footer
+   13. Elementos flutuantes (WhatsApp, voltar ao topo)
+   14. Curva da marca
+   15. Animações e movimento reduzido
+   16. Utilitários
+   17. Legado
+========================================================= */
 
 
-/* =========================================
-   GOOGLE FONT
-========================================= */
+/* =========================================================
+   1. TOKENS
+========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+:root {
+    /* Marca — azul-marinho do logo e das artes oficiais */
+    --navy:          #0f1f5c;
+    --navy-deep:     #0a1540;
+    --primary:       #1d4ed8;
+    --primary-dark:  #1e3a8a;
+    --primary-light: #eaf0ff;
+    --accent:        #f5b800;
+    --accent-dark:   #d99e00;
+    --whatsapp:      #25d366;
+    --whatsapp-dark: #1ea952;
+
+    /* Neutros */
+    --dark:       #0b1433;
+    --text:       #1e293b;
+    --muted:      #5b6b82;
+    --background: #f6f8fc;
+    --surface:    #ffffff;
+    --border:     #e3e8f1;
+    --success:    #16a34a;
+
+    /* Cores dos cursos */
+    --c-ingles:  #dc2626;
+    --c-info:    #1d4ed8;
+    --c-enem:    #ea580c;
+    --c-reforco: #7c3aed;
+    --c-embraer: #b7860b;
+
+    /* Forma */
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-pill: 999px;
+
+    --shadow-sm: 0 1px 2px rgb(15 31 92 / .06), 0 2px 8px rgb(15 31 92 / .05);
+    --shadow-md: 0 8px 24px rgb(15 31 92 / .10);
+    --shadow-lg: 0 20px 48px rgb(15 31 92 / .16);
+
+    /* Tipografia */
+    --font: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --fs-h1: clamp(2rem, 1.2rem + 3.2vw, 3.5rem);
+    --fs-h2: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+    --fs-h3: 1.25rem;
+    --fs-lead: clamp(1.05rem, 1rem + .3vw, 1.2rem);
+    --fs-body: 1rem;
+    --fs-small: .875rem;
+
+    /* Layout */
+    --container: 1200px;
+    --gutter: clamp(20px, 4vw, 32px);
+    --section-y: clamp(64px, 8vw, 112px);
+    --nav-offset: 104px;
+
+    /* Movimento */
+    --ease: cubic-bezier(.2, .7, .2, 1);
+    --t-fast: .18s;
+    --t: .3s;
+}
 
 
-/* =========================================
-   RESET
-========================================= */
+/* =========================================================
+   2. RESET E BASE
+========================================================= */
 
-* {
-
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
-
     box-sizing: border-box;
 }
 
-
-/* =========================================
-   ROOT
-========================================= */
-
-:root {
-
-    --primary-color: #2563eb;
-    --primary-dark: #1e40af;
-
-    --secondary-color: #3b82f6;
-
-    --white: #ffffff;
-
-    --gray-100: #f8fafc;
-    --gray-200: #e2e8f0;
-    --gray-300: #cbd5e1;
-    --gray-500: #64748b;
-    --gray-700: #334155;
-
-    --dark: #0f172a;
-
-    --shadow-sm:
-        0 2px 10px rgba(0,0,0,0.05);
-
-    --shadow-md:
-        0 10px 30px rgba(0,0,0,0.08);
-
-    --shadow-lg:
-        0 15px 40px rgba(0,0,0,0.12);
-
-    --radius-sm: 8px;
-    --radius-md: 14px;
-    --radius-lg: 22px;
-
-    --transition: 0.3s ease;
-}
-
-
-/* =========================================
-   HTML
-========================================= */
-
 html {
-
     scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-offset);
     -webkit-text-size-adjust: 100%;
-
 }
-
-
-/* =========================================
-   BODY
-========================================= */
 
 body {
-
-    font-family: 'Poppins', sans-serif;
-
-    background-color: var(--gray-100);
-
-    color: var(--dark);
-
+    font-family: var(--font);
+    font-size: var(--fs-body);
+    line-height: 1.7;
+    background: var(--background);
+    color: var(--text);
     overflow-x: hidden;
-
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-
-/* =========================================
-   LINKS
-========================================= */
+body.nav-open {
+    overflow: hidden;
+}
 
 a {
-
-    text-decoration: none;
-
     color: inherit;
+    text-decoration: none;
 }
 
-
-/* =========================================
-   LISTAS
-========================================= */
-
 ul {
-
     list-style: none;
 }
 
-
-/* =========================================
-   IMAGENS
-========================================= */
-
-img {
-
+img,
+video,
+iframe {
     max-width: 100%;
-
     display: block;
 }
 
-
-/* =========================================
-   BOTÕES
-========================================= */
-
-button {
-
-    border: none;
-
-    outline: none;
-
-    cursor: pointer;
-
-    font-family: inherit;
-
-    transition: var(--transition);
+/* width/height no HTML reservam espaço (evita CLS);
+   height: auto mantém a proporção real da imagem */
+img {
+    height: auto;
 }
 
+address {
+    font-style: normal;
+}
 
-/* =========================================
-   INPUTS
-========================================= */
+button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
 
 input,
 textarea,
 select {
+    font: inherit;
+}
 
-    outline: none;
+/* Foco visível e consistente em todo o site */
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
 
-    border: none;
+::selection {
+    background: var(--accent);
+    color: var(--navy);
+}
 
-    font-family: inherit;
+.skip-link {
+    position: absolute;
+    left: 16px;
+    top: -60px;
+    z-index: 2000;
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    background: var(--accent);
+    color: var(--navy);
+    font-weight: 600;
+    transition: top var(--t-fast);
+}
+
+.skip-link:focus {
+    top: 16px;
 }
 
 
-/* =========================================
-   CONTAINER
-========================================= */
+/* =========================================================
+   3. TIPOGRAFIA
+========================================================= */
 
-.container {
-
-    width: 100%;
-
-    max-width: 1300px;
-
-    margin: 0 auto;
-
-    padding: 0 30px;
-}
-
-
-/* =========================================
-   TÍTULOS
-========================================= */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-
+h1, h2, h3, h4, h5, h6 {
     color: var(--dark);
-
     font-weight: 700;
-
-    line-height: 1.2;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+    text-wrap: balance;
 }
 
-
-/* =========================================
-   PARÁGRAFOS
-========================================= */
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); letter-spacing: -.01em; }
 
 p {
+    color: var(--muted);
+    text-wrap: pretty;
+}
 
-    color: var(--gray-500);
-
-    line-height: 1.8;
+strong {
+    font-weight: 600;
 }
 
 
-/* =========================================
-   SEÇÕES
-========================================= */
+/* =========================================================
+   4. LAYOUT
+========================================================= */
 
-section {
-
+.container {
     width: 100%;
+    max-width: calc(var(--container) + var(--gutter) * 2);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+}
+
+.section {
+    padding: var(--section-y) 0;
+}
+
+.section--white {
+    background: var(--surface);
 }
 
 
-/* =========================================
-   BOTÕES GLOBAIS
-========================================= */
+/* =========================================================
+   5. BOTÕES
+   .btn + modificador. Classes antigas (btn-matricula,
+   btn-curso, btn-secondary, btn-agendar...) herdam daqui.
+========================================================= */
 
-.btn {
+.btn,
+.btn-curso,
+.btn-secondary,
+.btn-agendar {
+    --btn-bg: var(--primary);
+    --btn-fg: #fff;
+    --btn-border: transparent;
+    --btn-bg-hover: var(--primary-dark);
 
     display: inline-flex;
-
-    justify-content: center;
     align-items: center;
-
+    justify-content: center;
     gap: 10px;
-
-    padding: 14px 30px;
-
-    border-radius: var(--radius-md);
-
-    background: var(--primary-color);
-
-    color: var(--white);
-
+    min-height: 48px;
+    padding: 12px 26px;
+    border: 2px solid var(--btn-border);
+    border-radius: var(--radius-sm);
+    background: var(--btn-bg);
+    color: var(--btn-fg);
     font-weight: 600;
-
-    transition: var(--transition);
-
-    box-shadow: var(--shadow-sm);
+    font-size: 1rem;
+    line-height: 1.2;
+    text-align: center;
+    cursor: pointer;
+    transition:
+        background-color var(--t-fast) var(--ease),
+        border-color var(--t-fast) var(--ease),
+        color var(--t-fast) var(--ease),
+        transform var(--t-fast) var(--ease),
+        box-shadow var(--t) var(--ease);
 }
 
-.btn:hover {
-
-    transform: translateY(-3px);
-
-    background: var(--primary-dark);
-
-    box-shadow: var(--shadow-md);
+.btn:hover,
+.btn-curso:hover,
+.btn-secondary:hover,
+.btn-agendar:hover {
+    background: var(--btn-bg-hover);
+    transform: translateY(-2px);
 }
 
-
-/* =========================================
-   CARDS
-========================================= */
-
-.card {
-
-    background: var(--white);
-
-    border-radius: var(--radius-lg);
-
-    box-shadow: var(--shadow-sm);
-
-    transition: var(--transition);
-}
-
-.card:hover {
-
-    transform: translateY(-8px);
-
-    box-shadow: var(--shadow-lg);
-}
-
-
-/* =========================================
-   SCROLLBAR
-========================================= */
-
-::-webkit-scrollbar {
-
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-
-    background: var(--gray-200);
-}
-
-::-webkit-scrollbar-thumb {
-
-    background: var(--primary-color);
-
-    border-radius: 20px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-
-    background: var(--primary-dark);
-}
-
-
-/* =========================================
-   ANIMAÇÕES
-========================================= */
-
-.fade-up {
-
-    opacity: 0;
-
-    transform: translateY(40px);
-
-    transition: 0.7s ease;
-}
-
-.fade-up.show {
-
-    opacity: 1;
-
+.btn:active,
+.btn-curso:active,
+.btn-secondary:active,
+.btn-agendar:active {
     transform: translateY(0);
 }
 
-
-/* =========================================
-   RESPONSIVO
-========================================= */
-
-@media (max-width: 992px) {
-
-    .container {
-
-        padding: 0 20px;
-    }
-
+.btn i {
+    font-size: 1.1em;
 }
 
+/* Primário (ação principal em fundo claro) */
+.btn--primary {
+    box-shadow: 0 6px 16px rgb(29 78 216 / .25);
+}
+
+/* Destaque (matrícula) — amarelo das artes da Alfa */
+.btn--accent,
+.btn-curso {
+    --btn-bg: var(--accent);
+    --btn-fg: var(--navy);
+    --btn-bg-hover: #ffc629;
+    box-shadow: 0 8px 20px rgb(245 184 0 / .28);
+}
+
+.btn--accent:hover,
+.btn-curso:hover {
+    box-shadow: 0 12px 28px rgb(245 184 0 / .38);
+}
+
+/* Contorno (fundo claro) */
+.btn--outline {
+    --btn-bg: transparent;
+    --btn-fg: var(--primary);
+    --btn-border: currentColor;
+    --btn-bg-hover: var(--primary-light);
+}
+
+/* Transparente (fundo escuro/foto) */
+.btn--ghost,
+.btn-secondary {
+    --btn-bg: rgb(255 255 255 / .06);
+    --btn-fg: #fff;
+    --btn-border: rgb(255 255 255 / .55);
+    --btn-bg-hover: rgb(255 255 255 / .16);
+}
+
+/* Branco (fundo escuro) */
+.btn--light {
+    --btn-bg: #fff;
+    --btn-fg: var(--navy);
+    --btn-bg-hover: var(--primary-light);
+}
+
+/* WhatsApp */
+.btn--whatsapp,
+.btn-agendar {
+    --btn-bg: var(--whatsapp);
+    --btn-fg: #06331a;
+    --btn-bg-hover: #3ee07f;
+    box-shadow: 0 8px 20px rgb(37 211 102 / .28);
+}
+
+.btn--lg {
+    min-height: 56px;
+    padding: 14px 32px;
+    font-size: 1.05rem;
+}
+
+@media (max-width: 480px) {
+    .btn--lg {
+        padding: 14px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* Link de texto com seta */
+.link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.link-arrow i {
+    transition: transform var(--t-fast) var(--ease);
+}
+
+.link-arrow:hover i {
+    transform: translateX(4px);
+}
+
+.link-arrow--light {
+    color: #fff;
+}
+
+.link-arrow--light:hover {
+    color: var(--accent);
+}
+
+
+/* =========================================================
+   6. CABEÇALHO DE SEÇÃO
+========================================================= */
+
+.section-head {
+    max-width: 680px;
+    margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.section-head h2 {
+    margin-bottom: 14px;
+}
+
+.section-head p {
+    font-size: var(--fs-lead);
+}
+
+.section-head--center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* Cabeçalho em duas colunas: título à esquerda, apoio à direita */
+.section-head--split {
+    max-width: none;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px 48px;
+    flex-wrap: wrap;
+}
+
+.section-head--split > div {
+    max-width: 620px;
+}
+
+/* Etiqueta curta acima do título (usada com moderação) */
+.tag,
+.section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    color: var(--primary);
+    font-size: var(--fs-small);
+    font-weight: 600;
+}
+
+.tag::before,
+.section-tag::before {
+    content: "";
+    width: 18px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--accent);
+}
+
+.linha-destaque {
+    width: 56px;
+    height: 4px;
+    margin: 18px 0 24px;
+    border-radius: 4px;
+    background: var(--course, var(--primary));
+}
+
+.section-head--center .linha-destaque {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   7. PAGE HERO
+   Topo das páginas internas (Quem Somos, cursos, Alfa Tech).
+========================================================= */
+
+.page-hero,
+.curso-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: min(78vh, 720px);
+    padding: calc(var(--nav-offset) + 48px) 0 120px;
+    overflow: hidden;
+    isolation: isolate;
+    background-color: var(--navy);
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+/* Overlay: mais escuro à esquerda, onde fica o texto */
+.page-hero::before,
+.curso-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(90deg,
+            rgb(10 21 64 / .94) 0%,
+            rgb(15 31 92 / .82) 45%,
+            rgb(15 31 92 / .45) 100%);
+}
+
+.page-hero-content,
+.curso-hero-content {
+    max-width: 720px;
+}
+
+.page-hero h1,
+.curso-hero h1 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.page-hero p,
+.curso-hero p {
+    max-width: 580px;
+    color: rgb(255 255 255 / .88);
+    font-size: var(--fs-lead);
+    margin-bottom: 32px;
+}
+
+/* Etiqueta do hero */
+.hero-badge,
+.curso-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+    padding: 8px 16px;
+    border: 1px solid rgb(255 255 255 / .22);
+    border-radius: var(--radius-pill);
+    background: rgb(255 255 255 / .08);
+    color: #fff;
+    font-size: var(--fs-small);
+    font-weight: 500;
+}
+
+.hero-badge::before,
+.curso-tag::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--course, var(--accent));
+    box-shadow: 0 0 0 4px rgb(255 255 255 / .12);
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 18px;
+}
 
 @media (max-width: 768px) {
-
-    h1 {
-
-        font-size: 2.4rem;
+    .page-hero,
+    .curso-hero {
+        min-height: auto;
+        padding: calc(var(--nav-offset) + 24px) 0 96px;
     }
 
-    h2 {
+    .page-hero::before,
+    .curso-hero::before {
+        background: linear-gradient(180deg, rgb(10 21 64 / .78) 0%, rgb(15 31 92 / .9) 100%);
+    }
+}
 
-        font-size: 2rem;
+@media (max-width: 480px) {
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
     }
 
-    p {
-
-        font-size: 15px;
+    .hero-buttons .btn,
+    .hero-buttons .btn-curso,
+    .hero-buttons .btn-secondary {
+        width: 100%;
     }
-
 }
 
 
-.adicionar-curso-container {
+/* =========================================================
+   8. CARDS DE CURSOS
+========================================================= */
 
+.curso-card {
+    --course: var(--primary);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 32px 28px 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    isolation: isolate;
+    transition:
+        transform var(--t) var(--ease),
+        box-shadow var(--t) var(--ease),
+        border-color var(--t) var(--ease);
+}
+
+/* Filete superior na cor do curso */
+.curso-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 4px;
+    background: var(--course);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .45s var(--ease);
+}
+
+.curso-card.ingles  { --course: var(--c-ingles); }
+.curso-card.info    { --course: var(--c-info); }
+.curso-card.enem    { --course: var(--c-enem); }
+.curso-card.reforco { --course: var(--c-reforco); }
+.curso-card.embraer { --course: var(--c-embraer); }
+
+.curso-icon {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 22px;
+    border-radius: var(--radius-md);
+    background: var(--primary-light);
+    background: color-mix(in srgb, var(--course) 11%, white);
+    color: var(--course);
+    font-size: 24px;
+    transition: background-color var(--t) var(--ease), color var(--t) var(--ease);
+}
+
+.curso-titulo {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
+.curso-linha {
+    display: block;
+    width: 32px;
+    height: 3px;
+    margin-bottom: 14px;
+    border-radius: 3px;
+    background: var(--course);
+}
+
+.curso-card p {
+    font-size: .95rem;
+    line-height: 1.65;
+    margin-bottom: 24px;
+}
+
+.curso-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    min-height: 44px;
+    color: var(--course);
+    font-weight: 600;
+}
+
+/* O card todo é clicável pelo link (mantém um único link acessível) */
+.curso-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.curso-link i {
+    transition: transform var(--t-fast) var(--ease);
+}
+
+.card-decoration {
+    position: absolute;
+    right: -10px;
+    bottom: -18px;
+    z-index: -1;
+    color: var(--course);
+    font-size: 110px;
+    line-height: 1;
+    opacity: .05;
+    transition: opacity var(--t) var(--ease), transform .5s var(--ease);
+}
+
+@media (hover: hover) {
+    .curso-card:hover {
+        transform: translateY(-4px);
+        border-color: color-mix(in srgb, var(--course) 35%, var(--border));
+        box-shadow: var(--shadow-md);
+    }
+
+    .curso-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .curso-card:hover .curso-icon {
+        background: var(--course);
+        color: #fff;
+    }
+
+    .curso-card:hover .curso-link i {
+        transform: translateX(4px);
+    }
+
+    .curso-card:hover .card-decoration {
+        opacity: .09;
+        transform: rotate(-8deg) scale(1.04);
+    }
+}
+
+.curso-card:focus-within {
+    border-color: var(--course);
+}
+
+/* Grade: 3 + 2 no desktop */
+.cursos-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 24px;
+}
+
+.cursos-grid > .curso-card {
+    grid-column: span 2;
+}
+
+.cursos-grid > .curso-card:nth-child(4),
+.cursos-grid > .curso-card:nth-child(5) {
+    grid-column: span 3;
+}
+
+.scroll-indicador {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .cursos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cursos-grid > .curso-card,
+    .cursos-grid > .curso-card:nth-child(4) {
+        grid-column: span 1;
+    }
+
+    .cursos-grid > .curso-card:nth-child(5) {
+        grid-column: span 2;
+    }
+}
+
+/* Mobile: carrossel horizontal com snap */
+@media (max-width: 768px) {
+    .cursos-grid {
+        display: flex;
+        gap: 16px;
+        margin: 0 calc(var(--gutter) * -1);
+        padding: 8px var(--gutter) 20px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scroll-padding: 0 var(--gutter);
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .cursos-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .cursos-grid > .curso-card,
+    .cursos-grid > .curso-card:nth-child(4),
+    .cursos-grid > .curso-card:nth-child(5) {
+        flex: 0 0 min(82%, 340px);
+        height: auto;
+        scroll-snap-align: start;
+        padding: 26px 22px 22px;
+    }
+
+    .scroll-indicador {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        margin-top: 4px;
+    }
+
+    /* Área de toque de 32px com indicador visual pequeno */
+    .scroll-indicador .dot {
+        display: grid;
+        place-items: center;
+        width: 32px;
+        height: 32px;
+    }
+
+    .scroll-indicador .dot::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: var(--radius-pill);
+        background: #c5cedd;
+        transition: width var(--t) var(--ease), background-color var(--t) var(--ease);
+    }
+
+    .scroll-indicador .dot.active::before {
+        width: 24px;
+        background: var(--primary);
+    }
+}
+
+
+/* =========================================================
+   9. CONTADORES
+========================================================= */
+
+.contadores {
+    position: relative;
+    padding: var(--section-y) 0;
+    background: var(--navy);
+    color: #fff;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Brilho sutil que ecoa o gradiente do logo */
+.contadores::before {
+    content: "";
+    position: absolute;
+    inset: -40% -10% auto auto;
+    z-index: -1;
+    width: 60%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(29 78 216 / .45), transparent);
+}
+
+.contadores-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.contador-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 24px;
+    text-align: center;
+}
+
+.contador-item + .contador-item {
+    border-left: 1px solid rgb(255 255 255 / .14);
+}
+
+.contador-icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    background: rgb(245 184 0 / .14);
+    color: var(--accent);
+    font-size: 22px;
+}
+
+.contador-item .contador-numero {
+    color: #fff;
+    font-size: clamp(2.5rem, 1.6rem + 3.4vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -.03em;
+    font-variant-numeric: tabular-nums;
+}
+
+.contador-item p {
+    color: rgb(255 255 255 / .75);
+    font-size: .95rem;
+    font-weight: 500;
+}
+
+@media (max-width: 600px) {
+    .contador-item {
+        padding: 4px 8px;
+    }
+
+    .contador-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 17px;
+        margin-bottom: 6px;
+    }
+
+    .contador-item .contador-numero {
+        font-size: clamp(1.75rem, 8vw, 2.5rem);
+    }
+
+    .contador-item p {
+        font-size: .8rem;
+        line-height: 1.35;
+    }
+}
+
+
+/* =========================================================
+   10. CTA
+========================================================= */
+
+.cta,
+.curso-cta {
+    padding: var(--section-y) 0;
+}
+
+.cta-box,
+.cta-content {
+    position: relative;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: clamp(48px, 7vw, 88px) clamp(24px, 6vw, 80px);
+    border-radius: clamp(24px, 3vw, 36px);
+    background: var(--navy);
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    isolation: isolate;
+    box-shadow: var(--shadow-lg);
+}
+
+/* Onda do logo como elemento gráfico do bloco */
+.cta-box::before,
+.cta-content::before {
+    content: "";
+    position: absolute;
+    inset: auto -10% -72% -10%;
+    z-index: -1;
+    height: 110%;
+    border-radius: 50% 50% 0 0 / 38% 38% 0 0;
+    background: linear-gradient(180deg, var(--primary) 0%, rgb(29 78 216 / 0) 75%);
+    opacity: .55;
+    transform: rotate(-4deg);
+}
+
+.cta-box::after,
+.cta-content::after {
+    content: "";
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    width: 72px;
+    height: 72px;
+    border: 2px solid rgb(245 184 0 / .5);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.cta-box h2,
+.cta-content h2 {
+    max-width: 760px;
+    margin: 0 auto 16px;
+    color: #fff;
+}
+
+.cta-box p,
+.cta-content p {
+    max-width: 560px;
+    margin: 0 auto 32px;
+    color: rgb(255 255 255 / .82);
+    font-size: var(--fs-lead);
+}
+
+.cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+}
+
+/* Wrapper de largura para o CTA das páginas de curso */
+.curso-cta {
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+}
+
+@media (max-width: 480px) {
+    .cta-box::after,
+    .cta-content::after {
+        display: none;
+    }
+
+    .cta-actions .btn,
+    .cta-box .btn,
+    .cta-content .btn-curso {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   11. LOCALIZAÇÃO
+========================================================= */
+
+.localizacao {
+    padding: var(--section-y) 0 calc(var(--section-y) + 40px);
+    background: var(--surface);
+}
+
+.localizacao-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(32px, 5vw, 64px);
+    align-items: stretch;
+}
+
+.localizacao-info .section-head {
+    margin-bottom: 28px;
+}
+
+.endereco-card {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 22px;
+    border-radius: var(--radius-md);
+    background: var(--background);
+    border: 1px solid var(--border);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+.endereco-icon,
+.contato-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 18px;
+}
+
+.contatos-lista {
+    display: grid;
+    gap: 10px;
+}
+
+.contato-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 64px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text);
+    font-weight: 600;
+    overflow-wrap: anywhere;
+    transition: border-color var(--t-fast), background-color var(--t-fast), transform var(--t-fast) var(--ease);
+}
+
+.contato-item small {
+    display: block;
+    color: var(--muted);
+    font-size: .78rem;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.contato-item:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    transform: translateX(3px);
+}
+
+.contato-item--whatsapp .contato-icon {
+    background: var(--whatsapp);
+    color: #fff;
+}
+
+.mapa {
+    min-height: 360px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    background: var(--background);
+}
+
+.mapa iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 360px;
+    border: 0;
+}
+
+@media (max-width: 900px) {
+    .localizacao-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mapa,
+    .mapa iframe {
+        min-height: 300px;
+    }
+}
+
+
+/* =========================================================
+   12. FOOTER
+========================================================= */
+
+.footer {
+    position: relative;
+    margin-top: 0;
+    padding-top: 56px;
+    background: var(--navy-deep);
+    color: rgb(255 255 255 / .75);
+}
+
+.footer .curva--footer {
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    width: 100%;
+    height: 48px;
+    color: var(--navy-deep);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1.3fr 1fr;
+    gap: 40px;
+    padding-bottom: 48px;
+}
+
+.footer-logo {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 18px;
+}
+
+.footer-brand p {
+    max-width: 340px;
+    color: rgb(255 255 255 / .7);
+    font-size: .92rem;
+}
+
+.footer-title {
+    margin-bottom: 18px;
+    color: #fff;
+    font-size: 1rem;
+    letter-spacing: 0;
+}
+
+.footer-list {
+    display: grid;
+    gap: 6px;
+    font-size: .92rem;
+}
+
+.footer-list a,
+.footer-bottom a {
+    display: inline-flex;
+    padding: 4px 0;
+    transition: color var(--t-fast);
+}
+
+.footer-list a:hover,
+.footer-bottom a:hover {
+    color: var(--accent);
+}
+
+.footer-list--icons li,
+.footer-address {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.footer-list--icons i,
+.footer-address i {
+    width: 18px;
+    margin-top: 8px;
+    color: var(--accent);
+    text-align: center;
+}
+
+.footer-list--icons a {
+    word-break: break-word;
+}
+
+.footer-address {
+    font-size: .92rem;
+    line-height: 1.8;
+}
+
+.footer-address i {
+    margin-top: 6px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgb(255 255 255 / .1);
+    font-size: .85rem;
+    /* Espaço para o botão flutuante do WhatsApp no mobile */
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.footer-bottom-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+.footer-bottom p {
+    color: rgb(255 255 255 / .6);
+}
+
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .footer-bottom-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 88px;
+    }
+}
+
+
+/* =========================================================
+   13. ELEMENTOS FLUTUANTES
+========================================================= */
+
+.whatsapp-float {
+    position: fixed;
+    right: calc(20px + env(safe-area-inset-right));
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    z-index: 900;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 56px;
+    padding: 0 22px 0 16px;
+    border-radius: var(--radius-pill);
+    background: var(--whatsapp);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 10px 28px rgb(37 211 102 / .35), 0 2px 6px rgb(0 0 0 / .12);
+    transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease), background-color var(--t-fast);
+    animation: float-in .6s var(--ease) 1s both;
+}
+
+.whatsapp-float i {
+    font-size: 28px;
+}
+
+.whatsapp-float span {
+    font-size: .95rem;
+    white-space: nowrap;
+}
+
+.whatsapp-float:hover {
+    background: var(--whatsapp-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgb(37 211 102 / .45), 0 2px 6px rgb(0 0 0 / .12);
+}
+
+@keyframes float-in {
+    from { opacity: 0; transform: translateY(16px) scale(.9); }
+    to   { opacity: 1; transform: none; }
+}
+
+@media (max-width: 1024px) {
+    .whatsapp-float {
+        width: 56px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .whatsapp-float span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+    }
+}
+
+/* Botão voltar ao topo (criado pelo script.js) */
+.back-to-top {
+    position: fixed;
+    right: calc(26px + env(safe-area-inset-right));
+    bottom: calc(92px + env(safe-area-inset-bottom));
+    z-index: 899;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--navy);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition:
+        opacity var(--t) var(--ease),
+        transform var(--t) var(--ease),
+        visibility 0s linear var(--t),
+        background-color var(--t-fast),
+        color var(--t-fast);
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+}
+
+.back-to-top:hover {
+    background: var(--navy);
+    color: #fff;
+}
+
+.back-to-top::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: calc(100% + 10px);
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: var(--dark);
+    color: #fff;
+    font-size: .78rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(4px);
+    transition: opacity var(--t-fast), transform var(--t-fast);
+}
+
+@media (hover: hover) {
+    .back-to-top:hover::after,
+    .back-to-top:focus-visible::after {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+/* =========================================================
+   14. CURVA DA MARCA
+   Onda que ecoa o recorte do logo da Alfa.
+========================================================= */
+
+.curva {
+    display: block;
+    width: 100%;
+    pointer-events: none;
+}
+
+.hero-curva {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    z-index: 3;
+    height: clamp(36px, 5vw, 72px);
+    color: var(--background);
+}
+
+
+/* =========================================================
+   VÍDEOS (páginas de curso e Quem Somos)
+========================================================= */
+
+.video-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--dark);
+    box-shadow: var(--shadow-lg);
+}
+
+.video-wrapper video {
+    width: 100%;
+    display: block;
+}
+
+
+/* =========================================================
+   PÁGINAS DE ERRO (404 e 500)
+========================================================= */
+
+.erro-wrapper {
+    display: flex;
+    align-items: center;
+    min-height: 80vh;
+    padding: calc(var(--nav-offset) + 40px) 0 80px;
+    text-align: center;
+}
+
+.erro-codigo {
+    margin-bottom: 8px;
+    color: var(--navy);
+    font-size: clamp(5rem, 3rem + 10vw, 9rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -.05em;
+}
+
+.erro-titulo {
+    margin-bottom: 14px;
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+}
+
+.erro-texto {
+    max-width: 440px;
+    margin: 0 auto 32px;
+}
+
+.erro-btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+
+/* =========================================================
+   15. ANIMAÇÕES
+========================================================= */
+
+/* Entrada ao rolar (ativada pelo script.js) */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Filhos aparecem em sequência curta */
+.reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .6s var(--ease), transform .6s var(--ease);
+}
+
+.reveal-stagger.is-visible > * {
+    opacity: 1;
+    transform: none;
+}
+
+.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: .08s; }
+.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: .16s; }
+.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: .24s; }
+.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: .32s; }
+.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: .4s; }
+
+/* Sem JavaScript, tudo aparece normalmente */
+.no-js .reveal,
+.no-js .reveal-stagger > * {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        transition-delay: 0s !important;
+    }
+
+    .reveal,
+    .reveal-stagger > * {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+/* =========================================================
+   16. UTILITÁRIOS
+========================================================= */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+
+/* =========================================================
+   17. LEGADO
+   Regras que não são usadas por nenhum template deste
+   projeto (formulários antigos de matrícula/admin).
+   Mantidas por segurança; podem ser removidas depois de
+   confirmar que o portal não depende deste arquivo.
+========================================================= */
+
+.adicionar-curso-container {
     display: flex;
     justify-content: flex-end;
-
     margin-top: 10px;
 }
 
-
 .btnAdicionarCurso {
-
-    background: #2f66f5;
-    color: white;
-
-    border: none;
-    border-radius: 12px;
-
-    padding: 14px 28px;
-
-    font-size: 18px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    min-width: 310px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
+    min-width: 310px;
     margin-left: auto;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 12px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
 }
+
 .btnAdicionarCurso:hover {
     opacity: .9;
 }
@@ -404,575 +1561,41 @@ section {
 }
 
 .curso-item {
-
     display: flex;
     flex-direction: column;
-
     gap: 8px;
-
     margin-bottom: 40px;
 }
 
 .curso-item label {
-
     font-size: 16px;
     font-weight: 700;
-
-    color: #0f2348;
+    color: var(--dark);
 }
 
-.contato-link {
-
-    color: white;
-
-    font-weight: 600;
-
-    display: inline-block;
-
-    margin-top: 10px;
-}
-
-.contato-link:hover {
-
-    color: #60a5fa;
-}
-
-/* =========================================
-   INDICADOR MOBILE
-========================================= */
-
-.scroll-indicador {
-
-    display: none;
-
-    justify-content: center;
-
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
     gap: 10px;
-
-    margin-top: 20px;
+    font-size: 14px;
+    color: var(--muted);
 }
 
-.scroll-indicador .dot {
-
-    width: 10px;
-    height: 10px;
-
-    border-radius: 50%;
-
-    background: #cbd5e1;
-
-    transition: .3s ease;
-}
-
-.scroll-indicador .dot.active {
-
-    background: #2563eb;
-
-    width: 28px;
-
-    border-radius: 999px;
-}
-
-@media (max-width: 768px) {
-
-    .scroll-indicador {
-
-        display: flex;
-    }
-}
-
-
-/* =========================================
-   BOTÃO VOLTAR
-========================================= */
-
-.back-button {
-
+.checkbox-group label {
     display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 55px;
-    height: 55px;
-
-    transition: .25s ease;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.6;
+    cursor: pointer;
 }
 
-.back-button img {
-
-    width: 100%;
-    height: 100%;
-
-    filter:
-        drop-shadow(0 0 8px rgba(255, 255, 255, 1))
-        drop-shadow(0 0 15px rgba(255, 255, 255, 0.5))
-        drop-shadow(0 0 25px rgba(255, 255, 255, 0.3));
+.checkbox-group input {
+    margin-top: 4px;
+    width: 18px;
+    height: 18px;
 }
 
-.back-button:hover {
-
-    transform: scale(1.08);
-}
-
-
-
-/* =========================================
-   BANNER ALUNOS
-========================================= */
-
-.banner-alunos {
-
-    width: 100%;
-
-    overflow: hidden;
-}
-
-.banner-alunos img {
-
-    width: 100%;
-
-    display: block;
-
-    object-fit: cover;
-}
-
-/* MOBILE */
-
-@media (max-width: 768px) {
-
-    .banner-alunos img {
-
-        min-height: 250px;
-
-        object-fit: cover;
-    }
-
-}
-/* =========================================
-   CONTADORES
-========================================= */
-
-.contadores {
-
-    padding: 90px 20px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #0f172a,
-        #1e293b
-    );
-}
-
-.contadores .container {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 40px;
-
-    flex-wrap: wrap;
-}
-
-.contador-item {
-
-    text-align: center;
-
-    min-width: 220px;
-}
-
-.contador-icon {
-
-    font-size: 50px;
-
-    margin-bottom: 15px;
-}
-
-.contador-item h2 {
-
-    font-size: 4rem;
-
-    font-weight: 800;
-
-    margin-bottom: 10px;
-}
-
-.contador {
-
-    color: white;
-
-    text-shadow:
-        0 0 10px rgba(255, 255, 255, 0.4),
-        0 0 25px rgba(255,255,255,.3),
-        0 0 40px rgba(255,255,255,.2);
-}
-.contador-item p {
-
-    color: #cbd5e1;
-
-    font-size: 1rem;
-
+.checkbox-group a {
+    color: var(--primary);
     font-weight: 600;
-
-    text-transform: uppercase;
-
-    letter-spacing: 2px;
-}
-
-.contador-linha {
-
-    width: 80px;
-
-    height: 4px;
-
-    border-radius: 50px;
-
-    background:
-    linear-gradient(
-        90deg,
-        #60a5fa,
-        #2563eb
-    );
-}
-
-.contador-item:hover {
-
-    transform: translateY(-8px);
-
-    transition: .3s;
-}
-
-@media (max-width: 768px) {
-
-    .contadores .container {
-
-        display: flex;
-
-        flex-direction: row;
-
-        flex-wrap: nowrap;
-
-        justify-content: space-evenly;
-
-        gap: 10px;
-    }
-
-    .contador-linha {
-
-        display: none;
-    }
-
-    .contador-item {
-
-        min-width: auto;
-    }
-
-    .contador-item h2 {
-
-        font-size: 2rem;
-    }
-
-    .contador-icon img {
-
-        width: 50px;
-    }
-
-}
-
-.contador-numero {
-
-    color: white;
-
-    text-shadow:
-        0 0 10px rgba(255,255,255,.4),
-        0 0 25px rgba(255,255,255,.3);
-}
-
-.contador-icon i {
-
-    font-size: 55px;
-
-    color: rgb(40, 99, 226);
-
-
-}
-
-/* =========================================
-   LOGO FIXA
-========================================= */
-
-.logo-canto {
-
-    position: absolute;
-
-    top: 20px;
-    left: 20px;
-
-    z-index: 9999;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 15px;
-}
-
-
-.logo-canto:hover {
-
-    transform: scale(1.08);
-}
-
-.logo-canto img {
-
-    width: 50px;
-
-    height: auto;
-}
- 
-/* =========================================
-   LOGO 
-   ========================================= */
-
-.logo-home {
-
-    width: 70px;
-    height: 70px;
-
-    background: white;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    box-shadow:
-        0 10px 25px rgba(0,0,0,.15);
-
-    transition: .3s;
-}
-
-.logo-home img {
-
-    width: 65px;
-
-    display: block;
-
-    background: transparent;
-
-    border: none;
-
-    box-shadow: none;
-}
-
-.logo-home:hover {
-
-    transform: scale(1.08);
-}
-
-
-.hero-btn-estrutura {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: white;
-  font-weight: 700;
-  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
-  animation: pulsar 2s infinite;
-}
-
-.hero-btn-estrutura:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
-}
-
-@keyframes pulsar {
-  0%, 100% { box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4); }
-  50% { box-shadow: 0 4px 24px rgba(245, 158, 11, 0.7); }
-}
-
-
-
-/* ===== SOFTWARES — Curso Informática ===== */
-.curso-softwares {
-  padding: 80px 24px;
-  background: #ffffff;
-}
-
-.softwares-grid {
-  max-width: 1000px;
-  margin: 50px auto 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px 60px;
-}
-
-.software-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.software-icone {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.software-icone svg {
-  width: 100%;
-  height: 100%;
-}
-
-.software-texto h3 {
-  font-size: 1.25rem;
-  font-weight: 800;
-  margin-bottom: 6px;
-}
-
-.software-texto p {
-  font-size: 0.92rem;
-  color: #475569;
-  line-height: 1.5;
-}
-
-@media (max-width: 700px) {
-  .softwares-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-}
-
-
-/* Ajuste para imagens reais dos logos */
-.software-item img.software-icone {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-
-
-
-
-.curso-info-centro .curso-container {
-    text-align: center;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.curso-info-centro .curso-container p {
-    font-size: 2.05rem;
-    color: #475569;
-    line-height: 1.8;
-}
-
-.linha-destaque {
-    width: 120px;
-    height: 4px;
-    background: #2563eb;
-    border-radius: 4px;
-    margin: 16px auto 24px;
-}
-
-
-
-
-/* ===== APROVADOS ===== */
-.aprovados-section {
-    padding: 80px 24px;
-    background: #f8faff;
-}
-
-.aprovados-subtitulo {
-    color: #64748b;
-    font-size: 1.05rem;
-    margin-top: 12px;
-}
-
-.aprovados-grid {
-    max-width: 1100px;
-    margin: 48px auto 0;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-}
-
-.aprovado-foto {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.aprovado-foto:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-}
-
-@media (max-width: 900px) {
-    .aprovados-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .aprovados-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-
-
-
-
-/* ===== VÍDEO ===== */
-.video-section {
-    padding: 80px 24px;
-    background: #f8faff;
-    text-align: center;
-}
-
-.video-wrapper {
-    max-width: 700px;
-    margin: 40px auto 0;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-}
-
-.video-wrapper video {
-    width: 100%;
-    display: block;
-}
-
-.video-duplo {
-    max-width: 1000px;
-    margin: 40px auto 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-}
-
-.video-duplo .video-wrapper {
-    max-width: 100%;
-    margin: 0;
-}
-
-@media (max-width: 700px) {
-    .video-duplo {
-        grid-template-columns: 1fr;
-    }
 }

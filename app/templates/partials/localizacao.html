@@ -1,0 +1,54 @@
+{#- LOCALIZAÇÃO — usada na home e na página Quem Somos -#}
+<section class="localizacao" id="localizacao" aria-labelledby="localizacao-titulo">
+    <div class="container localizacao-grid">
+
+        <div class="localizacao-info">
+            <div class="section-head">
+                <h2 id="localizacao-titulo">Onde Estamos</h2>
+            </div>
+
+            <address class="endereco-card">
+                <span class="endereco-icon"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
+                <span>
+                    R. Patativa, n˚ 81<br>
+                    Vila Tatetuba<br>
+                    São José dos Campos - SP<br>
+                    CEP: 12220-140
+                </span>
+            </address>
+
+            <ul class="contatos-lista">
+                <li>
+                    <a href="{{ wa }}" target="_blank" rel="noopener" class="contato-item contato-item--whatsapp">
+                        <span class="contato-icon"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></span>
+                        <span><small>WhatsApp</small>(12) 99778-1432</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://instagram.com/alfaprofissionalizantes?igsh=Y2FqN2x1N29kaDd0" target="_blank" rel="noopener" class="contato-item">
+                        <span class="contato-icon"><i class="fa-brands fa-instagram" aria-hidden="true"></i></span>
+                        <span><small>Instagram</small>@alfaprofissionalizantes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:alfaprofissionalizantes5@gmail.com" class="contato-item">
+                        <span class="contato-icon"><i class="fa-solid fa-envelope" aria-hidden="true"></i></span>
+                        <span><small>E-mail</small>alfaprofissionalizantes5@<wbr>gmail.com</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mapa">
+            <iframe
+                src="https://www.google.com/maps?q=Centro+de+Educa%C3%A7%C3%A3o+Profissional+Alfa&output=embed"
+                title="Mapa com a localização da Alfa Profissionalizantes"
+                width="600"
+                height="450"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</section>

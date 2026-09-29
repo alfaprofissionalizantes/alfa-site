@@ -1,212 +1,52 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo/logo.png') }}">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block title %}Cursos Profissionalizantes | Alfa Profissionalizantes{% endblock %}
+{% block description %}Conheça os cursos da Alfa Profissionalizantes em São José dos Campos: Inglês, Informática, Preparatório ENEM, Reforço e Alfabetização e Preparatório Embraer.{% endblock %}
+{% block page_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cursos.css') }}">
+{% endblock %}
+{% block body_class %}page-cursos{% endblock %}
 
-    <title>Cursos Profissionalizantes | Alfa Profissionalizantes</title>
+{% block content %}
 
-    <meta name="description"
-    content="Conheça todos os cursos oferecidos pela Alfa Profissionalizantes, incluindo Informática, Inglês, Preparatório para o ENEM e Embraer e muito mais.">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-      <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L63EYYEEB2"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-L63EYYEEB2');
-    </script>
-
-</head>
-
-<body>
-
-    <!-- ========================= -->
-    <!-- NAVBAR -->
-    <!-- ========================= -->
-
-    <header class="navbar">
-
-        <div class="logo">
-            <a href="/">
-                Alfa Cursos
-            </a>
-        </div>
-
-        <nav>
-
-            <ul class="menu">
-
-                <li class="dropdown">
-
-                    <a href="#">
-                        Cursos ▼
-                    </a>
-
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            <a href="/cursos/ingles">
-                                Inglês
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/cursos/informatica">
-                                Informática
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/cursos/enem">
-                                Preparatório ENEM
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </li>
-
-                <li>
-                    <a
-                        href="https://wa.me/5512997781432"
-                        target="_blank"
-                    >
-                        Fale Conosco
-                    </a>
-                </li>
-
-                <li>
-                    <a class="btn-matricula" href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank">
-                        Me Matricular
-                    </a>
-                </li>
-
-            </ul>
-
-        </nav>
-
-    </header>
-
-    <!-- ========================= -->
     <!-- TÍTULO -->
-    <!-- ========================= -->
-
-    <section class="page-title">
-
-        <h1>
-            Conheça Nossos Cursos
-        </h1>
-
-        <p>
-            Escolha o curso ideal para transformar seu futuro.
-        </p>
-
-    </section>
-
-    <!-- ========================= -->
-    <!-- LISTA DE CURSOS -->
-    <!-- ========================= -->
-
-    <section class="cursos-page">
-
-        <div class="cards">
-
-            <!-- CURSO -->
-            <div class="card">
-
-                <h2>
-                    Inglês Instrumental e Fluência
-                </h2>
-
-                <p>
-                    Curso completo do básico ao avançado,
-                    com foco em conversação, leitura e mercado profissional.
-                </p>
-
-                <a href="/cursos/ingles">
-                    Ver Curso
-                </a>
-
+    <section class="page-hero page-hero--compacto page-title">
+        <div class="container">
+            <div class="page-hero-content">
+                <span class="hero-badge">Cursos</span>
+                <h1>Conheça Nossos Cursos</h1>
+                <p>Escolha o curso ideal para transformar seu futuro.</p>
             </div>
-
-            <!-- CURSO -->
-            <div class="card">
-
-                <h2>
-                    Informática Essencial
-                </h2>
-
-                <p>
-                    Aprenda Windows, Word, Excel,
-                    internet e ferramentas digitais.
-                </p>
-
-                <a href="/cursos/informatica">
-                    Ver Curso
-                </a>
-
-            </div>
-
-            <!-- CURSO -->
-            <div class="card">
-
-                <h2>
-                    Preparatório ENEM
-                </h2>
-
-                <p>
-                    Revisão completa para vestibulares,
-                    concursos e redação.
-                </p>
-
-                <a href="/cursos/enem">
-                    Ver Curso
-                </a>
-
-            </div>
-
-            <!-- CURSO -->
-            <div class="card">
-
-                <h2>
-                    Excel Avançado para Negócios
-                </h2>
-
-                <p>
-                    Fórmulas, dashboards, gráficos,
-                    tabelas dinâmicas e automação.
-                </p>
-
-                <a href="/cursos/informatica">
-                    Ver Curso
-                </a>
-
-            </div>
-
         </div>
-
+        {% with curva_classe = 'hero-curva' %}{% include "partials/curva.html" %}{% endwith %}
     </section>
 
-    <!-- ========================= -->
-    <!-- RODAPÉ -->
-    <!-- ========================= -->
+    <!-- LISTA DE CURSOS -->
+    <section class="cursos-page section" aria-label="Lista de cursos">
+        <div class="container">
+            {% with titulo_nivel = 'h2' %}{% include "partials/cursos_cards.html" %}{% endwith %}
+        </div>
+    </section>
 
-    <footer class="footer">
+    <!-- CTA -->
+    <section class="cta" aria-labelledby="cta-titulo">
+        <div class="container">
+            <div class="cta-box reveal">
+                <h2 id="cta-titulo">Ficou com alguma dúvida?</h2>
+                <p>Fale com a nossa equipe pelo WhatsApp e encontre o curso certo para você.</p>
+                <div class="cta-actions">
+                    <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn btn--accent btn--lg">Me Matricular</a>
+                    <a href="{{ wa_info }}" target="_blank" rel="noopener" class="btn btn--ghost btn--lg">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                        Falar no WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <p>
-            © 2026 Alfa Cursos - Todos os direitos reservados
-        </p>
+{% endblock %}
 
-    </footer>
-
-</body>
-
-</html>
+{% block page_js %}
+    <script src="{{ url_for('static', filename='js/scroll.js') }}" defer></script>
+{% endblock %}

@@ -1,266 +1,226 @@
-/* ===== ALFA TECH — CSS ===== */
+/* =========================================================
+   ALFA TECH (alfatech.html)
+   Submarca da Alfa: mesma base visual, com ciano como
+   cor de apoio para diferenciar o serviço técnico.
+========================================================= */
 
-/* HERO */
+.page-alfatech {
+    --tech: #0ea5e9;
+    --tech-light: #e0f4fd;
+}
+
+/* HERO — sem foto, gradiente da marca */
 .tech-hero {
-  position: relative;
-  min-height: 92vh;
-  display: flex;
-  align-items: center;
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 60%, #0ea5e9 100%);
-  overflow: hidden;
-  padding: 120px 24px 80px;
+    background:
+        radial-gradient(55% 90% at 85% 40%, rgb(14 165 233 / .35), transparent 70%),
+        linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, #13407a 100%);
 }
 
 .tech-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 70% 50%, rgba(14,165,233,0.15) 0%, transparent 70%);
+    display: none;
 }
 
-.tech-hero-overlay {
-  display: none;
-}
-
-.tech-hero-content {
-  position: relative;
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
-  z-index: 1;
-}
-
-.tech-tag-wrapper {
-  margin-bottom: 20px;
-}
-
-.tech-tag {
-  display: inline-block;
-  background: rgba(14,165,233,0.2);
-  color: #38bdf8;
-  border: 1px solid rgba(56,189,248,0.3);
-  padding: 6px 18px;
-  border-radius: 20px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.tech-hero-content h1 {
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  font-weight: 800;
-  color: #ffffff;
-  line-height: 1.2;
-  margin-bottom: 20px;
+.tech-tag::before {
+    background: var(--tech);
 }
 
 .tech-destaque {
-  color: #38bdf8;
+    color: #7dd3fc;
 }
 
-.tech-hero-content p {
-  font-size: 1.1rem;
-  color: #94a3b8;
-  line-height: 1.7;
-  margin-bottom: 36px;
+.tech-btn-cta svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }
 
-.tech-btn-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 32px;
-  background: #25d366;
-  color: white;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+.tech-curva {
+    color: var(--surface);
 }
 
-.tech-btn-cta:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(37,211,102,0.5);
+.page-alfatech .tag::before {
+    background: var(--tech);
+}
+
+.page-alfatech .tag {
+    color: #0369a1;
 }
 
 /* SERVIÇOS */
-.tech-servicos {
-  padding: 100px 24px;
-  background: #ffffff;
-}
-
-.tech-section-header {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.tech-eyebrow {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: #0ea5e9;
-  margin-bottom: 12px;
-}
-
-.tech-eyebrow.claro { color: #7dd3fc; }
-
-.tech-section-header h2 {
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
-  font-weight: 800;
-  color: #0f172a;
-}
-
-.tech-section-header.claro h2 { color: #ffffff; }
-
 .tech-grid {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
 .tech-card {
-  padding: 32px 28px;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-}
-
-.tech-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(14,165,233,0.1);
-  border-color: #0ea5e9;
+    padding: 30px 26px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease), border-color var(--t) var(--ease);
 }
 
 .tech-card-icone {
-  width: 60px;
-  height: 60px;
-  background: #f0f9ff;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  color: #0ea5e9;
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 20px;
+    border-radius: var(--radius-md);
+    background: var(--tech-light);
+    color: #0284c7;
+    transition: background-color var(--t) var(--ease), color var(--t) var(--ease);
+}
+
+.tech-card-icone svg {
+    width: 28px;
+    height: 28px;
 }
 
 .tech-card h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 10px;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
 }
 
 .tech-card p {
-  font-size: 0.9rem;
-  color: #64748b;
-  line-height: 1.6;
+    font-size: .93rem;
+    line-height: 1.65;
+}
+
+@media (hover: hover) {
+    .tech-card:hover {
+        transform: translateY(-4px);
+        border-color: #bae6fd;
+        box-shadow: var(--shadow-md);
+    }
+
+    .tech-card:hover .tech-card-icone {
+        background: var(--tech);
+        color: #fff;
+    }
+}
+
+/* MARCAS */
+.tech-marcas-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.tech-marcas-grid li {
+    display: grid;
+    place-items: center;
+    width: 112px;
+    height: 88px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+}
+
+.tech-marca-logo {
+    width: 64px;
+    height: 48px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: .7;
+    transition: filter var(--t), opacity var(--t);
+}
+
+.tech-marcas-grid li:hover .tech-marca-logo {
+    filter: none;
+    opacity: 1;
 }
 
 /* DIFERENCIAIS */
 .tech-diferenciais {
-  padding: 100px 24px;
-  background: linear-gradient(135deg, #0f172a, #1e3a5f);
+    background: var(--navy);
+    color: #fff;
+}
+
+.tech-diferenciais h2 {
+    color: #fff;
+}
+
+.tag--claro,
+.page-alfatech .tag--claro {
+    color: #7dd3fc;
 }
 
 .tech-diferenciais-grid {
-  max-width: 900px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 960px;
+    margin: 0 auto;
 }
 
 .tech-diferencial {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 24px;
+    border: 1px solid rgb(255 255 255 / .1);
+    border-radius: var(--radius-md);
+    background: rgb(255 255 255 / .04);
 }
 
-.tech-diferencial-num {
-  font-size: 2rem;
-  font-weight: 900;
-  color: #0ea5e9;
-  line-height: 1;
-  flex-shrink: 0;
-  opacity: 0.6;
+.tech-diferencial-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: rgb(14 165 233 / .16);
+    color: #7dd3fc;
+    font-size: 19px;
 }
 
-.tech-diferencial h4 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 6px;
+.tech-diferencial h3 {
+    margin-bottom: 4px;
+    color: #fff;
+    font-size: 1.05rem;
 }
 
 .tech-diferencial p {
-  font-size: 0.88rem;
-  color: #94a3b8;
-  line-height: 1.6;
+    color: rgb(255 255 255 / .72);
+    font-size: .93rem;
+    line-height: 1.6;
 }
 
 /* CTA */
-.tech-cta {
-  padding: 100px 24px;
-  background: #f0f9ff;
-  text-align: center;
+.tech-cta .cta-box::before {
+    background: linear-gradient(180deg, var(--tech) 0%, rgb(14 165 233 / 0) 75%);
+    opacity: .35;
 }
 
-.tech-cta h2 {
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 16px;
-}
-
-.tech-cta p {
-  font-size: 1rem;
-  color: #64748b;
-  margin-bottom: 36px;
+.tech-cta .cta-box::after {
+    border-color: rgb(125 211 252 / .5);
 }
 
 /* RESPONSIVO */
 @media (max-width: 900px) {
-  .tech-grid { grid-template-columns: repeat(2, 1fr); }
-  .tech-diferenciais-grid { grid-template-columns: 1fr; }
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tech-diferenciais-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 600px) {
-  .tech-grid { grid-template-columns: 1fr; }
-  .tech-hero { min-height: 100vh; }
-}
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
 
-/* MARCAS */
-.tech-marcas {
-  padding: 80px 24px;
-  background: #f8faff;
-}
-
-.tech-marcas-grid {
-  max-width: 900px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-}
-
-.tech-marca-logo {
-  width: 72px;
-  height: 72px;
-  object-fit: contain;
-  filter: grayscale(40%);
-  opacity: 0.8;
-  transition: filter 0.2s, opacity 0.2s, transform 0.2s;
-}
-
-.tech-marca-logo:hover {
-  filter: grayscale(0%);
-  opacity: 1;
-  transform: scale(1.1);
+    .tech-marcas-grid li {
+        width: calc(33.333% - 11px);
+        height: 76px;
+    }
 }

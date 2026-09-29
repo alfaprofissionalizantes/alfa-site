@@ -1,0 +1,116 @@
+{#- NAVBAR — incluída pelo base.html em todas as páginas -#}
+{%- set cursos_menu = [
+    ('cursos.ingles', 'Inglês', 'fa-language', 'ingles'),
+    ('cursos.informatica', 'Informática', 'fa-laptop-code', 'info'),
+    ('cursos.enem', 'Preparatório ENEM', 'fa-clipboard-check', 'enem'),
+    ('cursos.reforco', 'Reforço e Alfabetização', 'fa-book', 'reforco'),
+    ('cursos.embraer', 'Preparatório Embraer', 'fa-book-open', 'embraer'),
+] -%}
+{%- set em_cursos = endpoint.startswith('cursos.') -%}
+
+<header class="navbar" id="navbar">
+    <div class="navbar-container">
+
+        <!-- LOGO -->
+        <a href="{{ url_for('home.home') }}" class="logo">
+            <img
+                src="{{ url_for('static', filename='img/logo/logo.png') }}"
+                alt="Alfa Profissionalizantes — página inicial"
+                class="logo-img"
+                width="52" height="52"
+            >
+        </a>
+
+        <!-- BOTÃO MOBILE -->
+        <button
+            type="button"
+            class="mobile-menu-button"
+            aria-controls="menu-principal"
+            aria-expanded="false"
+            aria-label="Abrir menu"
+        >
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+
+        <!-- MENU -->
+        <nav class="nav-panel" id="menu-principal" aria-label="Menu principal">
+
+            <div class="nav-panel-header">
+                <img
+                    src="{{ url_for('static', filename='img/logo/logo.png') }}"
+                    alt=""
+                    width="40" height="40"
+                >
+                <span>Menu</span>
+                <button type="button" class="nav-close" aria-label="Fechar menu">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <ul class="menu">
+
+                <!-- CURSOS -->
+                <li class="dropdown">
+                    <button
+                        type="button"
+                        class="dropdown-toggle{% if em_cursos %} is-current{% endif %}"
+                        aria-expanded="false"
+                        aria-controls="dropdown-cursos"
+                    >
+                        Cursos
+                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="dropdown-menu" id="dropdown-cursos">
+                        <div class="dropdown-inner">
+                        <ul>
+                            {% for ep, nome, icone, cor in cursos_menu %}
+                            <li>
+                                <a href="{{ url_for(ep) }}" class="dropdown-link curso-cor--{{ cor }}"{% if endpoint == ep %} aria-current="page"{% endif %}>
+                                    <span class="dropdown-icon"><i class="fa-solid {{ icone }}" aria-hidden="true"></i></span>
+                                    {{ nome }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <a href="{{ url_for('cursos.cursos') }}" class="dropdown-all"{% if endpoint == 'cursos.cursos' %} aria-current="page"{% endif %}>
+                            Ver todos os cursos
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('home.sobre') }}" class="nav-link"{% if endpoint == 'home.sobre' %} aria-current="page"{% endif %}>
+                        Quem Somos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('home.alfatech') }}" class="nav-link"{% if endpoint == 'home.alfatech' %} aria-current="page"{% endif %}>
+                        Manutenção técnica
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ wa_info }}" target="_blank" rel="noopener" class="nav-link">
+                        Fale Conosco
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="https://portal.alfaprofissionalizantes.com/" target="_blank" rel="noopener" class="portal-btn">
+                    <i class="fa-solid fa-user-graduate" aria-hidden="true"></i>
+                    Portal do aluno
+                </a>
+                <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn-matricula">
+                    Me Matricular
+                </a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div class="nav-overlay" hidden></div>

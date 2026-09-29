@@ -1,0 +1,73 @@
+{#- FOOTER — incluído pelo base.html em todas as páginas -#}
+<footer class="footer">
+    {% with curva_classe = 'curva--footer' %}{% include "partials/curva.html" %}{% endwith %}
+
+    <div class="container footer-grid">
+
+        <div class="footer-col footer-brand">
+            <img
+                src="{{ url_for('static', filename='img/logo/logo.png') }}"
+                alt="Alfa Profissionalizantes"
+                class="footer-logo"
+                width="64" height="64"
+                loading="lazy"
+            >
+            <p>
+                Formação profissional, reforço escolar e preparação para o futuro.
+                Há mais de 15 anos ajudando alunos a desenvolver habilidades,
+                conquistar oportunidades e alcançar seus objetivos.
+            </p>
+        </div>
+
+        <nav class="footer-col" aria-label="Cursos">
+            <h2 class="footer-title">Cursos</h2>
+            <ul class="footer-list">
+                <li><a href="{{ url_for('cursos.ingles') }}">Inglês</a></li>
+                <li><a href="{{ url_for('cursos.informatica') }}">Informática</a></li>
+                <li><a href="{{ url_for('cursos.enem') }}">Preparatório ENEM</a></li>
+                <li><a href="{{ url_for('cursos.reforco') }}">Reforço e Alfabetização</a></li>
+                <li><a href="{{ url_for('cursos.embraer') }}">Preparatório Embraer</a></li>
+            </ul>
+        </nav>
+
+        <div class="footer-col">
+            <h2 class="footer-title">Contato</h2>
+            <ul class="footer-list footer-list--icons">
+                <li>
+                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                    <a href="{{ wa }}" target="_blank" rel="noopener">(12) 99778-1432</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    <a href="mailto:alfaprofissionalizantes5@gmail.com">alfaprofissionalizantes5@<wbr>gmail.com</a>
+                </li>
+                <li>
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                    <a href="https://instagram.com/alfaprofissionalizantes?igsh=Y2FqN2x1N29kaDd0" target="_blank" rel="noopener">@alfaprofissionalizantes</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h2 class="footer-title">Onde Estamos</h2>
+            <address class="footer-address">
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                <span>
+                    R. Patativa, nº 81<br>
+                    Vila Tatetuba<br>
+                    São José dos Campos - SP<br>
+                    CEP: 12220-140
+                </span>
+            </address>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+            <p>© 2026 Alfa Profissionalizantes — Todos os direitos reservados.</p>
+            <a href="{{ url_for('static', filename='docs/POLITICA DE PRIVACIDADE E TERMO DE CONSENTIMENTO PARA TRATAMENTO DE DADOS PESSOAIS.pdf') }}" target="_blank" rel="noopener">
+                Política de privacidade
+            </a>
+        </div>
+    </div>
+</footer>

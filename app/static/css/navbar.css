@@ -1,79 +1,71 @@
-/* =========================================
-   NAVBAR PREMIUM
-========================================= */
+/* =========================================================
+   NAVBAR
+   Pílula flutuante (identidade que já era da Alfa), agora
+   em azul-marinho com o logo circular à esquerda.
+   Desktop: >= 1100px | Mobile: gaveta lateral.
+========================================================= */
 
 .navbar {
-
-    width: 100%;
-
     position: fixed;
-
     top: 0;
     left: 0;
-
+    right: 0;
     z-index: 1000;
-
-    transition: 0.4s ease;
+    padding: 16px var(--gutter) 0;
+    pointer-events: none; /* só a pílula recebe cliques */
+    transition: padding var(--t) var(--ease);
 }
 
 .navbar-container {
-
-    width: 100%;
-
-    max-width: 950px;    
-
-    margin: 35px auto 0;
-
-    height: 90px;
-
+    position: relative;
+    isolation: isolate;
+    pointer-events: auto;
     display: flex;
-
-    justify-content: space-between;
-
     align-items: center;
-
-    padding: 0 45px 0 0;
-
-    background:
-    radial-gradient(circle at 22% 50%, #2563eb 0%, #2563eb 13%, transparent 14%),
-    linear-gradient(
-        90deg,
-        white 0%,
-        white 28%,
-        #2563eb 28%,
-        #2563eb 100%
-    );
-
-    border-radius: 999px;
-
-    box-shadow:
-        0 12px 35px rgba(0,0,0,0.08);
-
-    overflow: visible;
+    gap: 24px;
+    max-width: var(--container);
+    height: 72px;
+    margin: 0 auto;
+    padding: 0 12px 0 10px;
+    border-radius: var(--radius-pill);
+    transition: height var(--t) var(--ease);
 }
 
+/* Fundo da pílula num pseudo-elemento: o blur não pode ficar no
+   próprio container, senão a gaveta mobile (position: fixed)
+   ficaria presa dentro da pílula. */
+.navbar-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border: 1px solid rgb(255 255 255 / .08);
+    border-radius: inherit;
+    background: rgb(15 31 92 / .92);
+    box-shadow: 0 10px 30px rgb(10 21 64 / .18);
+    transition: background-color var(--t) var(--ease), box-shadow var(--t) var(--ease);
+}
 
-/* =========================================
-   NAVBAR SCROLL
-========================================= */
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .navbar-container::before {
+        background: rgb(15 31 92 / .82);
+        -webkit-backdrop-filter: saturate(160%) blur(14px);
+        backdrop-filter: saturate(160%) blur(14px);
+    }
+}
 
+/* Estado ao rolar (classe aplicada pelo script.js) */
 .navbar-scroll {
-
-    height: 78px;
-
-    background: rgba(37, 99, 235, 0.96);
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    padding-top: 10px;
 }
 
-.navbar-scroll .menu a {
-
-    color: white;
+.navbar-scroll .navbar-container {
+    height: 62px;
 }
 
-.navbar-scroll .menu a:hover {
-
-    color: #dbeafe;
+.navbar-scroll .navbar-container::before {
+    background: rgb(10 21 64 / .94);
+    box-shadow: 0 12px 32px rgb(10 21 64 / .28);
 }
 
 /* =========================================
@@ -81,412 +73,538 @@
 ========================================= */
 
 .logo {
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    width: 200px;
-
-    height: 90px;
-
-    background: white;
-
-    padding: 0;
-
-    border-radius: 999px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
 }
 
 .logo-img {
-
-    width: 90px;
-
-    height: auto;
-
-    object-fit: contain;
-
-    transition: 0.3s ease;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgb(255 255 255 / .9), 0 4px 12px rgb(0 0 0 / .25);
+    transition: width var(--t) var(--ease), height var(--t) var(--ease), transform var(--t) var(--ease);
 }
 
-.logo-img:hover {
-
-    transform: scale(1.04);
+.logo:hover .logo-img {
+    transform: rotate(-6deg);
 }
 
+.navbar-scroll .logo-img {
+    width: 44px;
+    height: 44px;
+}
 
 /* =========================================
-   MENU
+   PAINEL (desktop: inline)
 ========================================= */
+
+.nav-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.nav-panel-header,
+.mobile-menu-button {
+    display: none;
+}
 
 .menu {
-
     display: flex;
-
     align-items: center;
-
-    gap: 18px;
-
-    list-style: none;
+    gap: 4px;
 }
 
-.menu li {
-
+.menu > li {
     position: relative;
 }
 
-
-/* =========================================
-   LINKS
-========================================= */
-
-.menu a {
-
+.nav-link,
+.dropdown-toggle {
     position: relative;
-
-    color: white;
-
-    font-size: 12px;
-
-    font-weight: 600;
-
-    text-decoration: none;
-
-    transition: 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 14px;
+    border-radius: var(--radius-pill);
+    color: rgb(255 255 255 / .86);
+    font-size: .93rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color var(--t-fast), background-color var(--t-fast);
 }
 
-
-/* LINHA HOVER */
-
-.menu a::after {
-
+/* Sublinhado animado */
+.nav-link::after,
+.dropdown-toggle::after {
     content: "";
-
     position: absolute;
-
-    left: 0;
-    bottom: -8px;
-
-    width: 0%;
-
+    left: 14px;
+    right: 14px;
+    bottom: 6px;
     height: 2px;
-
-    background: #2563eb;
-
-    border-radius: 20px;
-
-    transition: 0.3s ease;
+    border-radius: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--t) var(--ease);
 }
 
-.menu a:hover::after {
-
-    width: 100%;
+.nav-link:hover,
+.dropdown-toggle:hover,
+.dropdown.active .dropdown-toggle {
+    color: #fff;
 }
 
-.menu a:hover {
-
-    color: #dbeafe;
+.nav-link:hover::after,
+.dropdown-toggle:hover::after {
+    transform: scaleX(1);
 }
 
+/* Página ativa */
+.nav-link[aria-current="page"],
+.dropdown-toggle.is-current {
+    color: #fff;
+}
+
+.nav-link[aria-current="page"]::after,
+.dropdown-toggle.is-current::after {
+    transform: scaleX(1);
+}
+
+.dropdown-toggle i {
+    font-size: .7rem;
+    transition: transform var(--t) var(--ease);
+}
 
 /* =========================================
-   DROPDOWN
+   DROPDOWN (desktop)
 ========================================= */
 
 .dropdown-menu {
-
     position: absolute;
-
-    top: 55px;
-    left: 0;
-
-    min-width: 240px;
-
-    background: rgba(255,255,255,0.98);
-
-    backdrop-filter: blur(12px);
-
-    border-radius: 18px;
-
-    padding: 12px 0;
-
+    top: calc(100% + 14px);
+    left: 50%;
+    width: 300px;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    box-shadow: var(--shadow-lg);
     opacity: 0;
     visibility: hidden;
-
-    transform: translateY(15px);
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.08);
-
-    transition: 0.35s ease;
+    transform: translate(-50%, 8px);
+    transition:
+        opacity var(--t-fast) var(--ease),
+        transform var(--t) var(--ease),
+        visibility 0s linear var(--t);
 }
 
-
-/* ABRIR DROPDOWN */
-
-.dropdown:hover .dropdown-menu {
-
-    opacity: 1;
-    visibility: visible;
-
-    transform: translateY(0);
+/* Ponte invisível para o mouse não "cair" entre o botão e o menu */
+.dropdown-menu::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    height: 16px;
 }
 
+@media (min-width: 1100px) {
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu,
+    .dropdown.active .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, 0);
+        transition-delay: 0s;
+    }
 
-/* LINKS DROPDOWN */
-
-.dropdown-menu a {
-
-    display: block;
-
-    padding: 14px 22px;
-
-    font-size: 14px;
-
-    color: #334155;
-
-    transition: 0.3s ease;
+    .dropdown:hover .dropdown-toggle i,
+    .dropdown.active .dropdown-toggle i {
+        transform: rotate(180deg);
+    }
 }
 
-.dropdown-menu a::after {
+.dropdown-link {
+    --course: var(--primary);
 
-    display: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 48px;
+    padding: 6px 10px;
+    border-radius: 12px;
+    color: var(--text);
+    font-size: .93rem;
+    font-weight: 500;
+    transition: background-color var(--t-fast), color var(--t-fast);
 }
 
-.dropdown-menu a:hover {
+.curso-cor--ingles  { --course: var(--c-ingles); }
+.curso-cor--info    { --course: var(--c-info); }
+.curso-cor--enem    { --course: var(--c-enem); }
+.curso-cor--reforco { --course: var(--c-reforco); }
+.curso-cor--embraer { --course: var(--c-embraer); }
 
-    background: #eff6ff;
-
-    color: #2563eb;
-
-    padding-left: 28px;
+.dropdown-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--primary-light);
+    background: color-mix(in srgb, var(--course) 11%, white);
+    color: var(--course);
+    font-size: 15px;
+    transition: background-color var(--t-fast), color var(--t-fast);
 }
 
+.dropdown-link:hover,
+.dropdown-link[aria-current="page"] {
+    background: var(--background);
+    color: var(--dark);
+}
+
+.dropdown-link:hover .dropdown-icon {
+    background: var(--course);
+    color: #fff;
+}
+
+.dropdown-all {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 46px;
+    margin-top: 6px;
+    padding: 0 12px;
+    border-top: 1px solid var(--border);
+    border-radius: 0 0 10px 10px;
+    color: var(--primary);
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.dropdown-all i {
+    transition: transform var(--t-fast) var(--ease);
+}
+
+.dropdown-all:hover i {
+    transform: translateX(4px);
+}
 
 /* =========================================
-   BOTÃO MATRÍCULA
+   AÇÕES (Portal e Matrícula)
 ========================================= */
 
-.btn-matricula {
-
-    background: linear-gradient(
-        135deg,
-        #030a6b,
-        #3446eb
-    );
-
-    color: white !important;
-
-    padding: 14px 28px;
-
-    border-radius: 14px;
-
-    font-weight: 600;
-
-    box-shadow:
-        0 10px 25px rgba(37,99,235,0.25);
-
-    transition: 0.3s ease;
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.btn-matricula::after {
+.portal-btn,
+.btn-matricula {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 46px;
+    padding: 0 20px;
+    border-radius: var(--radius-pill);
+    font-size: .92rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition:
+        background-color var(--t-fast) var(--ease),
+        color var(--t-fast) var(--ease),
+        border-color var(--t-fast) var(--ease),
+        transform var(--t-fast) var(--ease),
+        box-shadow var(--t) var(--ease);
+}
 
-    display: none;
+.portal-btn {
+    border: 1.5px solid rgb(255 255 255 / .45);
+    color: #fff;
+}
+
+.portal-btn:hover {
+    border-color: #fff;
+    background: rgb(255 255 255 / .12);
+}
+
+.btn-matricula {
+    background: var(--accent);
+    color: var(--navy);
+    box-shadow: 0 6px 18px rgb(245 184 0 / .3);
 }
 
 .btn-matricula:hover {
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 15px 35px rgba(37,99,235,0.35);
-
-    background: linear-gradient(
-        135deg,
-        #e00808,
-        #df453a
-    );
+    background: #ffc629;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgb(245 184 0 / .4);
 }
 
-
-/* =========================================
-   MOBILE BUTTON
-========================================= */
-
-.mobile-menu-button {
-
-    display: none;
-
-    font-size: 32px;
-
-    color: white;
-
-    cursor: pointer;
-
-    padding: 10px;
+.btn-matricula:active,
+.portal-btn:active {
+    transform: translateY(0);
 }
 
-
-/* =========================================
-   RESPONSIVO
-========================================= */
-@media (max-width: 992px) {
-
-    .navbar {
-
-        padding: 0 25px;
+/* Ajuste fino para telas médias do desktop */
+@media (min-width: 1100px) and (max-width: 1240px) {
+    .nav-link,
+    .dropdown-toggle {
+        padding: 0 10px;
+        font-size: .88rem;
     }
 
-    .menu {
+    .portal-btn,
+    .btn-matricula {
+        padding: 0 16px;
+    }
+}
 
-        gap: 25px;
+/* =========================================
+   MOBILE — gaveta lateral
+========================================= */
+
+@media (max-width: 1099px) {
+
+    .navbar {
+        padding: 10px 12px 0;
+    }
+
+    .navbar-scroll {
+        padding-top: 6px;
     }
 
     .navbar-container {
-
-        margin: 12px 15px 0;
-
-        height: 80px;
-
-        padding: 0 20px;
-
-        border-radius: 50px;
-
-        background:
-        radial-gradient(circle at 22% 50%, #2563eb 0%, #2563eb 13%, transparent 14%),
-        linear-gradient(
-            90deg,
-            white 0%,
-            white 28%,
-            #2563eb 28%,
-            #2563eb 100%
-        );
-
+        justify-content: space-between;
+        height: 64px;
+        padding: 0 8px 0 7px;
     }
 
-}
+    .navbar-scroll .navbar-container {
+        height: 58px;
+    }
 
-
-@media (max-width: 768px) {
-
-    .navbar {
-
-        height: 80px;
+    .logo-img,
+    .navbar-scroll .logo-img {
+        width: 44px;
+        height: 44px;
     }
 
     .mobile-menu-button {
+        display: grid;
+        place-items: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 20px;
+        transition: background-color var(--t-fast);
+    }
 
-        display: block;
+    .mobile-menu-button:hover {
+        background: rgb(255 255 255 / .12);
+    }
+
+    .nav-panel {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1001;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 0;
+        width: min(88vw, 380px);
+        height: 100vh;
+        height: 100dvh;
+        padding: 0 0 env(safe-area-inset-bottom);
+        background: var(--surface);
+        box-shadow: -20px 0 60px rgb(10 21 64 / .25);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        visibility: hidden;
+        transform: translateX(100%);
+        transition:
+            transform .38s var(--ease),
+            visibility 0s linear .38s;
+    }
+
+    body.nav-open .nav-panel {
+        visibility: visible;
+        transform: none;
+        transition-delay: 0s;
+    }
+
+    .nav-panel-header {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 72px;
+        padding: 12px 12px 12px 20px;
+        border-bottom: 1px solid var(--border);
+        background: var(--surface);
+    }
+
+    .nav-panel-header img {
+        border-radius: 50%;
+    }
+
+    .nav-panel-header span {
+        flex: 1;
+        color: var(--dark);
+        font-weight: 600;
+    }
+
+    .nav-close {
+        display: grid;
+        place-items: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        color: var(--dark);
+        font-size: 22px;
+        transition: background-color var(--t-fast);
+    }
+
+    .nav-close:hover {
+        background: var(--background);
     }
 
     .menu {
-
-        position: absolute;
-
-        top: 85px;
-        right: 15px;
-
-        width: 260px;
-
         flex-direction: column;
+        align-items: stretch;
+        gap: 2px;
+        padding: 12px;
+    }
 
-        gap: 15px;
+    .nav-link,
+    .dropdown-toggle {
+        width: 100%;
+        justify-content: space-between;
+        min-height: 54px;
+        padding: 0 14px;
+        border-radius: 12px;
+        color: var(--text);
+        font-size: 1.02rem;
+    }
 
-        padding: 20px;
-
-        background: white;
-
-        border-radius: 20px;
-
-        box-shadow:
-            0 15px 40px rgba(0,0,0,.15);
-
+    .nav-link::after,
+    .dropdown-toggle::after {
         display: none;
-
-        z-index: 999;
     }
 
-    .menu.active {
-
-        display: flex;
+    .nav-link:hover,
+    .dropdown-toggle:hover,
+    .dropdown.active .dropdown-toggle {
+        color: var(--dark);
+        background: var(--background);
     }
 
-    .menu a {
-
-        width: 100%;
-
-        color:#0f172a;
-
-        font-size: 16px;
-
-        padding: 10px 0;
+    .nav-link[aria-current="page"],
+    .dropdown-toggle.is-current {
+        color: var(--primary);
+        background: var(--primary-light);
     }
 
+    .dropdown.active .dropdown-toggle i {
+        transform: rotate(180deg);
+    }
+
+    /* Acordeão */
     .dropdown-menu {
-
-        position: relative;
-
-        top: 10px;
-
-        width: 100%;
-
+        position: static;
+        width: auto;
+        padding: 0 0 0 8px;
+        border: 0;
+        box-shadow: none;
         opacity: 1;
         visibility: visible;
-
         transform: none;
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows var(--t) var(--ease);
+    }
 
+    .dropdown-inner {
+        overflow: hidden;
+        min-height: 0;
+    }
+
+    .dropdown-menu::before {
         display: none;
-
-        box-shadow: none;
-
-        border: 1px solid #e2e8f0;
     }
 
     .dropdown.active .dropdown-menu {
-
-        display: block;
+        grid-template-rows: 1fr;
     }
 
-    .navbar-container {
-
-        height: 75px;
-
-        margin: 10px;
-
-        padding: 0 15px;
-
-        border-radius: 40px;
+    /* Fechado: some da ordem do teclado */
+    .dropdown:not(.active) .dropdown-menu {
+        visibility: hidden;
+        transition: grid-template-rows var(--t) var(--ease), visibility 0s linear var(--t);
     }
 
-    .logo {
-
-        width: 150px;
-
-        height: 75px;
-
-    }
-        
-    .logo-img {
-
-        width: 80px;
-
+    .dropdown-all {
+        border-top: 0;
+        margin-top: 0;
+        padding-left: 14px;
     }
 
+    .nav-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-top: auto;
+        padding: 16px 20px 24px;
+        border-top: 1px solid var(--border);
+    }
+
+    .portal-btn,
+    .btn-matricula {
+        min-height: 52px;
+        font-size: 1rem;
+    }
+
+    .portal-btn {
+        border-color: var(--primary);
+        color: var(--primary);
+    }
+
+    .portal-btn:hover {
+        background: var(--primary-light);
+        border-color: var(--primary);
+    }
+
+    .nav-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        background: rgb(10 21 64 / .5);
+        opacity: 0;
+        transition: opacity .38s var(--ease);
+    }
+
+    body.nav-open .nav-overlay {
+        opacity: 1;
+    }
 }
 
-
-
-
-.portal-btn{
-    background:#1677ff;
-    color:#fff !important;
-    padding:10px 20px;
-    border-radius:999px;
-    font-weight:600;
-    transition:.3s;
-}
-
-.portal-btn:hover{
-    background:#0c4da2;
-    transform:translateY(-2px);
+@media (min-width: 1100px) {
+    .nav-overlay {
+        display: none !important;
+    }
 }

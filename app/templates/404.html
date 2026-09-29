@@ -1,90 +1,25 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo/logo.png') }}">
+{% extends "base.html" %}
 
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Página não encontrada — Alfa Profissionalizantes</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <style>
-    .erro-wrapper {
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 20px;
-    }
-    .erro-codigo {
-      font-size: 8rem;
-      font-weight: 900;
-      color: #1a3a8f;
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-    .erro-titulo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 15px;
-    }
-    .erro-texto {
-      font-size: 1rem;
-      color: #64748b;
-      margin-bottom: 35px;
-      max-width: 400px;
-    }
-    .erro-btns {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .erro-btn-home {
-      padding: 14px 28px;
-      border-radius: 12px;
-      background: #1a3a8f;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-    .erro-btn-home:hover { background: #142d72; transform: translateY(-2px); }
-    .erro-btn-wpp {
-      padding: 14px 28px;
-      border-radius: 12px;
-      background: #25d366;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-    .erro-btn-wpp:hover { background: #20ba5a; transform: translateY(-2px); }
-  </style>
-</head>
-<body>
+{% block title %}Página não encontrada — Alfa Profissionalizantes{% endblock %}
+{% block description %}A página que você está procurando não existe ou foi movida. Volte para o início ou fale conosco.{% endblock %}
+{% block head_extra %}<meta name="robots" content="noindex">{% endblock %}
+{% block analytics %}{% endblock %}
+{% block body_class %}page-erro{% endblock %}
 
-
-  <div class="erro-wrapper">
-    <div class="erro-codigo">404</div>
-    <h1 class="erro-titulo">Página não encontrada</h1>
-    <p class="erro-texto">A página que você está procurando não existe ou foi movida. Volte para o início ou fale conosco.</p>
-    <div class="erro-btns">
-      <a href="/" class="erro-btn-home">
-        <i class="fa-solid fa-house"></i> Voltar ao início
-      </a>
-      <a href="https://wa.me/5512997781432" target="_blank" class="erro-btn-wpp">
-        <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
-      </a>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <p>© 2026 Alfa Cursos — Todos os direitos reservados</p>
-  </footer>
-
-</body>
-</html>
+{% block content %}
+    <section class="erro-wrapper">
+        <div class="container">
+            <p class="erro-codigo" aria-hidden="true">404</p>
+            <h1 class="erro-titulo">Página não encontrada</h1>
+            <p class="erro-texto">A página que você está procurando não existe ou foi movida. Volte para o início ou fale conosco.</p>
+            <div class="erro-btns">
+                <a href="{{ url_for('home.home') }}" class="btn btn--primary erro-btn-home">
+                    <i class="fa-solid fa-house" aria-hidden="true"></i> Voltar ao início
+                </a>
+                <a href="{{ wa }}" target="_blank" rel="noopener" class="btn btn--whatsapp erro-btn-wpp">
+                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Falar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
