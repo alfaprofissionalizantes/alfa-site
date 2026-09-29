@@ -1,57 +1,87 @@
-// =========================
-// SLIDER AUTOMÁTICO
-// =========================
+/* =========================================================
+   SLIDER DA HERO (home)
+   Estrutura: .hero-slider > .hero-slide (+ .active)
+              .hero-dots > button
+   - Pausa ao passar o mouse, com foco no hero e com a aba oculta
+   - Não troca sozinho se o usuário pediu menos movimento
+========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+(function () {
+    "use strict";
 
-    const slides = document.querySelectorAll(".slide");
+    const hero = document.querySelector(".slider-hero");
+    if (!hero) return;
 
-    let currentSlide = 0;
+    const slides = Array.from(hero.querySelectorAll(".hero-slide"));
+    const dots = Array.from(hero.querySelectorAll(".hero-dots button"));
+    if (slides.length < 2) return;
 
-    // =========================
-    // MOSTRAR SLIDE
-    // =========================
+    const reduzMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const INTERVALO = 6000;
 
-    function showSlide(index) {
+    let atual = Math.max(0, slides.findIndex((s) => s.classList.contains("active")));
+    let timer = null;
+    let pausado = false;
 
-        slides.forEach((slide) => {
+    function mostrar(indice) {
+        atual = (indice + slides.length) % slides.length;
 
-            slide.classList.remove("active");
-
+        slides.forEach((slide, i) => {
+            const ativo = i === atual;
+            slide.classList.toggle("active", ativo);
+            slide.setAttribute("aria-hidden", String(!ativo));
         });
 
-        slides[index].classList.add("active");
+        dots.forEach((dot, i) => {
+            const ativo = i === atual;
+            dot.classList.toggle("active", ativo);
+            dot.setAttribute("aria-current", ativo ? "true" : "false");
+        });
 
+        hero.style.setProperty("--slide-duracao", INTERVALO + "ms");
     }
 
-    // =========================
-    // PRÓXIMO SLIDE
-    // =========================
-
-    function nextSlide() {
-
-        currentSlide++;
-
-        if (currentSlide >= slides.length) {
-
-            currentSlide = 0;
-
-        }
-
-        showSlide(currentSlide);
-
+    function parar() {
+        window.clearInterval(timer);
+        timer = null;
+        hero.classList.add("is-paused");
     }
 
-    // =========================
-    // INICIAR
-    // =========================
-
-    if (slides.length > 0) {
-
-        showSlide(currentSlide);
-
-        setInterval(nextSlide, 5000);
-
+    function iniciar() {
+        if (reduzMovimento || pausado || document.hidden) return;
+        parar();
+        hero.classList.remove("is-paused");
+        // Reinicia a barra de progresso do indicador ativo
+        dots.forEach((d) => d.classList.remove("run"));
+        void hero.offsetWidth;
+        if (dots[atual]) dots[atual].classList.add("run");
+        timer = window.setInterval(() => {
+            mostrar(atual + 1);
+            dots.forEach((d) => d.classList.remove("run"));
+            void hero.offsetWidth;
+            if (dots[atual]) dots[atual].classList.add("run");
+        }, INTERVALO);
     }
 
-});
+    dots.forEach((dot, i) => {
+        dot.addEventListener("click", () => {
+            mostrar(i);
+            iniciar();
+        });
+    });
+
+    hero.addEventListener("mouseenter", () => { pausado = true; parar(); });
+    hero.addEventListener("mouseleave", () => { pausado = false; iniciar(); });
+    hero.addEventListener("focusin", () => { pausado = true; parar(); });
+    hero.addEventListener("focusout", (e) => {
+        if (!hero.contains(e.relatedTarget)) { pausado = false; iniciar(); }
+    });
+
+    document.addEventListener("visibilitychange", () => {
+        document.hidden ? parar() : iniciar();
+    });
+
+    mostrar(atual);
+    if (reduzMovimento) hero.classList.add("is-paused");
+    iniciar();
+})();

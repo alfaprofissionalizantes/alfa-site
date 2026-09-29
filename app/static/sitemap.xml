@@ -3,65 +3,65 @@
 
   <url>
     <loc>https://alfaprofissionalizantes.com/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://alfaprofissionalizantes.com/cursos.html</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://alfaprofissionalizantes.com/cursos</loc>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://alfaprofissionalizantes.com/sobre.html</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://alfaprofissionalizantes.com/cursos/ingles</loc>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://alfaprofissionalizantes.com/matricula.html</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://alfaprofissionalizantes.com/cursos/embraer.html</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://alfaprofissionalizantes.com/cursos/informatica</loc>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://alfaprofissionalizantes.com/cursos/enem.html</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://alfaprofissionalizantes.com/cursos/enem</loc>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://alfaprofissionalizantes.com/cursos/informatica.html</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://alfaprofissionalizantes.com/cursos/reforco</loc>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://alfaprofissionalizantes.com/cursos/ingles.html</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://alfaprofissionalizantes.com/cursos/embraer</loc>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://alfaprofissionalizantes.com/cursos/reforco.html</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://alfaprofissionalizantes.com/sobre</loc>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alfaprofissionalizantes.com/alfatech</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
 </urlset>

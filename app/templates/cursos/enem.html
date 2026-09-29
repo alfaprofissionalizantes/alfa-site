@@ -1,294 +1,82 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo/logo.png') }}">
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
 
-<head>
+{% block title %}Preparatório ENEM em São José dos Campos | Alfa{% endblock %}
+{% block description %}Preparatório ENEM e Vestibulares em São José dos Campos com simulados, aulas completas e acompanhamento. Prepare-se para o vestibular com quem tem 15 anos de experiência.{% endblock %}
+{% block page_css %}
+    <link rel="preload" as="image" type="image/webp" href="{{ url_for('static', filename='img/PHOTO-2026-06-17-11-50-50_3.webp') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cursos.css') }}">
+{% endblock %}
+{% block body_class %}page-curso curso--enem{% endblock %}
 
-    <meta charset="UTF-8">
+{% block content %}
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Preparatório ENEM em São José dos Campos | Alfa</title>
-
-    <meta name="description" content="Preparatório ENEM e Vestibulares em São José dos Campos com simulados, aulas completas e acompanhamento. Prepare-se para o vestibular com quem tem 15 anos de experiência.">
-
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo/logo.png') }}">
-    
-    <!-- CSS -->
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}"
-    >
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L63EYYEEB2"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-L63EYYEEB2');
-    </script>
-
-    
-</head>
-
-<body>
-
-<div class="logo-canto">
-
-    <a href="/" class="logo-home">
-
-        <img
-            src="{{ url_for('static', filename='img/logo/logo.png') }}"
-            alt="Alfa Cursos"
-        >
-
-    </a>
-
-    <a href="javascript:history.back()" class="back-button">
-        <img
-            src="{{ url_for('static', filename='img/XQMVKTRPLDJSNBYFWAZ18472-GHTXQWPLMN7204.png') }}"
-            alt="Voltar"
-        >
-    </a>
-
-</div>
-
-
-    <!-- ========================= -->
     <!-- HERO -->
-    <!-- ========================= -->
-
     <section class="curso-hero enem-hero">
-
-        <div class="curso-hero-overlay"></div>
-
-        <div class="curso-hero-content">
-
-            <span class="curso-tag">
-                APROVAÇÃO GARANTIDA
-            </span>
-
-            <h1>
-                Prepare-se para o ENEM com quem entende de aprovação
-            </h1>
-
-            <p>
-                Aulas completas, simulados, redação e acompanhamento
-                especializado para você conquistar sua vaga na faculdade.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a
-                    href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank"
-                    class="btn-curso"
-                >
-                    Fazer Matrícula
-                </a>
-
-                <a
-                    href="#beneficios"
-                    class="btn-secondary"
-                >
-                    Saiba Mais
-                </a>
-
+        <div class="container">
+            <div class="curso-hero-content">
+                <span class="curso-tag">Aprovação garantida</span>
+                <h1>Prepare-se para o ENEM com quem entende de aprovação</h1>
+                <p>
+                    Aulas completas, simulados, redação e acompanhamento
+                    especializado para você conquistar sua vaga na faculdade.
+                </p>
+                <div class="hero-buttons">
+                    <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn btn--accent btn--lg btn-curso">Fazer Matrícula</a>
+                    <a href="#beneficios" class="btn btn--ghost btn--lg btn-secondary">Saiba Mais</a>
+                </div>
             </div>
-
         </div>
-
+        {% with curva_classe = 'hero-curva hero-curva--branca' %}{% include "partials/curva.html" %}{% endwith %}
     </section>
 
-    <!-- ========================= -->
     <!-- SOBRE -->
-    <!-- ========================= -->
-
-    <section class="curso-info">
-        <div style="max-width:900px; margin:0 auto; text-align:center; padding: 60px 24px;">
-
-            <span class="section-tag">SOBRE O CURSO</span>
-
-            <h2 style="margin: 16px 0 12px; font-size: 2.8rem;">
-                Preparação completa para ENEM e Vestibulares
-            </h2>
-
-            <div style="width:60px; height:4px; background:#2563eb; border-radius:4px; margin:0 auto 24px;"></div>
-
-            <p style="color:#475569; font-size:1.15rem; line-height:1.8; margin-bottom:12px;">
-                O Preparatório ENEM da Alfa Cursos foi criado para alunos que desejam 
-                alcançar alto desempenho nas principais provas do país.
-            </p>
-
-            <p style="color:#475569; font-size:1.15rem; line-height:1.8;">
-                Com metodologia moderna, professores experientes e simulados frequentes, 
-                o aluno desenvolve conhecimento, estratégia e confiança para o exame.
-            </p>
-
+    <section class="curso-info section section--white">
+        <div class="container">
+            <div class="section-head section-head--center curso-info-texto">
+                <span class="section-tag">Sobre o curso</span>
+                <h2>Preparação completa para ENEM e Vestibulares</h2>
+                <div class="linha-destaque" aria-hidden="true"></div>
+                <p>
+                    O Preparatório ENEM da Alfa Cursos foi criado para alunos que desejam
+                    alcançar alto desempenho nas principais provas do país.
+                </p>
+                <p>
+                    Com metodologia moderna, professores experientes e simulados frequentes,
+                    o aluno desenvolve conhecimento, estratégia e confiança para o exame.
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- ========================= -->
     <!-- BENEFÍCIOS -->
-    <!-- ========================= -->
-
-    <section
-        class="curso-beneficios"
-        id="beneficios"
-    >
-
-        <div class="section-header">
-
-            <span class="section-tag">
-                BENEFÍCIOS
-            </span>
-
-            <h2>
-                O que você vai aprender
-            </h2>
-
+    <section class="curso-beneficios section" id="beneficios" aria-labelledby="beneficios-titulo">
+        <div class="container">
+            <div class="section-head section-head--center">
+                <span class="section-tag">Benefícios</span>
+                <h2 id="beneficios-titulo">O que você vai aprender</h2>
+            </div>
+            <div class="beneficios-grid reveal-stagger">
+                {{ m.beneficio('fa-pen-nib', 'Redação Nota 1000', 'Técnicas avançadas de escrita, argumentação e interpretação.') }}
+                {{ m.beneficio('fa-book', 'Revisão Completa', 'Conteúdo atualizado com foco nos temas mais cobrados.') }}
+                {{ m.beneficio('fa-file-pen', 'Simulados Reais', 'Experiência prática baseada no modelo oficial do ENEM.') }}
+            </div>
         </div>
-
-        <div class="beneficios-grid">
-
-            <div class="beneficio-card">
-
-                <div class="beneficio-icon">
-                    ✍️
-                </div>
-
-                <h3>
-                    Redação Nota 1000
-                </h3>
-
-                <p>
-                    Técnicas avançadas de escrita,
-                    argumentação e interpretação.
-                </p>
-
-            </div>
-
-            <div class="beneficio-card">
-
-                <div class="beneficio-icon">
-                    📚
-                </div>
-
-                <h3>
-                    Revisão Completa
-                </h3>
-
-                <p>
-                    Conteúdo atualizado com foco
-                    nos temas mais cobrados.
-                </p>
-
-            </div>
-
-            <div class="beneficio-card">
-
-                <div class="beneficio-icon">
-                    📝
-                </div>
-
-                <h3>
-                    Simulados Reais
-                </h3>
-
-                <p>
-                    Experiência prática baseada
-                    no modelo oficial do ENEM.
-                </p>
-
-            </div>
-
-        </div>
-
     </section>
 
-    <!-- ========================= -->
     <!-- CTA -->
-    <!-- ========================= -->
-
     <section class="curso-cta">
-
-        <div class="cta-content">
-
-            <h2>
-                Sua aprovação começa agora
-            </h2>
-
+        <div class="cta-content reveal">
+            <h2>Sua aprovação começa agora</h2>
             <p>
                 Faça parte da Alfa Cursos e prepare-se
                 com quem realmente entende de resultado.
             </p>
-
-            <a
-                href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank"
-                class="btn-curso"
-            >
-                Garantir Minha Vaga
-            </a>
-
+            <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn btn--accent btn--lg btn-curso">Garantir Minha Vaga</a>
         </div>
-
     </section>
 
-    <!-- ========================= -->
     <!-- APROVADOS -->
-    <!-- ========================= -->
+    {% include "partials/aprovados.html" %}
 
-    <section class="aprovados-section">
-
-        <div class="section-header">
-            <span class="section-tag">NOSSOS ALUNOS</span>
-            <h2>Alunos Aprovados</h2>
-            <p class="aprovados-subtitulo">Histórias reais de quem transformou o futuro com a Alfa.</p>
-        </div>
-
-        <div class="aprovados-grid">
-            <img src="{{ url_for('static', filename='img/48FEC203-B6F1-4192-9681-757F7339FA74.png') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_1.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_3.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_4.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_5.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_6.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_7.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_1.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_3.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_4.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_5.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_6.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_7.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_2.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_8.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_9.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_10.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_11.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-20_12.jpg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/IMG_5942.jpeg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/IMG_5943.jpeg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-            <img src="{{ url_for('static', filename='img/IMG_5944.jpeg') }}" alt="Aluno aprovado" class="aprovado-foto"/>
-        </div>
-
-    </section>
-
-    <!-- ========================= -->
-    <!-- RODAPÉ -->
-    <!-- ========================= -->
-
-    <footer class="footer">
-
-        <p>
-            © 2026 Alfa Cursos - Todos os direitos reservados
-        </p>
-
-    </footer>
-
-</body>
-
-</html>
+{% endblock %}

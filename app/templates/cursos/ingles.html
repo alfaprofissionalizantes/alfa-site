@@ -1,278 +1,93 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
+{% extends "base.html" %}
+{% import "partials/macros.html" as m %}
 
-    <meta charset="UTF-8">
+{% block title %}Curso de Inglês em São José dos Campos | Alfa{% endblock %}
+{% block description %}Curso de inglês em São José dos Campos do básico à fluência. Foco em conversação, escrita e compreensão. Turmas manhã, tarde e noite.{% endblock %}
+{% block page_css %}
+    <link rel="preload" as="image" type="image/webp" href="{{ url_for('static', filename='img/F63C58E8-193E-4F84-9A68-738C4DED7D02.webp') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cursos.css') }}">
+{% endblock %}
+{% block body_class %}page-curso curso--ingles{% endblock %}
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+{% block content %}
 
-    <title>Curso de Inglês em São José dos Campos | Alfa</title>
-
-    <meta name="description" content="Curso de inglês em São José dos Campos do básico à fluência. Foco em conversação, escrita e compreensão. Turmas manhã, tarde e noite.">
-
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo/logo.png') }}">
-
-    <!-- CSS -->
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}"
-    >
-
-    
-<!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L63EYYEEB2"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-L63EYYEEB2');
-    </script>
-
-</head>
-<body>
-
-<div class="logo-canto">
-
-    <a href="/" class="logo-home">
-
-        <img
-            src="{{ url_for('static', filename='img/logo/logo.png') }}"
-            alt="Alfa Cursos"
-        >
-
-    </a>
-
-    <a href="javascript:history.back()" class="back-button">
-        <img
-            src="{{ url_for('static', filename='img/XQMVKTRPLDJSNBYFWAZ18472-GHTXQWPLMN7204.png') }}"
-            alt="Voltar"
-        >
-    </a>
-
-</div>
-
-    <!-- ========================= -->
     <!-- HERO -->
-    <!-- ========================= -->
-
     <section class="curso-hero ingles-hero">
-
-        <div class="curso-hero-overlay"></div>
-
-        <div class="curso-hero-content">
-
-            <span class="curso-tag">
-                FLUÊNCIA E CARREIRA
-            </span>
-
-            <h1>
-                Aprenda inglês de forma prática e profissional
-            </h1>
-
-            <p>
-                Desenvolva conversação, gramática e fluência
-                com uma metodologia moderna focada no mercado.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a
-                    href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank"
-                    class="btn-curso"
-                >
-                    Fazer Matrícula
-                </a>
-
-                <a
-                    href="#beneficios"
-                    class="btn-secondary"
-                >
-                    Ver Benefícios
-                </a>
-
+        <div class="container">
+            <div class="curso-hero-content">
+                <span class="curso-tag">Fluência e carreira</span>
+                <h1>Aprenda inglês de forma prática e profissional</h1>
+                <p>
+                    Desenvolva conversação, gramática e fluência
+                    com uma metodologia moderna focada no mercado.
+                </p>
+                <div class="hero-buttons">
+                    <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn btn--accent btn--lg btn-curso">Fazer Matrícula</a>
+                    <a href="#beneficios" class="btn btn--ghost btn--lg btn-secondary">Ver Benefícios</a>
+                </div>
             </div>
-
         </div>
-
+        {% with curva_classe = 'hero-curva hero-curva--branca' %}{% include "partials/curva.html" %}{% endwith %}
     </section>
 
-    <!-- ========================= -->
     <!-- SOBRE -->
-    <!-- ========================= -->
-
-    <section class="curso-info">
-        <div style="max-width:900px; margin:0 auto; text-align:center; padding: 60px 24px;">
-
-            <span class="section-tag">SOBRE O CURSO</span>
-
-            <h2 style="margin: 16px 0 12px; font-size: 2.8rem;">
-                Inglês para estudos, viagens e profissão
-            </h2>
-
-            <div style="width:60px; height:4px; background:#2563eb; border-radius:4px; margin:0 auto 24px;"></div>
-
-            <p style="color:#475569; font-size:1.15rem; line-height:1.8; margin-bottom:12px;">
-                O curso de Inglês da Alfa Cursos foi criado para alunos que desejam 
-                aprender do básico até a fluência de maneira natural e eficiente.
-            </p>
-
-            <p style="color:#475569; font-size:1.15rem; line-height:1.8;">
-                As aulas possuem foco em conversação, compreensão, escrita e 
-                comunicação real, utilizando atividades práticas e dinâmicas.
-            </p>
-
+    <section class="curso-info section section--white">
+        <div class="container">
+            <div class="section-head section-head--center curso-info-texto">
+                <span class="section-tag">Sobre o curso</span>
+                <h2>Inglês para estudos, viagens e profissão</h2>
+                <div class="linha-destaque" aria-hidden="true"></div>
+                <p>
+                    O curso de Inglês da Alfa Cursos foi criado para alunos que desejam
+                    aprender do básico até a fluência de maneira natural e eficiente.
+                </p>
+                <p>
+                    As aulas possuem foco em conversação, compreensão, escrita e
+                    comunicação real, utilizando atividades práticas e dinâmicas.
+                </p>
+            </div>
         </div>
     </section>
 
-
-    <!-- ========================= -->
     <!-- BENEFÍCIOS -->
-    <!-- ========================= -->
-
-    <section
-        class="curso-beneficios"
-        id="beneficios"
-    >
-
-        <div class="section-header">
-
-            <span class="section-tag">
-                O QUE VOCÊ VAI APRENDER
-            </span>
-
-            <h2>
-                Desenvolva fluência completa
-            </h2>
-
+    <section class="curso-beneficios section" id="beneficios" aria-labelledby="beneficios-titulo">
+        <div class="container">
+            <div class="section-head section-head--center">
+                <span class="section-tag">O que você vai aprender</span>
+                <h2 id="beneficios-titulo">Desenvolva fluência completa</h2>
+            </div>
+            <div class="beneficios-grid reveal-stagger">
+                {{ m.beneficio('fa-comments', 'Conversação', 'Aprenda a falar inglês de forma natural e confiante no dia a dia.') }}
+                {{ m.beneficio('fa-book-open', 'Gramática', 'Estrutura completa da língua inglesa aplicada na prática.') }}
+                {{ m.beneficio('fa-briefcase', 'Inglês Profissional', 'Prepare-se para entrevistas, empresas e mercado internacional.') }}
+            </div>
         </div>
-
-        <div class="beneficios-grid">
-
-            <div class="beneficio-card">
-
-                <div class="beneficio-icon">
-                    🗣️
-                </div>
-
-                <h3>
-                    Conversação
-                </h3>
-
-                <p>
-                    Aprenda a falar inglês de forma
-                    natural e confiante no dia a dia.
-                </p>
-
-            </div>
-
-            <div class="beneficio-card">
-
-                <div class="beneficio-icon">
-                    📖
-                </div>
-
-                <h3>
-                    Gramática
-                </h3>
-
-                <p>
-                    Estrutura completa da língua inglesa
-                    aplicada na prática.
-                </p>
-
-            </div>
-
-            <div class="beneficio-card">
-
-                <div class="beneficio-icon">
-                    💼
-                </div>
-
-                <h3>
-                    Inglês Profissional
-                </h3>
-
-                <p>
-                    Prepare-se para entrevistas,
-                    empresas e mercado internacional.
-                </p>
-
-            </div>
-
-        </div>
-
     </section>
 
-    <!-- ========================= -->
     <!-- VÍDEO -->
-    <!-- ========================= -->
-
-    <section class="video-section">
-
-        <div class="section-header">
-            <span class="section-tag">CONHEÇA NOSSA ESTRUTURA</span>
-            <h2>Veja como é estudar na Alfa</h2>
-        </div>
-
-        <div class="video-duplo">
-            <div class="video-wrapper">
-                <video controls muted loop>
-                    <source src="{{ url_for('static', filename='img/VIDEO-2026-06-30-16-13-04.mp4') }}" type="video/mp4"/>
-                </video>
+    <section class="video-section section section--white" aria-labelledby="video-titulo">
+        <div class="container">
+            <div class="section-head section-head--center">
+                <span class="section-tag">Conheça nossa estrutura</span>
+                <h2 id="video-titulo">Veja como é estudar na Alfa</h2>
             </div>
-            <div class="video-wrapper">
-                <video controls muted loop>
-                    <source src="{{ url_for('static', filename='img/597A1C0B-7FEC-4600-B1D0-81383E7B31EE.mov') }}" type="video/mp4"/>
-                </video>
+            <div class="video-duplo">
+                {{ m.video('VIDEO-2026-06-30-16-13-04.mp4') }}
+                {{ m.video('597A1C0B-7FEC-4600-B1D0-81383E7B31EE.mov') }}
             </div>
         </div>
-
     </section>
 
-    <!-- ========================= -->
     <!-- CTA -->
-    <!-- ========================= -->
-
     <section class="curso-cta">
-
-        <div class="cta-content">
-
-            <h2>
-                Comece sua jornada no inglês hoje mesmo
-            </h2>
-
+        <div class="cta-content reveal">
+            <h2>Comece sua jornada no inglês hoje mesmo</h2>
             <p>
                 Estude com uma metodologia moderna e
                 desenvolva habilidades valorizadas no mundo inteiro.
             </p>
-
-            <a
-                href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank"
-                class="btn-curso"
-            >
-                Garantir Minha Vaga
-            </a>
-
+            <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn btn--accent btn--lg btn-curso">Garantir Minha Vaga</a>
         </div>
-
     </section>
 
-    <!-- ========================= -->
-    <!-- RODAPÉ -->
-    <!-- ========================= -->
-
-    <footer class="footer">
-
-        <p>
-            © 2026 Alfa Cursos - Todos os direitos reservados
-        </p>
-
-    </footer>
-
-</body>
-
-</html>
+{% endblock %}

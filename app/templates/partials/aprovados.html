@@ -1,0 +1,39 @@
+{#- GALERIA DE ALUNOS APROVADOS — usada nas páginas ENEM e Embraer -#}
+{%- set aprovados = [
+    '48FEC203-B6F1-4192-9681-757F7339FA74.png',
+    'PHOTO-2026-06-30-16-17-19_1.jpg', 'PHOTO-2026-06-30-16-17-19_3.jpg',
+    'PHOTO-2026-06-30-16-17-19_4.jpg', 'PHOTO-2026-06-30-16-17-19_5.jpg',
+    'PHOTO-2026-06-30-16-17-19_6.jpg', 'PHOTO-2026-06-30-16-17-19_7.jpg',
+    'PHOTO-2026-06-30-16-17-20_1.jpg', 'PHOTO-2026-06-30-16-17-20_3.jpg',
+    'PHOTO-2026-06-30-16-17-20_4.jpg', 'PHOTO-2026-06-30-16-17-20_5.jpg',
+    'PHOTO-2026-06-30-16-17-20_6.jpg', 'PHOTO-2026-06-30-16-17-20_7.jpg',
+    'PHOTO-2026-06-30-16-17-20_2.jpg', 'PHOTO-2026-06-30-16-17-20_8.jpg',
+    'PHOTO-2026-06-30-16-17-20_9.jpg', 'PHOTO-2026-06-30-16-17-20_10.jpg',
+    'PHOTO-2026-06-30-16-17-20_11.jpg', 'PHOTO-2026-06-30-16-17-20_12.jpg',
+    'IMG_5942.jpeg', 'IMG_5943.jpeg', 'IMG_5944.jpeg',
+] -%}
+
+<section class="aprovados-section section" aria-labelledby="aprovados-titulo">
+    <div class="container">
+        <div class="section-head section-head--center">
+            <span class="section-tag">Nossos alunos</span>
+            <h2 id="aprovados-titulo">Alunos Aprovados</h2>
+            <p class="aprovados-subtitulo">Histórias reais de quem transformou o futuro com a Alfa.</p>
+        </div>
+
+        <ul class="aprovados-grid">
+            {% for foto in aprovados %}
+            <li>
+                {% if foto.startswith('48FEC203') %}
+                <picture>
+                    <source type="image/webp" srcset="{{ url_for('static', filename='img/48FEC203-B6F1-4192-9681-757F7339FA74.webp') }}">
+                    <img src="{{ url_for('static', filename='img/' ~ foto) }}" alt="Aluno aprovado da Alfa" class="aprovado-foto" width="400" height="400" loading="lazy" decoding="async">
+                </picture>
+                {% else %}
+                <img src="{{ url_for('static', filename='img/' ~ foto) }}" alt="Aluno aprovado da Alfa" class="aprovado-foto" width="400" height="400" loading="lazy" decoding="async">
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>

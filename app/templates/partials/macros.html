@@ -1,0 +1,18 @@
+{#- Macros das páginas de curso -#}
+
+{% macro beneficio(icone, titulo, texto) -%}
+<article class="beneficio-card">
+    <div class="beneficio-icon"><i class="fa-solid {{ icone }}" aria-hidden="true"></i></div>
+    <h3>{{ titulo }}</h3>
+    <p>{{ texto }}</p>
+</article>
+{%- endmacro %}
+
+{% macro video(arquivo, tipo='video/mp4', classe='', autoplay=false) -%}
+<div class="video-wrapper {{ classe }}">
+    <video controls muted loop playsinline preload="metadata"{% if autoplay %} autoplay{% endif %}>
+        <source src="{{ url_for('static', filename='img/' ~ arquivo) }}" type="{{ tipo }}">
+        Seu navegador não suporta vídeo.
+    </video>
+</div>
+{%- endmacro %}

@@ -1,753 +1,320 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Alfa | Cursos Profissionalizantes em São José dos Campos </title>
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo/logo.png') }}">
-    <meta name="description" content="Conheça a Alfa Profissionalizantes. Cursos de Inglês, Informática, Desing Gráfico, Pacote OFFICE, Reforço, Alfabetização, Preparatório ENEM, Preparatório Embraer e Profissionalizantes e muito mais para impulsionar sua carreira em São José dos Campos.">
+{% extends "base.html" %}
 
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L63EYYEEB2"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+{% block title %}Alfa | Cursos Profissionalizantes em São José dos Campos{% endblock %}
+{% block description %}Conheça a Alfa Profissionalizantes. Cursos de Inglês, Informática, Design Gráfico, Pacote OFFICE, Reforço, Alfabetização, Preparatório ENEM, Preparatório Embraer e Profissionalizantes e muito mais para impulsionar sua carreira em São José dos Campos.{% endblock %}
 
-    gtag('config', 'G-L63EYYEEB2');
-    </script>
+{% block page_css %}
+    <link rel="preload" as="image" type="image/webp" href="{{ url_for('static', filename='img/faixa.webp') }}" fetchpriority="high">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
 
-    <!-- CSS -->
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}"
-    >
+{% block body_class %}page-home{% endblock %}
 
-    <!-- ICONS -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    >
+{% block content %}
 
-</head>
-
-<body>
-
-    <!-- ========================================= -->
-    <!-- NAVBAR -->
-    <!-- ========================================= -->
-
-    <header class="navbar">
-
-    <div class="navbar-container">
-
-        <!-- LOGO -->
-        <div class="logo">
-
-            <a href="/">
-
-                <img
-                    src="{{ url_for('static', filename='img/logo/logo.png') }}"
-                    alt="Logo Alfa Cursos"
-                    class="logo-img"
-                >
-
-            </a>
-
-        </div>
-
-
-        <!-- MENU -->
-        <nav>                
-
-
-            <ul class="menu">
-
-                <li>
-                    <a href="https://portal.alfaprofissionalizantes.com/" target="_blank" class="portal-btn">
-                        Portal do aluno
-                    </a>
-                </li>
-
-                <!-- CURSOS -->
-                <li class="dropdown">
-
-                    <a href="#">
-                        Cursos
-                    </a>
-
-                    <ul class="dropdown-menu">
-
-                        <li>
-                            <a href="/cursos/ingles">
-                                Inglês
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/cursos/informatica">
-                                Informática
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/cursos/enem">
-                                ENEM
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/cursos/reforco">
-                                Reforço e Alfabetização
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/cursos/embraer">
-                                Preparatório Embraer
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </li>
-
-
-                <li>
-
-                    <a href="/sobre">
-                        Quem Somos
-                    </a>
-
-                </li>
-
-                <li>
-                    <a href="/alfatech">
-                        Manutenção técnica 
-                    </a>
-                </li>
-
-                <!-- WHATSAPP -->
-                <li>
-
-                    <a
-                        href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cursos%20da%20Alfa."
-                        target="_blank"
-                    >
-                        Fale Conosco
-                    </a>
-
-                </li>
-                
-                <!-- BOTÃO -->
-                <li>
-
-                    <a
-                        href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank"
-                        class="btn-matricula"
-                    >
-                        Me Matricular
-                    </a>
-
-                </li>              
-            </ul>
-
-        </nav>
-
-
-        <!-- MOBILE -->
-        <div class="mobile-menu-button">
-
-            <i class="fa-solid fa-bars"></i>
-
-        </div>
-
-    </div>
-
-</header>
-
+    {#- Slides da hero: (arquivo sem extensão, extensão original, texto alternativo, legenda do indicador, largura, altura) -#}
+    {%- set slides = [
+        ('faixa', 'png', 'Fachada da Alfa Profissionalizantes', 'Fachada', 1675, 939),
+        ('PHOTO-2026-06-17-15-16-28', 'png', 'Laboratório de informática da Alfa', 'Laboratório de informática', 1086, 1448),
+        ('PHOTO-2026-06-17-11-50-50_2', 'png', 'Alunos em sala de aula na Alfa', 'Sala de aula', 960, 1280),
+    ] -%}
 
     <!-- ========================================= -->
     <!-- HERO -->
     <!-- ========================================= -->
-
-    <section class="hero slider-hero">
+    <section class="hero slider-hero" aria-label="Apresentação">
 
         <div class="hero-slider">
-
-            <div class="slide active"></div>
-
-            <div class="slide"></div>
-
-            <div class="slide"></div>
-
+            {% for arquivo, ext, alt, legenda, w, h in slides %}
+            <picture class="hero-slide{% if loop.first %} active{% endif %}"{% if not loop.first %} aria-hidden="true"{% endif %}>
+                <source type="image/webp" srcset="{{ url_for('static', filename='img/' ~ arquivo ~ '.webp') }}">
+                <img
+                    src="{{ url_for('static', filename='img/' ~ arquivo ~ '.' ~ ext) }}"
+                    alt="{{ alt }}"
+                    width="{{ w }}" height="{{ h }}"
+                    {% if loop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+                    decoding="async"
+                >
+            </picture>
+            {% endfor %}
         </div>
 
-        <div class="hero-container">
+        <div class="container hero-container">
 
-            <!-- TEXTO -->
             <div class="hero-text">
 
-                <span>
-                     Transforme o seu futuro hoje!
+                <span class="hero-badge">
+                    Transforme o seu futuro hoje!
                 </span>
 
                 <h1>
-                    Alfa profissionalizantes:                    
-                    15 anos de tradição                
+                    <span class="hero-marca">Alfa Profissionalizantes:</span>
+                    15 anos de tradição
                 </h1>
 
                 <p>
-
                     Cursos profissionalizantes, informática,
                     inglês e preparatórios completos para você
                     conquistar novas oportunidades.
-
                 </p>
 
                 <div class="hero-buttons">
-
-                    <a
-                        href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank"
-                        class="hero-btn hero-btn-primary"
-                    >
+                    <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn btn--accent btn--lg hero-btn hero-btn-primary">
                         Começar Agora
                     </a>
 
-                    <a
-                        href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20cursos%20da%20Alfa."
-                        target="_blank"
-                        class="hero-btn hero-btn-secondary"
-                    >
+                    <a href="{{ wa_info }}" target="_blank" rel="noopener" class="btn btn--ghost btn--lg hero-btn hero-btn-secondary">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                         Falar no WhatsApp
                     </a>
-                    <a 
-                        href="/sobre#estrutura"
-                        class="hero-btn hero-btn-estrutura"
-                    >
+
+                    <a href="{{ url_for('home.sobre') }}#estrutura" class="link-arrow link-arrow--light hero-btn-estrutura">
                         Conheça Nossa Estrutura
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </a>
-
-
                 </div>
-
             </div>
 
-
-           
-
+            <div class="hero-dots" role="group" aria-label="Escolher imagem de fundo">
+                {% for arquivo, ext, alt, legenda, w, h in slides %}
+                <button type="button" class="{% if loop.first %}active{% endif %}" aria-label="Mostrar imagem: {{ legenda }}"{% if loop.first %} aria-current="true"{% endif %}>
+                    <span></span>
+                </button>
+                {% endfor %}
+            </div>
         </div>
 
+        {% with curva_classe = 'hero-curva' %}{% include "partials/curva.html" %}{% endwith %}
     </section>
 
 
     <!-- ========================================= -->
     <!-- CURSOS -->
     <!-- ========================================= -->
-
-    <section class="cursos">
-
+    <section class="cursos section" aria-labelledby="cursos-titulo">
         <div class="container">
 
-            <!-- TÍTULO -->
-            <div class="section-title">
+            <div class="section-head section-head--split">
+                <div>
+                    <h2 id="cursos-titulo">Nossos Cursos</h2>
+                    <p>
+                        Escolha a área ideal para desenvolver
+                        suas habilidades e crescer profissionalmente.
+                    </p>
+                </div>
 
-                <h2>
-                    Nossos Cursos
-                </h2>
-
-                <p>
-
-                    Escolha a área ideal para desenvolver
-                    suas habilidades e crescer profissionalmente.
-
-                </p>
-
+                <a href="{{ url_for('cursos.cursos') }}" class="link-arrow">
+                    Ver todos os cursos
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
             </div>
 
-
-            <!-- GRID -->
-            <div class="cursos-grid">
-
-                <!-- INGLÊS -->
-                <div class="curso-card ingles">
-
-                    <div class="curso-icon">
-                        <i class="fa-solid fa-language"></i>
-                    </div>
-
-                    <h3>Inglês</h3>
-
-                    <span class="curso-linha"></span>
-
-                    <p>
-                        Aprenda conversação, escrita e fluência completa com metodologia moderna e prática.
-                    </p>
-
-                    <a href="/cursos/ingles" class="curso-link">
-                        Saiba mais →
-                    </a>
-
-                    <div class="card-decoration">
-                        <i class="fa-regular fa-comments"></i>
-                    </div>
-
-                </div>
-
-                <!-- INFORMÁTICA -->
-                <div class="curso-card info">
-
-                    <div class="curso-icon">
-                        <i class="fa-solid fa-laptop-code"></i>
-                    </div>
-
-                    <h3>Informática</h3>
-
-                    <span class="curso-linha"></span>
-
-                    <p>
-                        Domine Windows, Office, internet, Excel e ferramentas profissionais essenciais.
-                    </p>
-
-                    <a href="/cursos/informatica" class="curso-link">
-                        Saiba mais →
-                    </a>
-
-                    <div class="card-decoration">
-                        <i class="fa-solid fa-laptop"></i>
-                    </div>
-
-                </div>
-
-                <!-- ENEM -->
-                <div class="curso-card enem">
-
-                    <div class="curso-icon">
-                        <i class="fa-solid fa-clipboard-check"></i>
-                    </div>
-
-                    <h3>Preparatório ENEM</h3>
-
-                    <span class="curso-linha"></span>
-
-                    <p>
-                        Aulas completas, simulados e reforço intensivo para vestibulares e concursos.
-                    </p>
-
-                    <a href="/cursos/enem" class="curso-link">
-                        Saiba mais →
-                    </a>
-
-                    <div class="card-decoration">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-
-                </div>
-
-                <!-- REFORÇO -->
-                <div class="curso-card reforco">
-
-                    <div class="curso-icon">
-                        <i class="fa-solid fa-book"></i>
-                    </div>
-
-                    <h3>Reforço e Alfabetização</h3>
-
-                    <span class="curso-linha"></span>
-
-                    <p>
-                        Acompanhamento personalizado para fortalecer a aprendizagem, leitura, escrita e desempenho escolar.
-                    </p>
-
-                    <a href="/cursos/reforco" class="curso-link">
-                        Saiba mais →
-                    </a>
-
-                    <div class="card-decoration">
-                        <i class="fa-solid fa-pencil"></i>
-                    </div>
-
-                </div>
-
-                <!-- EMBRAER -->
-                <div class="curso-card embraer">
-
-                    <div class="curso-icon">
-                        <i class="fa-solid fa-book-open"></i>
-                    </div>
-
-                    <h3>Preparatório Embraer</h3>
-
-                    <span class="curso-linha"></span>
-
-                    <p>
-                        Curso focado no processo seletivo da Embraer, com aulas, simulados e acompanhamento completo.
-                    </p>
-
-                    <a href="/cursos/embraer" class="curso-link">
-                        Saiba mais →
-                    </a>
-
-                    <div class="card-decoration">
-                        <i class="fa-solid fa-book-open"></i>
-                    </div>
-
-                </div>
-
+            <div class="reveal">
+                {% include "partials/cursos_cards.html" %}
             </div>
-
-        <div class="scroll-indicador">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
         </div>
-            
-            
     </section>
 
 
     <!-- ========================================= -->
     <!-- DIFERENCIAIS -->
     <!-- ========================================= -->
+    <section class="diferenciais section section--white" aria-labelledby="diferenciais-titulo">
+        <div class="container diferenciais-layout">
 
-    <section class="diferenciais">
+            <figure class="diferenciais-media reveal">
+                <picture>
+                    <source type="image/webp" srcset="{{ url_for('static', filename='img/PHOTO-2026-06-17-11-50-49_2.webp') }}">
+                    <img
+                        src="{{ url_for('static', filename='img/PHOTO-2026-06-17-11-50-49_2.png') }}"
+                        alt="Aluno sorrindo durante a aula na Alfa"
+                        width="960" height="1280"
+                        loading="lazy" decoding="async"
+                    >
+                </picture>
+                <figcaption class="diferenciais-selo">
+                    <strong>+15</strong>
+                    <span>anos de tradição</span>
+                </figcaption>
+            </figure>
 
-        <div class="container">
+            <div class="diferenciais-conteudo">
+                <div class="section-head">
+                    <h2 id="diferenciais-titulo">Por que escolher a Alfa?</h2>
+                </div>
 
-            <div class="section-title">
+                <ul class="diferenciais-lista reveal-stagger">
+                    <li class="diferencial-card">
+                        <span class="diferencial-icon"><i class="fa-solid fa-user-graduate" aria-hidden="true"></i></span>
+                        <div>
+                            <h3>Professores Qualificados</h3>
+                            <p>Equipe preparada para acelerar seu aprendizado.</p>
+                        </div>
+                    </li>
 
-                <h2>
-                    Por que escolher a Alfa?
-                </h2>
+                    <li class="diferencial-card">
+                        <span class="diferencial-icon"><i class="fa-solid fa-certificate" aria-hidden="true"></i></span>
+                        <div>
+                            <h3>Certificação</h3>
+                            <p>Receba certificado válido ao concluir seu curso.</p>
+                        </div>
+                    </li>
 
+                    <li class="diferencial-card">
+                        <span class="diferencial-icon"><i class="fa-solid fa-laptop" aria-hidden="true"></i></span>
+                        <div>
+                            <h3>Metodologia Moderna</h3>
+                            <p>Ensino atualizado e focado no mercado atual.</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
-
-
-            <div class="diferenciais-grid">
-
-
-                <!-- CARD -->
-                <div class="diferencial-card">
-
-                    <i class="fa-solid fa-user-graduate"></i>
-
-                    <h3>
-                        Professores Qualificados
-                    </h3>
-
-                    <p>
-
-                        Equipe preparada para acelerar
-                        seu aprendizado.
-
-                    </p>
-
-                </div>
-
-
-                <!-- CARD -->
-                <div class="diferencial-card">
-
-                    <i class="fa-solid fa-certificate"></i>
-
-                    <h3>
-                        Certificação
-                    </h3>
-
-                    <p>
-
-                        Receba certificado válido
-                        ao concluir seu curso.
-
-                    </p>
-
-                </div>
-
-
-                <!-- CARD -->
-                <div class="diferencial-card">
-
-                    <i class="fa-solid fa-laptop"></i>
-
-                    <h3>
-                        Metodologia Moderna
-                    </h3>
-
-                    <p>
-
-                        Ensino atualizado e focado
-                        no mercado atual.
-
-                    </p>
-
-                </div>
-
-
-
-            </div>
-
         </div>
-
     </section>
 
 
-    <!-- ========================================= 
-                        BANNER APROVADOS
-        ========================================== -->
-
-        <section class="banner-alunos">
-            <img
-                src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_10.jpg') }}"
-                alt="Alunos Aprovados Alfa Cursos"
-            >
-        </section>
+    <!-- ========================================= -->
+    <!-- BANNER APROVADOS -->
+    <!-- ========================================= -->
+    <section class="banner-alunos banner-alunos--ponte" aria-label="Alunos aprovados">
+        <div class="container">
+            <picture class="banner-frame reveal">
+                <source type="image/webp" srcset="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_10.webp') }}">
+                <img
+                    src="{{ url_for('static', filename='img/PHOTO-2026-06-30-16-17-19_10.jpg') }}"
+                    alt="Arte com alunos da Alfa aprovados na UNIVAP, Embraer, ETEC e COC: 60% da turma aprovada"
+                    width="2000" height="1414"
+                    loading="lazy" decoding="async"
+                >
+            </picture>
+        </div>
+    </section>
 
 
     <!-- ========================================= -->
     <!-- CONTADORES -->
     <!-- ========================================= -->
-
-    <section class="contadores">
-
-        <div class="container">
+    <section class="contadores contadores--apos-banner" aria-label="A Alfa em números">
+        <div class="container contadores-grid">
 
             <div class="contador-item">
-
-                <div class="contador-icon">
-                    <i class="fa-solid fa-trophy"></i>
-                </div>
-
-                <h2 class="contador-numero">
-                    +<span class="contador" data-target="15">0</span>
-                </h2>
-
+                <span class="contador-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>
+                <p class="contador-numero">
+                    +<span class="contador" data-target="15">15</span>
+                </p>
                 <p>Anos de Tradição</p>
-
             </div>
 
-            <div class="contador-linha"></div>
-
             <div class="contador-item">
-
-                <div class="contador-icon">
-                    <i class="fa-solid fa-user-graduate"></i>
-                </div>
-
-                <h2 class="contador-numero">
-                    +<span class="contador" data-target="3000">0</span>
-                </h2>
-
+                <span class="contador-icon"><i class="fa-solid fa-user-graduate" aria-hidden="true"></i></span>
+                <p class="contador-numero">
+                    +<span class="contador" data-target="3000">3.000</span>
+                </p>
                 <p>Alunos Atendidos</p>
-
             </div>
-
-            <div class="contador-linha"></div>
 
             <div class="contador-item">
+                <span class="contador-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                <p class="contador-numero">
+                    +<span class="contador" data-target="6">6</span>
+                </p>
+                <p>Cursos Disponíveis</p>
+            </div>
+        </div>
+    </section>
 
-                <div class="contador-icon">
-                    <i class="fa-solid fa-book-open"></i>
+
+    <!-- ========================================= -->
+    <!-- AULA EXPERIMENTAL -->
+    <!-- ========================================= -->
+    <section class="agende-visita section" aria-labelledby="agende-titulo">
+        <div class="container">
+            <div class="agende-card reveal">
+
+                <div class="agende-conteudo">
+                    <span class="agende-icon"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></span>
+
+                    <h2 id="agende-titulo">Agende uma Aula Experimental</h2>
+
+                    <p>
+                        Venha conhecer nossa estrutura, conversar com nossos professores
+                        e participar de uma aula experimental gratuita.
+                    </p>
+
+                    <a
+                        href="{{ wa }}?text=Olá!%20Gostaria%20de%20agendar%20uma%20visita%20/%20uma%20aula%20experimental."
+                        target="_blank"
+                        rel="noopener"
+                        class="btn btn--whatsapp btn--lg btn-agendar"
+                    >
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                        Agendar pelo WhatsApp
+                    </a>
                 </div>
 
-                <h2 class="contador-numero">
-                    +<span class="contador" data-target="6">0</span>
-                </h2>
-
-                <p>Cursos Disponíveis</p>
-
+                <picture class="agende-media">
+                    <source type="image/webp" srcset="{{ url_for('static', filename='img/PHOTO-2026-06-17-11-50-50_1.webp') }}">
+                    <img
+                        src="{{ url_for('static', filename='img/PHOTO-2026-06-17-11-50-50_1.png') }}"
+                        alt="Aluno sorrindo em sala de aula na Alfa"
+                        width="960" height="1280"
+                        loading="lazy" decoding="async"
+                    >
+                </picture>
             </div>
-
         </div>
-
     </section>
 
-    <!-- Agende sua Visita -->
-    <section class="agende-visita">
+
+    <!-- ========================================= -->
+    <!-- BANNER ALUNOS -->
+    <!-- ========================================= -->
+    <section class="banner-alunos" aria-label="Venha fazer parte da Alfa">
         <div class="container">
-            <h2>Agende uma Aula Experimental</h2>
-            <p>
-                Venha conhecer nossa estrutura, conversar com nossos professores
-                e participar de uma aula experimental gratuita.
-            </p>
-
-            <a
-                href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20agendar%20uma%20visita%20/%20uma%20aula%20experimental."
-                target="_blank"
-                class="btn-agendar"
-            >
-                Agendar pelo WhatsApp
-            </a>
+            <picture class="banner-frame reveal">
+                <source type="image/webp" srcset="{{ url_for('static', filename='img/578448E1-78B0-4F18-959A-39517A1B4AEF.webp') }}">
+                <img
+                    src="{{ url_for('static', filename='img/578448E1-78B0-4F18-959A-39517A1B4AEF.png') }}"
+                    alt="Arte da Alfa com alunos segurando certificado e apostila: venha já fazer parte da Alfa"
+                    width="1536" height="1024"
+                    loading="lazy" decoding="async"
+                >
+            </picture>
         </div>
-    </section>
-
-
-    <!-- ========================================= 
-                      BANNER ALUNOS
-    ========================================== -->
-
-    <section class="banner-alunos">
-
-        <img
-            src="{{ url_for('static', filename='img/578448E1-78B0-4F18-959A-39517A1B4AEF.png') }}"
-            alt="Alunos Alfa Cursos"
-        >
-
     </section>
 
 
     <!-- ========================================= -->
     <!-- CTA -->
     <!-- ========================================= -->
+    <section class="cta" aria-labelledby="cta-titulo">
+        <div class="container">
+            <div class="cta-box reveal">
+                <h2 id="cta-titulo">Comece sua jornada hoje</h2>
 
-    <section class="cta">
+                <p>
+                    Faça parte da Alfa Cursos e prepare-se
+                    para novas oportunidades profissionais.
+                </p>
 
-        <div class="cta-box">
-
-            <h2>
-                Comece sua jornada hoje
-            </h2>
-
-            <p>
-
-                Faça parte da Alfa Cursos e prepare-se
-                para novas oportunidades profissionais.
-
-            </p>
-
-            <a
-                href="https://wa.me/5512997781432?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20na%20Alfa." target="_blank"
-                class="btn"
-            >
-                Quero Me Matricular
-            </a>
-
+                <div class="cta-actions">
+                    <a href="{{ wa_matricula }}" target="_blank" rel="noopener" class="btn btn--accent btn--lg">
+                        Quero Me Matricular
+                    </a>
+                </div>
+            </div>
         </div>
-
     </section>
 
 
     <!-- ========================================= -->
-    <!-- FOOTER -->
+    <!-- LOCALIZAÇÃO -->
     <!-- ========================================= -->
+    {% include "partials/localizacao.html" %}
 
-    <footer class="footer">
+{% endblock %}
 
-        <p>
-
-            © 2026 Alfa Cursos — Todos os direitos reservados
-
-        </p>
-
-    </footer>
-    
-
-<!-- BOTÃO WHATSAPP -->
-
-    <a
-        href="https://wa.me/5512997781432?text=Olá!%20Tenho%20algumas%20dúvidas%20sobre%20os%20cursos%20da%20Alfa."
-        class="whatsapp-float"
-        target="_blank">
-
-        <span>
-            Tire suas dúvidas            
-        </span>
-
-        
-        <img
-            src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
-            alt="WhatsApp">
-    </a>
-
-
-
-
-    <script>
-
-    const slides = document.querySelectorAll(".slide");
-
-    let currentSlide = 0;
-
-    setInterval(() => {
-
-        slides[currentSlide].classList.remove("active");
-
-        currentSlide++;
-
-        if(currentSlide >= slides.length) {
-
-            currentSlide = 0;
-        }
-
-        slides[currentSlide].classList.add("active");
-
-    }, 4000);
-
-    </script>
-    <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/contador.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
-    <!-- ========================================= -->
-<!-- LOCALIZAÇÃO -->
-<!-- ========================================= -->
-
-<section class="localizacao">
-
-    <div class="localizacao-info">
-
-        <h2>Onde Estamos</h2>
-
-        <a href="https://instagram.com/alfaprofissionalizantes?igsh=Y2FqN2x1N29kaDd0" 
-            target="_blank"
-            class="contato-link"
-        >
-            📸 Instagram
-        </a>
-
-        <br><br>
-
-        <a href="mailto:alfaprofissionalizantes5@gmail.com"
-            class="contato-link"
-        >
-            📧 E-mail
-        </a>
-
-        <p>
-            📍 R. Patativa, n˚ 81<br>
-            Vila Tatetuba<br>
-            São José dos Campos - SP<br>
-            CEP: 12220-140
-        </p>
-
-        <a
-            href="https://wa.me/5512997781432"
-            target="_blank"
-            class="contato-whatsapp"
-        >
-            📞 (12) 99778-1432
-        </a>
-
-    </div>
-
-
-    <div class="mapa">
-
-        <iframe
-            src="https://www.google.com/maps?q=Centro+de+Educa%C3%A7%C3%A3o+Profissional+Alfa&output=embed"
-            width="100%"
-            height="350"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy">
-        </iframe>
-
-    </div>
-
-</section>
-
-
-</body>
-
-</html>
+{% block page_js %}
+    <script src="{{ url_for('static', filename='js/slider.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/scroll.js') }}" defer></script>
+{% endblock %}
