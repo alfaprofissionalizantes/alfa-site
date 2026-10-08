@@ -5,8 +5,8 @@
 
 /* HERO */
 .sobre-hero {
-    background-image: url("../img/faixa.png");
-    background-image: image-set(url("../img/faixa.webp") type("image/webp"), url("../img/faixa.png") type("image/png"));
+    background-image: url("../img/faixa.jpg");
+    background-image: image-set(url("../img/faixa.jpg") type("image/jpg"), url("../img/faixa.jpg") type("image/jpg"));
     background-position: 65% 45%;
 }
 
