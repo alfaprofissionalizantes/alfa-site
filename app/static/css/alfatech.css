@@ -126,14 +126,6 @@
     width: 64px;
     height: 48px;
     object-fit: contain;
-    filter: grayscale(100%);
-    opacity: .7;
-    transition: filter var(--t), opacity var(--t);
-}
-
-.tech-marcas-grid li:hover .tech-marca-logo {
-    filter: none;
-    opacity: 1;
 }
 
 /* DIFERENCIAIS */
